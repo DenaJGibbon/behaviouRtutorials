@@ -1,0 +1,271 @@
+# First we load the required library
+library(behaviouR)
+
+# We need to do some data prep to work through the examples
+# First you can check where your working directory is; this is where R will store the files locally
+getwd()
+
+# Now we will create a file at this location called 'FocalRecordings'
+dir.create(file.path('FocalRecordings'), showWarnings = FALSE)
+
+# Now we will load the sound files that were in the R package
+data("FocalRecordings")
+
+# Let's check the structure
+head(FocalRecordings)
+
+# Now we will save the recordings to the new folder you created
+for(a in 1:length(FocalRecordings)){
+  FileName <- FocalRecordings[[a]][1][[1]]
+  WaveFile <- FocalRecordings[[a]][2][[1]]
+  tuneR::writeWave(WaveFile, paste("FocalRecordings/",FileName,sep=''))
+}
+
+
+# Part 1. Loading a sound file and making a spectrogram
+# First we want to check which files are in the folder
+# There are five gibbon female recordings and five great argus recordings.
+list.files("FocalRecordings")
+
+# Now let's read in one of the files for further investigation. We do that with the
+# function 'readWave'. The .wav stands for 'Waveform Audio File' and is a common format that
+# scientists use to save their sound files.
+GibbonWaveFile <- tuneR::readWave("FocalRecordings/FemaleGibbon_1.wav")
+
+# Now if we run the object it will return some information
+GibbonWaveFile
+
+# What we see is that the soundfile is ~13 seconds long, was recorded at a sampling
+# rate of 44100 samples per second and has a total of 572054 samples.
+# We can check if that makes sense using the following equation (duration* sampling rate).
+seewave::duration(GibbonWaveFile)* GibbonWaveFile@samp.rate
+
+# Now we can plot the waveform from our sound file using the following code:
+seewave::oscillo(GibbonWaveFile)
+
+
+# We can also zoom in so that we can actually see the shape of the wave. 
+seewave::oscillo(GibbonWaveFile, from=0.1, to=0.2)
+
+# And if we zoom in again we see the wave shape even more. 
+seewave::oscillo(GibbonWaveFile, from=0.15, to=0.2)
+
+# A common way for scientists to study animal sounds is through the use of spectrograms. Here we will plot a spectrogram of a single
+# gibbon call.
+
+SpectrogramSingle(sound.file ="FocalRecordings/FemaleGibbon_1.wav")
+
+# There are many different things you can change when creating a spectrogram.
+# In the above version of the plot there is a lot of space above the gibbon calls, 
+# so we will change the frequency range to better visualize the gibbons.
+SpectrogramSingle(sound.file ="FocalRecordings/FemaleGibbon_1.wav",
+                  min.freq = 500,max.freq=2500)
+
+# In the code we are using there is also the option to change the color of the spectrogram
+# adding the following code:
+SpectrogramSingle(sound.file ="FocalRecordings/FemaleGibbon_1.wav",
+                  min.freq = 500,max.freq=2500,
+                  Colors = 'Colors')
+
+# NOTE: Changing the colors doesn't change how we read the spectrograms,
+# and different people have different preferences.
+
+# Now we can plot all of the spectrograms in our FocalRecordings file at once.
+# NOTE: Use the navigation buttons on the plots tab to move back and forth between the different spectrograms.
+# We change the plot settings to show four plots at a time
+par(mfrow=c(2,2))
+
+#NOTE: If you get an error drag the plot window so that it is larger on the screen!
+SpectrogramFunction(input.dir = "FocalRecordings",min.freq = 500,max.freq=2500)
+
+# Question 1. What differences do you notice about gibbon and great argus spectrograms?
+
+# Now that you are done looking at the spectrograms we will clear the space. You can always
+# re-run the code to look at the again.
+graphics.off()
+
+# Part 2. Visualizing differences in gibbon and great argus calls
+# A major question in many different types of behavioral studies is whether there
+# are differences between groups. This is also the case for acoustic data, where 
+# researchers may be interested if there are differences between sexes, populations,
+# individuals, or vocalizations emitted in different contexts. Here we will work through
+# a simple example where we will investigate differences in gibbon and argus calls.
+
+# The first step that we need to do is called feature extraction. There are many different
+# ways that scientists do this, but the overarching idea is that sound data contains too much
+# redundant information to be used on a model. Computers just don't have enough power to 
+# crunch all those numbers, so we need to identify a meaningful set of features that is smaller
+# than using the while waveform. This is also the case for image processing.
+
+# We are going to use a feature extraction method called 'Mel-frequency cepstral coefficients'.
+# I will not expect you to know any more about them, apart from the fact they are very useful
+# for human speech and bioaccoustics applications. 
+
+# Here is the function to extract the features
+FeatureDataframe <- MFCCFunction(input.dir = "FocalRecordings")
+
+# In this new dataframe each row represents one gibbon or great argus call. Let's check the dimensions of this new dataframe.
+dim(FeatureDataframe)
+
+# This shows us that for each of the 10 calls there are 178 features. This is in contrast
+# to a sound file. Let's check again to remind ourselves.
+GibbonWaveFile
+
+# This sound file is comprised of 572054 numbers. Now let's check the first row of our new dataframe
+# which contains the new features for the same gibbon call.
+FeatureDataframe[1,] # This isolates the first row.
+ncol(FeatureDataframe[1,]) # This tells us how many features we have.
+
+# OK, now we are ready to do some plotting. If you remember from our earlier lab,
+# the data structure we have here is multivariate, as each call has multiple values
+# associated with it. So we will use the same approach (principal component analysis)
+# to visualize our gibbon and great argus calls. 
+
+# First we run the principal component analysis
+pca_res <- prcomp(FeatureDataframe[,-c(1)], scale. = TRUE)
+
+# Now we visualize our results
+ggplot2::autoplot(pca_res, data = FeatureDataframe,
+         colour = 'Class')
+
+# What we see in this plot is strong clustering, with the gibbon calls closer to each
+# other than the great argus calls. 
+
+# First we will create a subdirectory to store the thumbnails of the spectrograms
+dir.create(file.path('FocalRecordings/thumbnails'), showWarnings = FALSE)
+
+#NOTE: It may take a few minutes to run. If you can't see the plot well click the 'zoom' 
+# button on the plot tab
+
+BiplotAddSpectrograms(input.dir.Focal="FocalRecordings")
+
+# Now that you are doing looking at the figure we will clear the space. You can always
+# re-run the code to look at the again.
+graphics.off()
+
+# Question 2. Do you see any differences in the spectrogram of the great argus calls
+# that are clustered together and the outlier?
+
+# Part 3. Soundscapes
+# Now we will do something similar to our investigation of the focal recordings, but
+# using a soundscape example. Here we have 20-sec recordings taken from two different
+# locations (Borneo and Sulawesi) and two different times (06:00 and 18:00). Let's
+# check what is in the folder
+
+# Now we will create a file at this location called 'SoundscapeRecordings'
+dir.create(file.path('SoundscapeRecordings'), showWarnings = FALSE)
+
+# Now we will load the sound files that were in the R package
+data("SoundscapeRecordings")
+
+# Let's check the structure
+head(SoundscapeRecordings)
+
+# Now we will save the recordings to the new folder you created
+for(a in 1:length(SoundscapeRecordings)){
+  FileName <- SoundscapeRecordings[[a]][1][[1]]
+  WaveFile <- SoundscapeRecordings[[a]][2][[1]]
+  tuneR::writeWave(WaveFile, paste("SoundscapeRecordings/",FileName,sep=''))
+}
+
+list.files("SoundscapeRecordings")
+
+# Now we will create spectrograms for each recordings
+par(mfrow=c(2,2))
+
+#NOTE: If you get an error drag the plot window so that it is larger on the screen!
+
+SpectrogramFunctionSite(input.dir = "SoundscapeRecordings",
+                    min.freq = 0,max.freq=20000)
+
+# Now that you are doing looking at the figure we will clear the space. You can always
+# re-run the code to look at the again.
+graphics.off()
+
+# Now just as above we will do feature extraction of our soundscape recordings. This
+# will convert our dataset into a smaller, much more manageable size. 
+SoundscapeFeatureDataframe <- 
+  MFCCFunctionSite(input.dir = "SoundscapeRecordings")
+
+# Check the resulting structure of the dataframe to make sure it looks OK.
+head(SoundscapeFeatureDataframe)
+
+# Now we visualize our results
+pca_res <- prcomp(SoundscapeFeatureDataframe[,-c(1)], scale. = TRUE)
+ggplot2::autoplot(pca_res, data = SoundscapeFeatureDataframe, 
+         colour = 'Class')
+
+# It looks like the Borneo_Night sampling period was much different from the rest!
+# Let's look at a single spectrogram from each sampling location and time.
+par(mfrow=c(2,2))
+SpectrogramSingle(sound.file ="SoundscapeRecordings/Borneo_Night_01.wav",
+                  min.freq = 0,max.freq=22000,
+                  Colors = 'BW',downsample = FALSE)
+
+SpectrogramSingle(sound.file ="SoundscapeRecordings/Borneo_Morning_01.wav",
+                  min.freq = 0,max.freq=22000,
+                  Colors = 'BW',downsample = FALSE)
+
+SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Night_01.wav",
+                  min.freq = 0,max.freq=22000,
+                  Colors = 'BW',downsample = FALSE)
+
+SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Morning_01.wav",
+                  min.freq = 0,max.freq=22000,
+                  Colors = 'BW',downsample = FALSE)
+
+graphics.off()
+
+# Question 3. You can listen to example sound files on the Canvas page. Between
+# looking at the spectrograms and listening to the sound files what do you think
+# are the main differences between the different locations and times?
+
+# Part 4. Now it is time to analyze the data you collected for this week's field lab.
+# Upload your sound files into either the 'MyFocalRecordings' folder or the 'MySoundscapeRecordings'
+# folder and run the code below.
+
+# NOTE: Make sure to create the folder and add your sound files!
+dir.create(file.path('MyFocalRecordings'), showWarnings = FALSE)
+
+### Part 4a. Your focal recordings
+# First lets visualize the spectrograms. You may want to change the frequency settings depending on the frequency range of your focal animals.
+# We can tell R to print the spectrograms 2x2 using the code below.
+par(mfrow=c(2,2))
+
+# This is the function to create the spectrograms
+SpectrogramFunction(input.dir = "MyFocalRecordings",min.freq = 200,max.freq=2000)
+
+# Here is the function to extract the features. Again, based on the frequency range of your focal recordings you may want to change the frequency settings.
+MyFeatureDataFrame <- MFCCFunction(input.dir = "MyFocalRecordings",min.freq = 200,max.freq=2000)
+
+#Then we run the principal component analysis
+pca_res <- prcomp(MyFeatureDataFrame[,-c(1)], scale. = TRUE)
+
+# Now we visualize our results
+ggplot2::autoplot(pca_res, data = MyFeatureDataFrame,
+         colour = 'Class')
+
+
+### Part 4b. Soundscape recordings
+dir.create(file.path('MySoundscapeRecordings'), showWarnings = FALSE)
+
+# First lets visualize the spectrograms. You probably don't want to change the frequency settings for this.
+# We can tell R to print the spectrograms 2x2 using the code below
+par(mfrow=c(2,2))
+
+# This is the function to create the spectrograms
+SpectrogramFunction(input.dir = "MySoundscapeRecordings",min.freq = 200,max.freq=10000)
+
+# Then we extract the features, which in this case are the MFCCs.
+MySoundscapeFeatureDataframe <- 
+  MFCCFunctionSite(input.dir = "MySoundscapeRecordings",min.freq = 200,max.freq=10000)
+
+# Check the resulting structure of the dataframe to make sure it looks OK.
+dim(MySoundscapeFeatureDataframe)
+
+# Now we visualize our results
+pca_res <- prcomp(MySoundscapeFeatureDataframe[,-c(1)], scale. = TRUE)
+ggplot2::autoplot(pca_res, data = MySoundscapeFeatureDataframe, 
+         colour = 'Class')
+
+#*Question 4*. Do you see evidence of clustering in either your focal recordings or soundscape recordings? 
