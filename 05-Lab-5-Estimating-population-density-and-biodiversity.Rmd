@@ -29,7 +29,7 @@ Then we read in our data
 CensusData <- read.csv('FieldLab5CensusData.csv')
 ```
 
-## Part 1. Population density estimation. 
+## Part 1. Population density estimation. {-}
 First let's focus on your data.  
 NOTE: you need to change 'A' to the name you used!
 
@@ -136,7 +136,7 @@ PopulationDensitySiteB > PopulationDensitySiteA
 
 **Question 1**. What were the population density estimates (reported as number of individuals per square kilometer) for your two sites? Do your results of the population density estimates match your predictions? Why or why not?
 
-## Part 2. Comparing biodiversity.
+## Part 2. Comparing biodiversity. {-}
 ### Alpha diversity.
 First, we will estimate the alpha diversity, or the diversity within a particular area or ecosystem. The alpha diversity is simply the number of different species present at each site.  
 
@@ -242,7 +242,7 @@ gghistogram(data=CensusData, x='Species',stat="count",
 
 **Question 4**. How did the gamma diversity of your site compare with that of your partners?
 
-## Part 3. Biodiversity indices in the real world.
+## Part 3. Biodiversity indices in the real world. {-}
 There are special packages in R that can measure different diversity indices, as biodiversity indices are tools many ecologists use. The package we will use is called 'vegan'.
 
 ```{r,message=FALSE,warning=FALSE}

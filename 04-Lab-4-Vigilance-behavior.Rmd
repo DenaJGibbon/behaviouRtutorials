@@ -66,7 +66,7 @@ First we load the required libraries
 library(behaviouR)
 ```
 
-## Part 1: Barnacle goose vigilance
+## Part 1: Barnacle goose vigilance {-}
 ```{r echo=FALSE}
 data("BarnacleGooseData")
 ```
@@ -183,7 +183,7 @@ bbmle::AICtab(VigilanceNullModel,VigilanceModel)
 
 #**Question 3.** How do you interpret the results of your model selection? Was there a relationship between flock size and duration of vigilance behavior?
 
-## Part 2: Meerkat data revisted
+## Part 2: Meerkat data revisted {-}
 Please upload your meerkat scan data to this project and delete the existing datasheet.
 ```{r,echo=FALSE}
 data("MeerkatScanData")

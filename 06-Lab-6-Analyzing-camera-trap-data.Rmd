@@ -35,7 +35,7 @@ First we need to load the relevant packages for our data analysis. Packages cont
 library(behaviouR)
 ```
 
-## Part 1: Collect Serengeti camera trap data
+## Part 1: Collect Serengeti camera trap data {-}
 The original dataset includes over 2.65M sequences of camera trap images (totaling 7.1M images) from ten field seasons. As you can imagine that is a lot of data! For this lab we will focus on a subset of the data collected over the course of a few seasons.  
 
 
@@ -80,7 +80,7 @@ Now you may want to save your datasheet locally
 write.csv(CombinedAnimalDF_TimeAdded,'CombinedAnimalDF_TimeAdded.csv',row.names = F)
 ```
 
-## Part 2: Analyze your Serengeti camera trap data
+## Part 2: Analyze your Serengeti camera trap data {-}
 First we load your data sheet with the times added.
 NOTE: Make sure that your updated datasheet has the exact same name as the file indicated below.
 ```{r, echo=FALSE}
@@ -131,7 +131,7 @@ bayestestR::overlap(FirstAnimal$Time,SecondAnimal$Time)
 
 **Question 2.** How do you interpret the overlap coefficient for your data? 
 
-## Part 3: Focus on your partner's Serengeti camera trap data
+## Part 3: Focus on your partner's Serengeti camera trap data {-}
 
 Now we will read in our partners data.   
 NOTE: Make sure that your updated datasheet has the exact same name as the file indicated below.
@@ -183,7 +183,7 @@ bayestestR::overlap(FirstAnimalPartner$Time,SecondAnimalPartner$Time)
 
 **Question 4.** What is the overlap coefficient for your partner's data? How do you interpret this?
 
-## Part 4. Investigating temporal niche partitioning in four different animals
+## Part 4. Investigating temporal niche partitioning in four different animals {-}
 
 First we combine both datasets
 ```{r, warning=FALSE, message=FALSE}

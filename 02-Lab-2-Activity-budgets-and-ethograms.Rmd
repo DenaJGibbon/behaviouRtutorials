@@ -27,7 +27,7 @@ First we need to load the relevant packages for our data analysis. Packages cont
 library(behaviouR)
 ```
 
-## Lab 2a. Enter and visualize your ethogram data {-}
+## Part 1. Enter and visualize your ethogram data {-}
 Here we will do an exploratory analysis of the ethograms that you created in Field Lab 1.
 First we will use some simulated (or made up) data to create our ethogram. In R we call the objects that contain our data 'dataframes'.
 
@@ -80,7 +80,7 @@ ggbarplot(data=EthogramDFupdated, x='Behavior', y='TimesObserved',fill='grey',xt
 *Change the code to reflect the categories you used in your ethogram and change the TimesObserved values to the actual values you recorded. NOTE: You may need to add more categories if your ethogram had more than six. What trends did you notice in terms of behaviors observed?*
 
 
-## Lab 2b. Calculate meerkat activity budgets.{-}
+## Part 2. Calculate meerkat activity budgets.{-}
 Our previous ethograms only included counts of different behaviors that we observed, but we did not standardize our results in any way. Activity budgets give an indication of how much time an animal spends doing each activity; these are generally expressed as percentages.
 
 First we need to import the data. If you are using RStudio Cloud you can import your data by clicking the 'upload' button and find the datasheet saved on your computer. 
@@ -157,7 +157,7 @@ ggbarplot(data=MeerkatFocalDataPartner,x='BehaviorCode',y='ActivityBudget', fill
 **Question 3**.   
 *Were there any noticeable differences between you and your partner's activity budgets?* 
 
-## Lab 2c. Scan sampling and inter-observer reliability. {-}
+## Part 3. Scan sampling and inter-observer reliability. {-}
 Load your data as you did before, but this time upload the 'MeerkatScanData.csv' file.
 
 Check the structure of our data. If we use 'head' it will return the first few rows of our dataframe.
