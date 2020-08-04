@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">BioNBB 2210 Summer 2020 Computer Labs</a></li>
+        <li><a href="./">behaviouR: R package and tutorials for online teaching of fundamental concepts</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
