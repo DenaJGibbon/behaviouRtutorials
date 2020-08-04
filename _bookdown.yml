@@ -1,0 +1,5 @@
+book_filename: "behaviouR-R-package-tutorials"
+language:
+  ui:
+    chapter_name: ""
+delete_merged_file: true

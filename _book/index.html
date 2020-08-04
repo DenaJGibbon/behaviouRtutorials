@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</title>
+  <meta name="description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology" />
+  
+  <meta name="twitter:description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  
+
+<meta name="author" content="Dena J. Clink" />
+
+
+<meta name="date" content="2020-08-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="lab-1-data-exploration-and-visualization.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioNBB 2210 Summer 2020 Computer Labs</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="lab-1-data-exploration-and-visualization.html"><a href="lab-1-data-exploration-and-visualization.html"><i class="fa fa-check"></i><b>1</b> Lab 1. Data exploration and visualization</a><ul>
+<li class="chapter" data-level="" data-path="lab-1-data-exploration-and-visualization.html"><a href="lab-1-data-exploration-and-visualization.html#lab-1a.-categorical-data"><i class="fa fa-check"></i>Lab 1a. Categorical data</a></li>
+<li class="chapter" data-level="" data-path="lab-1-data-exploration-and-visualization.html"><a href="lab-1-data-exploration-and-visualization.html#lab-1b.-categorical-and-continuous-data"><i class="fa fa-check"></i>Lab 1b. Categorical and continuous data</a></li>
+<li class="chapter" data-level="" data-path="lab-1-data-exploration-and-visualization.html"><a href="lab-1-data-exploration-and-visualization.html#lab-1c.-categorical-and-continuous-data"><i class="fa fa-check"></i>Lab 1c. Categorical and continuous data</a></li>
+<li class="chapter" data-level="" data-path="lab-1-data-exploration-and-visualization.html"><a href="lab-1-data-exploration-and-visualization.html#lab-1d.-multivariate-data"><i class="fa fa-check"></i>Lab 1d. Multivariate data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="lab-2-activity-budgets-and-ethograms.html"><a href="lab-2-activity-budgets-and-ethograms.html"><i class="fa fa-check"></i><b>2</b> Lab 2. Activity Budgets and Ethograms</a><ul>
+<li class="chapter" data-level="" data-path="lab-2-activity-budgets-and-ethograms.html"><a href="lab-2-activity-budgets-and-ethograms.html#lab-2a.-enter-and-visualize-your-ethogram-data"><i class="fa fa-check"></i>Lab 2a. Enter and visualize your ethogram data</a></li>
+<li class="chapter" data-level="" data-path="lab-2-activity-budgets-and-ethograms.html"><a href="lab-2-activity-budgets-and-ethograms.html#lab-2b.-calculate-meerkat-activity-budgets."><i class="fa fa-check"></i>Lab 2b. Calculate meerkat activity budgets.</a></li>
+<li class="chapter" data-level="" data-path="lab-2-activity-budgets-and-ethograms.html"><a href="lab-2-activity-budgets-and-ethograms.html#lab-2c.-scan-sampling-and-inter-observer-reliability."><i class="fa fa-check"></i>Lab 2c. Scan sampling and inter-observer reliability.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html"><i class="fa fa-check"></i><b>3</b> Lab 3. Analyzing Acoustic Data</a><ul>
+<li class="chapter" data-level="" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html#part-1.-loading-a-sound-file-and-making-a-spectrogram"><i class="fa fa-check"></i>Part 1. Loading a sound file and making a spectrogram</a></li>
+<li class="chapter" data-level="" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html#part-2.-visualizing-differences-in-gibbon-and-great-argus-calls"><i class="fa fa-check"></i>Part 2. Visualizing differences in gibbon and great argus calls</a></li>
+<li class="chapter" data-level="" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html#part-3.-soundscapes"><i class="fa fa-check"></i>Part 3. Soundscapes</a></li>
+<li class="chapter" data-level="" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html#part-4.-now-it-is-time-to-analyze-the-data-you-collected-for-this-weeks-field-lab."><i class="fa fa-check"></i>Part 4. Now it is time to analyze the data you collected for this week’s field lab.</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html#part-4a.-your-focal-recordings"><i class="fa fa-check"></i><b>3.0.1</b> Part 4a. Your focal recordings</a></li>
+<li class="chapter" data-level="3.0.2" data-path="lab-3-analyzing-acoustic-data.html"><a href="lab-3-analyzing-acoustic-data.html#part-4b.-soundscape-recordings"><i class="fa fa-check"></i><b>3.0.2</b> Part 4b. Soundscape recordings</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab-4-vigilance-behavior.html"><a href="lab-4-vigilance-behavior.html"><i class="fa fa-check"></i><b>4</b> Lab 4. Vigilance behavior</a><ul>
+<li class="chapter" data-level="4.1" data-path="lab-4-vigilance-behavior.html"><a href="lab-4-vigilance-behavior.html#part-1-barnacle-goose-vigilance"><i class="fa fa-check"></i><b>4.1</b> Part 1: Barnacle goose vigilance</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="lab-4-vigilance-behavior.html"><a href="lab-4-vigilance-behavior.html#part-1a-surveillance-behavior"><i class="fa fa-check"></i><b>4.1.1</b> Part 1a: Surveillance behavior</a></li>
+<li class="chapter" data-level="4.1.2" data-path="lab-4-vigilance-behavior.html"><a href="lab-4-vigilance-behavior.html#part-1b-time-vigilant-secmin"><i class="fa fa-check"></i><b>4.1.2</b> Part 1b: Time vigilant (sec/min)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="lab-4-vigilance-behavior.html"><a href="lab-4-vigilance-behavior.html#part-2-meerkat-data-revisted"><i class="fa fa-check"></i><b>4.2</b> Part 2: Meerkat data revisted</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i><b>5</b> Lab 5. Estimating Population Density and Biodiversity</a><ul>
+<li class="chapter" data-level="5.1" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#part-1.-population-density-estimation."><i class="fa fa-check"></i><b>5.1</b> Part 1. Population density estimation.</a></li>
+<li class="chapter" data-level="5.2" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#part-2.-comparing-biodiversity."><i class="fa fa-check"></i><b>5.2</b> Part 2. Comparing biodiversity.</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#alpha-diversity."><i class="fa fa-check"></i><b>5.2.1</b> Alpha diversity.</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#beta-diversity."><i class="fa fa-check"></i><b>5.2.2</b> Beta diversity.</a></li>
+<li class="chapter" data-level="5.2.3" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#now-we-will-use-your-partners-data-to-estimate-alpha-diversity"><i class="fa fa-check"></i><b>5.2.3</b> Now we will use your partner’s data to estimate alpha diversity</a></li>
+<li class="chapter" data-level="5.2.4" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#gamma-diversity"><i class="fa fa-check"></i><b>5.2.4</b> Gamma diversity</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="lab-5-estimating-population-density-and-biodiversity.html"><a href="lab-5-estimating-population-density-and-biodiversity.html#part-3.-biodiversity-indices-in-the-real-world."><i class="fa fa-check"></i><b>5.3</b> Part 3. Biodiversity indices in the real world.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab-6-analyzing-camera-trap-data-.html"><a href="lab-6-analyzing-camera-trap-data-.html"><i class="fa fa-check"></i><b>6</b> Lab 6. Analyzing camera trap data.</a><ul>
+<li class="chapter" data-level="6.1" data-path="lab-6-analyzing-camera-trap-data-.html"><a href="lab-6-analyzing-camera-trap-data-.html#part-1-collect-serengeti-camera-trap-data"><i class="fa fa-check"></i><b>6.1</b> Part 1: Collect Serengeti camera trap data</a></li>
+<li class="chapter" data-level="6.2" data-path="lab-6-analyzing-camera-trap-data-.html"><a href="lab-6-analyzing-camera-trap-data-.html#part-2-analyze-your-serengeti-camera-trap-data"><i class="fa fa-check"></i><b>6.2</b> Part 2: Analyze your Serengeti camera trap data</a></li>
+<li class="chapter" data-level="6.3" data-path="lab-6-analyzing-camera-trap-data-.html"><a href="lab-6-analyzing-camera-trap-data-.html#part-3-focus-on-your-partners-serengeti-camera-trap-data"><i class="fa fa-check"></i><b>6.3</b> Part 3: Focus on your partner’s Serengeti camera trap data</a></li>
+<li class="chapter" data-level="6.4" data-path="lab-6-analyzing-camera-trap-data-.html"><a href="lab-6-analyzing-camera-trap-data-.html#part-4.-investigating-temporal-niche-partitioning-in-four-different-animals"><i class="fa fa-check"></i><b>6.4</b> Part 4. Investigating temporal niche partitioning in four different animals</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-1-data-exploration-and-visualization-r-script.html"><a href="appendix-1-data-exploration-and-visualization-r-script.html"><i class="fa fa-check"></i>Appendix 1. Data exploration and visualization R script</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</h1>
+<p class="author"><em>Dena J. Clink</em></p>
+<p class="date"><em>2020-08-04</em></p>
+</div>
+<div id="welcome" class="section level1 unnumbered">
+<h1>Welcome</h1>
+<p><img src="behaviouR-R-package-tutorials_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To get started you should download the package from Github using the following code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Install devtools from CRAN</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;https://github.com/DenaJGibbon/behaviouR&quot;</span>)</a></code></pre></div>
+<p>Note: If you have never used R before I highly recommend that you check out the primers here: <a href="https://rstudio.cloud/learn/primers" class="uri">https://rstudio.cloud/learn/primers</a>.</p>
+<p>You can navigate using the tabs at the left and/or the arrows.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="lab-1-data-exploration-and-visualization.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["behaviouR-R-package-tutorials.pdf", "behaviouR-R-package-tutorials.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
