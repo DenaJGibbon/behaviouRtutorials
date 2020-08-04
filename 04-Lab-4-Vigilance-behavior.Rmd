@@ -1,0 +1,296 @@
+# Lab 4. Vigilance behavior
+```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
+knitr::opts_chunk$set(fig.height = 9, fig.width = 9)
+library(behaviouR)
+data('BarnacleGooseData')
+Figure4a <- ggscatter(data=BarnacleGooseData,x='FlockSize',y='TimeSecHeadUp',add='reg.line',
+          facet.by = 'Partner', color='Partner', cor.coef = T,
+          palette =c('black','blue'))+
+  ylab('Time vigilant (sec/min)')
+
+
+
+data('MeerkatScanData')
+# As before we will turn our NA values to zero
+MeerkatScanData[is.na(MeerkatScanData)] <- '0'
+
+# We will remove the time and out of sight columns as we do not need them
+MeerkatScanData <-dplyr::select(MeerkatScanData,-c(Time,OutOfSight))
+
+# We need to reformat our data so that we can plot it
+MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanData, id.vars=c("Treatment", "Partner"))
+
+# Here we add more informative column names
+colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner',
+                                          'BehavioralState','InstancesOfBehavior')
+
+# We need to tell R that our outcome variable is not categorical but numeric
+MeerkatScanDataSummaryLong$InstancesOfBehavior <-
+  as.numeric(MeerkatScanDataSummaryLong$InstancesOfBehavior)
+
+# Now we plot our data
+Figure4b <- ggboxplot(MeerkatScanDataSummaryLong,x='Treatment',
+          y='InstancesOfBehavior', fill = 'BehavioralState')+scale_fill_manual(values = c('red','white','black'))
+
+
+Fig4c <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/BarnacleGoose.jpg')
+Fig4c <-magick::image_ggplot(Fig4c)
+Fig4c <-Fig4c + theme(panel.border = element_rect(colour = "white", fill=NA, size=20))
+
+
+Fig4d <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/MeerkatSingle.jpg')
+Fig4d <-magick::image_ggplot(Fig4d)
+Fig4d <-Fig4d + theme(panel.border = element_rect(colour = "white", fill=NA, size=10))
+
+cowplot::plot_grid(Figure4a,Figure4b,Fig4c,Fig4d,
+                   scale  = c(1,1,0.75,0.9),label_x = .9,
+                  labels = c('A','B','C','D'))
+
+```
+
+
+*Background*   
+In this lab we will continue our work investigating vigilance behaviors in geese and meerkats.
+
+*Goals of the exercises*    
+The main goal(s) of today's lab are to:  
+1) Use the data on goose vigilance behavior to investigate the relationship between group size and vigilance behaviors.   
+2) Analyze the data collected during the meerkat lab to test for differences in vigilant behavior across predator treatment groups.   
+3) Continue to become familar with the way scientists analyze and interpret data.
+
+
+*Getting started*    
+First we need to load the relevant packages for our data analysis. Packages contain all the functions that are needed for data analysis. 
+First we load the required libraries
+```{r, echo=TRUE, warning=FALSE,message=FALSE}
+library(behaviouR)
+```
+
+## Part 1: Barnacle goose vigilance
+```{r echo=FALSE}
+data("BarnacleGooseData")
+```
+
+We load in our goose data
+```{r eval=FALSE}
+BarnacleGooseData <- read.csv('BarnacleGooseData.csv')
+```
+
+### Part 1a: Surveillance behavior
+First, we will calculate the surveillance rate (or the number of heads up per minute). Let's start by looking at the total number of 'head up' behaviors in our ethogram. To investigate this relationship we will create a scatterplot.
+
+```{r echo=TRUE}
+# Scatterplot of total number of 'head up' in our data
+ggscatter(data=BarnacleGooseData,
+          x='FlockSize',y='TotalHeadsUp')+ylab('Surveillance rate')
+```
+
+Now let's add a trend line to see if there is a relationship between flock size and the total number of 'head up' behaviors
+
+```{r echo=TRUE, message=FALSE}
+knitr::opts_chunk$set(fig.height = 5, fig.width = 5)
+# Scatterplot of total number of 'head up' in our data with a trend line.
+
+ggscatter(data=BarnacleGooseData,
+          x='FlockSize',y='TotalHeadsUp',add='reg.line')+ylab('Surveillance rate')
+```
+
+Let's see if there were any differences between you and your partner. We will also add the command 'cor.coef = T' which will give us the correlation coefficient (R) along with an associated p-value.
+
+```{r echo=TRUE, message=FALSE}
+# NOTE: The data here are simulated so your plots should look different
+ggscatter(data=BarnacleGooseData,
+          x='FlockSize',y='TotalHeadsUp',add='reg.line', facet.by = 'Partner',
+          cor.coef = T)+ylab('Surveillance rate')
+```
+
+Let's plot you and your partner's data in different colors. 
+```{r echo=TRUE, message=FALSE}
+
+ggscatter(data=BarnacleGooseData,
+          x='FlockSize',y='TotalHeadsUp',add='reg.line', facet.by = 'Partner',
+          color = 'Partner', palette =c('black','blue'),
+          cor.coef = T)+ylab('Surveillance rate')
+```
+
+**Question 1**: Were there any major differences between you and your partner in terms of the observed relationship between flock size and surveillance rate?
+
+Now we will do model selection using Akaike information criterion (AIC). First we create a null model and then we create a model with flock size as a predictor of total number of heads up.In the model code we specify that we are using a Poisson distribution, as we are dealing with count data instead of a continuous variable.
+
+```{r echo=TRUE, message=FALSE}
+# This is our null model
+SurveillanceNullModel <- glm(TotalHeadsUp ~ (1/Partner),family=poisson , data=BarnacleGooseData)
+
+# This is our model with flock size as a predictor of total number of heads up
+SurveillanceModel <- glm(TotalHeadsUp ~ FlockSize + (1/Partner) ,family=poisson, data=BarnacleGooseData)
+
+# Then we compare the models using AIC
+bbmle::AICtab(SurveillanceNullModel,SurveillanceModel)
+```
+**Question 2**: If the null model is ranked higher than the model with flock size as a predictor, how do would we interpret this finding? What if the model with flock size as a predictor was ranked higher? What were your results?
+
+### Part 1b: Time vigilant (sec/min)
+Now we will look at the relationship between the duration (calculated as seconds per minute) that the geese were vigilant as a function of flock size.
+
+```{r echo=TRUE}
+# Scatterplot of time vigilant (sec/min) as a function of group size
+ggscatter(data=BarnacleGooseData,
+          x='FlockSize',y='TimeSecHeadUp')+ylab('time vigilant (sec/min)')
+```
+
+Now let's add a trend line to see if there is a relationship between flock size and the duration of vigilance.
+
+```{r echo=TRUE, message=FALSE}
+
+# Scatterplot of duration of vigilance behavior in our data with a trend line.
+
+ggscatter(data=BarnacleGooseData,x='FlockSize',y='TimeSecHeadUp',add='reg.line')+
+  ylab('time vigilant (sec/min)')
+```
+
+Let's see if there were any differences between you and your partner. We will also add the command 'cor.coef = T' which will give us the correlation coefficient (R) along with an associated p-value.
+
+```{r echo=TRUE, message=FALSE}
+# NOTE: The data here are simulated so your plots should look different
+ggscatter(data=BarnacleGooseData,x='FlockSize',y='TimeSecHeadUp',add='reg.line',
+          facet.by = 'Partner',cor.coef = T)+
+  ylab('time vigilant (sec/min)')
+```
+
+Let's plot you and your partner's data in different colors. 
+```{r echo=TRUE, message=FALSE}
+
+ggscatter(data=BarnacleGooseData,x='FlockSize',y='TimeSecHeadUp',add='reg.line',
+          facet.by = 'Partner', color='Partner', cor.coef = T,
+          palette =c('black','blue'))+
+            ylab('time vigilant (sec/min)')
+
+```
+
+As before we will create a null model and then a model with flock size as a predictor and compare them using AIC. We will not use a Poisson distribution here because our outcome variable is continuous.
+
+```{r echo=TRUE, message=FALSE}
+
+# This is our null model
+VigilanceNullModel <- lme4::lmer(TimeSecHeadUp ~ (1|Partner), data=BarnacleGooseData)
+
+# This is our model with flock size as a predictor duration of vigilance
+VigilanceModel <- lme4::lmer(TimeSecHeadUp ~ FlockSize + (1|Partner) ,data=BarnacleGooseData)
+
+# Now we compare the models using AIC
+bbmle::AICtab(VigilanceNullModel,VigilanceModel)
+```
+
+#**Question 3.** How do you interpret the results of your model selection? Was there a relationship between flock size and duration of vigilance behavior?
+
+## Part 2: Meerkat data revisted
+Please upload your meerkat scan data to this project and delete the existing datasheet.
+```{r,echo=FALSE}
+data("MeerkatScanData")
+```
+
+```{r eval=FALSE, message=FALSE}
+MeerkatScanData <- read.csv('MeerkatScanData.csv')
+```
+
+As before we will turn our NA values to zero
+```{r echo=TRUE, message=FALSE}
+MeerkatScanData[is.na(MeerkatScanData)] <- '0'
+```
+
+We will remove the time and out of sight columns as we do not need them
+```{r echo=TRUE, message=FALSE}
+MeerkatScanData <- dplyr::select(MeerkatScanData,-c(Time,OutOfSight))
+```
+
+We need to reformat our data so that we can plot it
+```{r echo=TRUE, message=FALSE}
+MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanData, id.vars=c("Treatment", "Partner"))
+```
+
+Here we add more informative column names
+```{r echo=TRUE, message=FALSE}
+colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner',
+                                          'BehavioralState','InstancesOfBehavior')
+```
+
+We need to tell R that our outcome variable is not categorical but numeric
+```{r echo=TRUE, message=FALSE}
+MeerkatScanDataSummaryLong$InstancesOfBehavior <- 
+  as.numeric(MeerkatScanDataSummaryLong$InstancesOfBehavior)
+```
+
+Now we plot our data.
+```{r echo=TRUE, message=FALSE}
+ggboxplot(MeerkatScanDataSummaryLong,x='Treatment',
+          y='InstancesOfBehavior', fill = 'BehavioralState')+scale_fill_manual(values = c('red','white','black'))
+```
+
+**Question 4.** Based on your inspection of the boxplots, are there any major differences between treatment groups?
+
+Now we will test to see if there were differences in vigilance behaviors across treatments.
+
+```{r echo=TRUE, message=FALSE}
+# First we subset our data so that it only includes the vigilant category
+MeerkatScanDataVigilantOnly <- subset(MeerkatScanDataSummaryLong,
+                                      BehavioralState=='Vigilant' )
+
+# R can be picky about the format of data, so we use this command to tell R that treatment group is a factor
+MeerkatScanDataVigilantOnly$Treatment <- 
+  as.factor(MeerkatScanDataVigilantOnly$Treatment)
+
+# Here we are reordering the levels of the factors. For our model selection we are interested in whether we see differences from the control (no predator) and the predator treatments, so here we are setting the no predator group as our reference group.
+
+MeerkatScanDataVigilantOnly$Treatment <- 
+  factor(MeerkatScanDataVigilantOnly$Treatment, levels = c("NoPredator", "AerialPredator", 
+                                                           "TerrestrialPredator"))
+```
+
+Now as before we will do model selection. Note that because our outcome variable (instances of behavior) is in the form of count data we use a poisson distribution.
+```{r echo=TRUE, message=FALSE}
+# This is the null model.
+MeerkatVigilanceNullModel <- glm(InstancesOfBehavior ~ 1, family=poisson, data=MeerkatScanDataVigilantOnly)
+
+# This is the model with treatment as a predictor of instances of vigilant behavior
+MeerkatVigilanceModel <- glm(InstancesOfBehavior ~ Treatment, family=poisson,data=MeerkatScanDataVigilantOnly)
+```
+
+Now we compare the models using AIC
+```{r echo=TRUE, message=FALSE}
+bbmle::AICtab(MeerkatVigilanceNullModel,MeerkatVigilanceModel)
+```
+
+Here we will use the summary function to look at the estimates. There is a lot of information here but we want to focus on the 'Estimate'. In particular we are interested in the estimates for 'TreatmentAerialPredator' and 'TreatmentTerrestrialPredator'. The estimate is showing the effect that these variables have on our outcome (instances of behavior), relative to our control (no predator).Therefore positive estimates indicate that there were more vigilance behaviors in aerial and terrestrial predator treatments.
+
+```{r echo=TRUE}
+summary(MeerkatVigilanceModel)
+```
+
+A common way to visulize results such as these are coefficient plots. Here we are looking at the effect of 'TreatmentAerialPredator' and 'TreatmentTerrestrialPredator' relative to our control group. The reference or group is indicated by the vertical dashed line. So, we can interpret that because the coefficients are positive (and the confidence intervals don't overlap zero) that both terrestrial and aerial treatments lead to an increase in vigilant behaviors.
+
+```{r echo=TRUE}
+coefplot::coefplot(MeerkatVigilanceModel,intercept=F)
+```
+
+For reasons that will not go into here, I am not a fan of p-values or null hypothesis significance testing. There is a nice overview if you want to learn more here: https://doi.org/10.1098/rsbl.2019.0174. But,the model selection approach we used will lead to the same inference as the use of a one-way anova, an approach that you may be more familiar with.
+
+Compute the analysis of variance
+```{r echo=TRUE}
+MeerkatAOV <- aov(InstancesOfBehavior ~ Treatment, data = MeerkatScanDataVigilantOnly)
+```
+
+Here this will tell us if there are differences between groups. A significant p-value (< 0.05) indicates there are differences between treatment groups.
+```{r echo=TRUE}
+summary(MeerkatAOV)
+```
+
+Since the ANOVA test is significant, we can compute Tukey Honest Significant Differences test. Again, a significant p-value (< 0.05) indicates there are differences between treatments.
+```{r echo=TRUE}
+TukeyHSD(MeerkatAOV)
+```
+
+**Question 5.** Based on your interpretation of the model selection and the coefficient plots were there differences between treatment groups (e.g. control, terrestrial and aerial predators) in meerkat vigilance behavior?
+
+
+
+

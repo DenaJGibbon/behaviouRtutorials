@@ -1,0 +1,260 @@
+# Lab 2. Activity Budgets and Ethograms
+
+```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE,fig.asp=0.62}
+library(behaviouR)
+# Lab 2 Figures
+meerkat.image <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/Lab2Figure.pdf')
+meerkat.image <-magick::image_ggplot(meerkat.image)
+
+print(meerkat.image)
+```
+
+
+*Background*   
+In this lab you will continue to become familiar with the ways that we visualize and analyze behavioral data. For this lab I assume students have conducted Field Labs 1 and 2, so you should be familiar with how focal behavioral data are collected. Field Lab 1 data collection involves observation of animals in your own backyard, and the Field Lab 2 data collection uses methods outlined in: Hammond 2019, Vigilance behaviour in meerkats, ASAB Education.
+
+*Goals of the exercises*    
+The main goal(s) of today's lab are to:  
+1) Enter and visualize your ethogram data  
+2) Calculate meerkat activity budgets
+3) Compare inter-observer reliability from the meerkat data
+
+
+*Getting started*    
+First we need to load the relevant packages for our data analysis. Packages contain all the functions that are needed for data analysis. 
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(behaviouR)
+```
+
+## Lab 2a. Enter and visualize your ethogram data {-}
+Here we will do an exploratory analysis of the ethograms that you created in Field Lab 1.
+First we will use some simulated (or made up) data to create our ethogram. In R we call the objects that contain our data 'dataframes'.
+
+```{r echo = TRUE}
+
+EthogramDF <- 
+  data.frame(Behavior=c('Resting','Locomotion','Foraging','Calling','Playing','Other'),
+                 TimesObserved=c(5,7,3,21,1,0))
+```
+
+
+If you run the object 'EthogramDF' you should see your table: 
+```{r echo = TRUE}
+EthogramDF
+```
+
+A common command to check data structure is 'str'. Here we can see our dataframe has two variables:'Behavior' and 'TimesObserved'.
+```{r echo = TRUE}
+str(EthogramDF)
+```
+
+Now we can make a barplot to visualize our results using the 'ggpubr' package
+
+```{r echo = TRUE}
+ggbarplot(data=EthogramDF, x='Behavior', y='TimesObserved',fill='grey')
+```
+
+In the space below I want you to add in your own ethogram categories and create a plot based on the ethogram you created in Field lab 1.
+
+Change the Behavior categories (i.e. Category1) to the categories you used in your ethogram and the TimesObserved values to the actual values you recorded
+
+```{r echo = TRUE}
+
+EthogramDFupdated <- data.frame(Behavior=c('Category1','Category2','Category3',
+                                           'Category4','Category5','Category6'),
+                         TimesObserved=c(1,2,3,4,5,6))
+```
+
+If you run the object you should see your dataframe 
+```{r echo = TRUE}
+head(EthogramDFupdated)
+```
+
+NOTE: Your plot will look different than this as you will enter your own data above!
+```{r echo = TRUE}
+ggbarplot(data=EthogramDFupdated, x='Behavior', y='TimesObserved',fill='grey',xtickslab.rt = 90)
+```
+
+**Question 1**   
+*Change the code to reflect the categories you used in your ethogram and change the TimesObserved values to the actual values you recorded. NOTE: You may need to add more categories if your ethogram had more than six. What trends did you notice in terms of behaviors observed?*
+
+
+## Lab 2b. Calculate meerkat activity budgets.{-}
+Our previous ethograms only included counts of different behaviors that we observed, but we did not standardize our results in any way. Activity budgets give an indication of how much time an animal spends doing each activity; these are generally expressed as percentages.
+
+First we need to import the data. If you are using RStudio Cloud you can import your data by clicking the 'upload' button and find the datasheet saved on your computer. 
+
+```{r echo = FALSE,,out.width = '75%'}
+knitr::include_graphics(('RstudioCloudImport.png'))
+```
+
+We also have sample data saved in the package so we can load that using the following code
+```{r echo = FALSE}
+data("MeerkatFocalData")
+data("MeerkatScanData")
+```
+
+NOTE: You will want to keep the file name the exact same or R won't be able to find the data.
+Let's check the structure of our data.
+```{r echo = TRUE}
+
+str(MeerkatFocalData)
+```
+
+Then we calcuate the total number of seconds for each behavior. There are many different ways that we can summarize our data using R, but we will use the package 'dplyr'.
+
+Here we take the sum for each unique behavior and return it 
+```{r echo = TRUE}
+
+MeerkatFocalData %>% 
+  dplyr::group_by(BehaviorCode) %>% 
+  dplyr::summarise(TotalSeconds = sum(SecondsEngagedinBehavior))
+```
+
+Then we need to save the output as an R object
+```{r echo = TRUE}
+
+MeerkatFocalDataSummary <- MeerkatFocalData %>% 
+  dplyr::group_by(BehaviorCode) %>% 
+  dplyr::summarise(TotalSeconds = sum(SecondsEngagedinBehavior))
+```
+
+Now we need to standardize for our total observation time. We divide by 600 because our video was 10 minutes (or 600 seconds) long.
+```{r echo = TRUE}
+
+MeerkatFocalDataSummary$ActivityBudget <- MeerkatFocalDataSummary$TotalSeconds/600*100
+```
+
+Now let's plot our results!
+NOTE: The example here is using fake data.
+```{r echo = TRUE}
+
+ggbarplot(data=MeerkatFocalDataSummary,x='BehaviorCode',y='ActivityBudget',fill='grey')+ylab('Percent of Time')
+```
+
+Now lets see if there were differences between you and your partner. We need to save the output as an R object, but this time including the sums by partner.
+```{r echo = TRUE}
+
+MeerkatFocalDataPartner <- MeerkatFocalData %>% 
+  dplyr::group_by(BehaviorCode,Partner) %>% 
+  dplyr::summarise(TotalSeconds = sum(SecondsEngagedinBehavior))
+```
+
+Again, we divide by 600 because our video was 10 minutes (or 600 seconds) long. We then multiply by 100 so that we can report in percentages.
+```{r echo = TRUE}
+
+MeerkatFocalDataPartner$ActivityBudget <- MeerkatFocalDataPartner$TotalSeconds/600*100
+```
+
+Now we compare our data with our partner's. Note that there are two new lines in the code below. The fill argument tells R which category or factor to use to color the bars. The position argument tells R to place the bars side-by-side.
+```{r echo = TRUE}
+
+ggbarplot(data=MeerkatFocalDataPartner,x='BehaviorCode',y='ActivityBudget', fill='Partner',
+          position = position_dodge(0.9))+ylab('Percent of Time')
+```
+
+**Question 3**.   
+*Were there any noticeable differences between you and your partner's activity budgets?* 
+
+## Lab 2c. Scan sampling and inter-observer reliability. {-}
+Load your data as you did before, but this time upload the 'MeerkatScanData.csv' file.
+
+Check the structure of our data. If we use 'head' it will return the first few rows of our dataframe.
+```{r echo = TRUE}
+head(MeerkatScanData)
+```
+
+For this analysis the 'Time' column isn't needed so we can remove it; It is the first column so we use 1 in the code below.
+```{r echo = TRUE}
+
+MeerkatScanData <-MeerkatScanData[,-c(1)]
+```
+
+R deals with blanks in dataframes by converting them to 'NA'. This is useful for some cases, but we want to convert our blanks to zeros using the following code.
+```{r echo = TRUE}
+
+MeerkatScanData[is.na(MeerkatScanData)] <- 0
+```
+
+Here we take the sum for each unique behavior and return it. 
+```{r echo = TRUE}
+
+MeerkatScanData %>% 
+  dplyr::group_by(Treatment) %>% 
+  dplyr::summarise(Vigilant = sum(Vigilant),
+                   OutOfSight=sum(OutOfSight),
+                   NotVigilant=sum(NotVigilant))
+```
+
+We need to save the output as an R object
+```{r echo = TRUE}
+
+MeerkatScanDataSummary <- MeerkatScanData %>% 
+  dplyr::group_by(Treatment,Partner) %>% 
+  dplyr::summarise(Vigilant = sum(Vigilant),
+                   OutOfSight=sum(OutOfSight),
+                   NotVigilant=sum(NotVigilant))
+```
+
+There are many functions in R that allow us to change the format of our data. This one changes the format to one that is more easily used by 'ggpubr'
+```{r echo = TRUE}
+
+MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanDataSummary, id.vars=c("Treatment", "Partner"))
+str(MeerkatScanDataSummaryLong)
+```
+
+Now we change the column names so they are better for plotting
+```{r echo = TRUE}
+
+colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner','Behavior','NumberObservations')
+```
+
+Again we can plot our results
+```{r echo = TRUE}
+
+ggbarplot(data=MeerkatScanDataSummaryLong,x='Treatment',y='NumberObservations', fill='Behavior',
+          position = position_dodge(0.9))
+```
+
+And now we can visually compare our results with our partners. Note that in order to separate the plots by partner we use facet.by = 'Partner'. 
+```{r echo = TRUE}
+
+ggbarplot(data=MeerkatScanDataSummaryLong,x='Treatment',y='NumberObservations', fill='Behavior',
+          position = position_dodge(0.9),facet.by = 'Partner')
+```
+
+Now we want to calculate inter-observer reliablity.
+NOTE: that you will want to change the A and B to the names you used in the datasheet
+```{r echo = TRUE}
+
+Partner1Data <- subset(MeerkatScanData,Partner=='A')
+Partner1Data <- Partner1Data[,-c(5)] # We remove the 'Partner' column so that we only focus on scans
+
+Partner2Data <- subset(MeerkatScanData,Partner=='B')
+Partner2Data <- Partner2Data[,-c(5)] # We remove the 'Partner' column so that we only focus on scans
+```
+
+Reliability is often and most simply expressed as a correlation coefficient. A correlation of 1 means a perfect positive association between two sets of measurements, whereas a correlation of zero means the complete absence of a linear association. Reliability is generally calcuated for each category of behavior.
+
+```{r echo = TRUE}
+# Here we calculate reliability for vigilance
+VigilantCorrelation <- cor(Partner1Data$Vigilant,Partner2Data$Vigilant)
+
+# Here we calculate reliability for vigilance
+NotVigilantCorrelation <- cor(Partner1Data$NotVigilant,Partner2Data$NotVigilant)
+
+# Here we calculate reliability for out of sight
+OutOfSightCorrelation <-  cor(Partner1Data$OutOfSight,Partner2Data$OutOfSight)
+
+# Print the results
+cbind.data.frame(VigilantCorrelation,NotVigilantCorrelation,OutOfSightCorrelation)
+
+
+
+```
+
+NOTE: The correlation values between you and your partner will be different!
+
+**Question 4**.   
+*What was the reliability (or correlation coefficent) between you and your partner for each of the different behavioral categories? What do you think lead to these differences? *
