@@ -1,0 +1,42 @@
+# Field Lab 1: Introduction to how we study behavior {-}
+
+<center><p><a href="https://commons.wikimedia.org/wiki/File:Northern_Cardinal_male_RWD2.jpg#/media/File:Northern_Cardinal_male_RWD2.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Northern_Cardinal_male_RWD2.jpg/1200px-Northern_Cardinal_male_RWD2.jpg" alt="Northern Cardinal male RWD2.jpg"></a><br></center>
+
+## Part 1. Observe behaviors {-}
+
+Choose a safe spot to sit, set a timer for 10 minutes and observe the animals around you. Write down any and all animal behaviors you observe. If you know the species that is great, otherwise you can just classify into major groups (e.g. birds, insects). You and your partner will do this exercise independently. NOTE: If you do not feel that you can do this exercise safely in your current location please contact me and I will give you a virtual option.
+
+*Question 1*. Now that you have spent 10 minutes observing and taking notes of animal behavior, what do you see as pros/cons of this approach?
+
+ 
+## Part 2. How we describe behaviors (ethograms) {-}
+
+Now you and your partner will compare notes and create an ethogram that includes broad categories of the behaviors you observed. 
+
+*Question 2*: What were the broad categories you and your partner included in your ethogram?
+
+## Part 3. Collect data on a focal species or taxonomic group {-}
+
+Using your newly created ethogram you will now collect data on a focal species or taxonomic group. As before, set a timer for 10 minutes, but this time use your ethogram to collect data. Tally how many times your organism(s) exhibit each behavior in your ethogram.
+
+*Question 3*: What were the most common behaviors you observed? What about the least common?
+
+
+## Part 4: Develop a research question, hypothesis and prediction {-}
+
+Once you have taken time to make some behavioral observations, or frankly as you are making them, select one particular behavior that interests you the most. Use this behavior to generate a Question -> Hypothesis -> and Prediction about its relevance to your organism’s life history. Pick any level of analysis. If you don’t have time to do this part in the field, you can complete it afterward. In fact, taking time to think about the behaviors you observed is often very important when coming up with questions, hypotheses, and predictions.
+
+*Question 5*: What was the behavior you observed? What question did you develop about this behavior? What hypotheses do you have about the function of this behavior?
+
+ 
+## Part 5. Find a primary literature article related to your hypothesis {-}
+
+Now your job is to find a primary literature article related to your hypotheses and predictions outlined in Part 4.
+
+Write a brief summary that you will share with me and your partner. Include the following information (~1 sentence each):
+
+- Background: What was already known before the study?
+- Research question(s): What was the main research question? What hypotheses were they testing?
+- Methods: How did they test their hypotheses?
+- Results: What were the main findings?
+- Discussion/Future Directions: What were their main conclusions? Did they highlight any future directions?

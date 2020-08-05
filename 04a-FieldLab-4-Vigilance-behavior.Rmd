@@ -1,0 +1,38 @@
+# Field Lab 4: Vigilance behavior {-}
+
+## Part 1. Introduction {-}
+Please watch this short video for an introduction to vigilance behavior.
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/gICgaiPjucU" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
+
+*Question 1*. In this lab we will be investigating the relationship between group size and vigilance behavior. Please develop a hypothesis and an associated prediction related to predation risk, group size and vigilance behavior. Remember your hypothesis is related to the ‘big-picture’ question, and the prediction is something that you can actually test.
+
+
+## Part 2. Data collection {-}
+In your notebook document the following:
+
+1. Flock size  
+2. The number of times they are in the ‘head up’ position  
+3. The start and stop time of each ‘head up’ position.   
+
+I recommend using a stopwatch for this. Here is a link to the video:
+
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/oeJHW5n-PXY" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
+
+## Part 3. Data entry  {-}
+Please calculate the total number of 'head up' behaviors and the total duration of 'head up' for each flock size and enter into the following data sheet. Then share with your partner. 
+
+
+## Part 4. Follow-up questions  {-}
+*Question 2*. Before we do any data analysis, please provide a qualitative analysis. Were there any trends that were apparent to you (the human observer)?  
+
+*Question 3*. In your own words, describe the potential costs and benefits of living in groups. Please discuss in terms of predation risk and feeding competition.   
+
+*Question 4*. What are some other factors (besides predation risk and group size) that could influence the vigilance behavior of an individual?   

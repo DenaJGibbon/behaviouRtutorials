@@ -1,0 +1,62 @@
+# Field Lab 2: Ethograms and activity budgets {-}
+
+<a title="Nevit Dilmen / CC BY-SA (http://creativecommons.org/licenses/by-sa/3.0/)" href="https://commons.wikimedia.org/wiki/File:Darica_07157.jpg"><img width="256" alt="Darica 07157" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Darica_07157.jpg/256px-Darica_07157.jpg"></a>
+
+
+NOTE: you may want to look ahead to Computer Lab 2. You will need to enter your data from this lab into the spreadsheets. For the field lab you can take the data anyway that you like, but be prepared to enter and format it for the computer lab!
+
+## Part 1. Build an ethogram from meerkat observations {-}
+Your first task will be to watch this short video: https://vimeo.com/80600819 (Links to an external site.). While you watch the video, document all of the different behaviors that you observe. After you watch the video, develop an ethogram with your partner including: a) behavioral categories and b) definitions for each category.
+
+*Question 1a*. Were the behaviors that you and your partner listed different?
+*Question 1b*. Please enter your ethogram (behavioral categories and definitions) here. Make sure to include ‘other’ and ‘out of view’ as two of your categories.
+
+## Part 2. Focal versus scan sampling {-}
+Watch this video for an introduction to focal versus scan sampling.
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/lc0ehu7jvaA" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
+
+
+
+## Part 3. Focal sampling and inter-observer reliability {-}
+Now, both you and your partner will watch this 10-minute focal video of one meerkat (Bumble) https://vimeo.com/80602697. You will want to develop a short code that you can use for each behavior category (e.g. drinking could be denoted with a ‘D’). You will want to note the start time of each behavior and the behavior code. You can take the initial data using any format you choose (e.g. I used a pen and paper) and you can subsequently enter your data into the spreadsheet.
+
+*Question 2*. How similar or different were your observations to your partners?
+
+## Part 4. Calculating activity budgets using focal data {-}
+Activity budgets are used to provide information about how animals spend their time. They are generally presented as the proportion or percent time that an animal spends in a particular activity. They are important for providing baseline data on animal behavior, and can be used for testing hypotheses related to different experimental treatments. To calculate meerkat activity budgets use the following steps:
+
+1. Calculate the number of seconds engaged in each entry on data sheet.
+2. Sum up total number of seconds for each behavior
+3. Divide the total number of seconds engaged in behavior by the total number of seconds of observation (in this case 600).
+4. Then multiply each value by 100 to report your activity budget in percent  
+
+*Question 3*. Enter the results of your activity budget calculations here.
+
+## Part 5. Scan sampling and inter-observer reliability {-}
+#### Part 5a. First, watch this clip of meerkats engaging in sentry and vigilance behaviors (refer to the introduction for definitions of these behaviors). {-}   
+https://vimeo.com/80600820 
+
+#### Part 5b. Now you and your partner will watch three videos of meerkats under different experimental treatments.{-}  
+The treatments will be: in the presence of no predator, in the presence of a terrestrial predator and in the presence of an aerial predator. Set a timer to go off every 10 seconds, and at each interval record the number of meerkats performing each behavior. We will use a modified ethogram that includes only three categories: vigilant, not vigilant or out of site.
+
+Vigilant: Head raised at or above horizontal plain and eyes open (to include scanning /guarding / raised guarding).
+Not Vigilant: Eyes closed or head lower than horizontal plane (to include foraging, moving, sleeping, resting).
+Out of sight: Not visible by the researcher  
+
+*Question 4*. Do you think meerkats will be more or less vigilant in the presence of predators? Will their behavior vary depending on the type of predator?
+
+NOTE: Do not communicate with your partner while watching the videos!
+
+No predator: https://vimeo.com/80600822 (Links to an external site.)
+
+Terrestrial predator: https://vimeo.com/71877438 (Links to an external site.)
+
+Aerial predator: https://vimeo.com/80600821 (Links to an external site.)
+
+*Question 5*. Were there any differences between you and your partner?
+
+Material for this lab was adapted from: Hammond 2019, Vigilance behaviour in meerkats, ASAB Education. Please cite this source in any labs based on this material.
