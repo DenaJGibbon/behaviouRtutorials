@@ -18,7 +18,7 @@ GibbonWaveFile <- tuneR::readWave("FocalRecordings/FemaleGibbon_1.wav")
 seewave::oscillo(GibbonWaveFile)
 ```
 
-## Introduction {-}
+## Part 1. Introduction {-}
 As we have learned in lecture this week, animals communicate through a variety of modalities including visual, auditory and chemical. In lab this week we will focus on bioacoustics techniques, or the study of animal sounds and their habitats. For this lab you will need access to a smartphone or device with recording capabilities, a place where you can record vocal animals and a notebook to write down your observations. 
 
 NOTE: If you do not have access to a recording device and/or do not feel you can do this lab outside safely please contact me for a virtual option. 
@@ -29,8 +29,8 @@ Please see the website below for tips to record using your smartphone. It would 
 
 https://support.ebird.org/en/support/solutions/articles/48001064305-smartphone-recording-tips
 
-## Part 1. Tutorial: How we study sounds {-}
-Please see the 'How we study sounds' tutorial.
+### Tutorial: How we study sounds {-}
+Please see the 'How we study sounds' tutorial. Link here: https://rstudio.cloud/project/1381321. You will need to create an RStudio cloud login. To access the tutorial open the 'HowWeStudySoundTutorial.Rmd' file and then click the 'knit' button. It may take a few minutes to load. 
 
 *Question 1.* What were the main differences between the duets of the different primates?
 *Question 2.* What did you notice about the two soundscapes in Ithaca during different seasons? What about the soundscapes from Borneo and Sulawesi?

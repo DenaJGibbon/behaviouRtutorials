@@ -1,4 +1,4 @@
-# Lab 2. Activity Budgets and Ethograms {-}
+# Computer Lab 2. Activity Budgets and Ethograms {-}
 
 ```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE,fig.asp=0.62}
 library(behaviouR)
