@@ -1,4 +1,4 @@
-# Lab 5. Estimating Population Density and Biodiversity
+# Lab 5. Estimating Population Density and Biodiversity {-}
 
 ```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
 knitr::opts_chunk$set(fig.height = 9, fig.width = 9)

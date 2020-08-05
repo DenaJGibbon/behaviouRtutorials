@@ -1,4 +1,4 @@
-# Lab 6. Analyzing camera trap data.
+# Lab 6. Analyzing camera trap data. {-}
 
 ```{r echo=FALSE,out.width='80%', fig.asp=.75, fig.align='center'}
 

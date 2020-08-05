@@ -1,4 +1,4 @@
-# Lab 1. Data exploration and visualization 
+# Lab 1. Data exploration and visualization {-}
 
 ```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
 library(behaviouR)

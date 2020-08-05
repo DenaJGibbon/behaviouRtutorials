@@ -1,4 +1,4 @@
-# Lab 3. Analyzing Acoustic Data
+# Lab 3. Analyzing Acoustic Data {-}
 
 
 ```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
