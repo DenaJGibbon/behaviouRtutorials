@@ -1,3 +1,3 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "[Get Started](https://bookdown.org/yihui/bookdown/get-started.html)" at https://bookdown.org/yihui/bookdown/ for how to compile this example into HTML. You may generate a copy of the book in `bookdown::pdf_book` format by calling `bookdown::render_book('index.Rmd', 'bookdown::pdf_book')`. More detailed instructions are available here https://bookdown.org/yihui/bookdown/build-the-book.html.
+This is the location of the R Markdown files used to create the document titled: 'behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology'
 
-You can find the preview of this example at https://bookdown.org/yihui/bookdown-demo/.
+You can find the most recent version of this example at https://bookdown.org/djc426/behaviouR-R-package-tutorials/.

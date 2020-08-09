@@ -70,9 +70,11 @@ overlap(FirstAnimal$Time, SecondAnimal$Time)
 # Question 2. How do you interpret the overlap coefficient for your
 # data?
 
+data("CombinedPartnerDFTimes")
+
 # Now we will read in our partners data. NOTE that you need to make
 # sure the name of the .csv file is exactly as shown below.
-CombinedPartnerDFTimes <- read.csv("CombinedAnimalDF_TimeAddedPartner.csv")
+#CombinedPartnerDFTimes <- read.csv("CombinedAnimalDF_TimeAddedPartner.csv")
 
 # Let's check the structure
 head(CombinedPartnerDFTimes)

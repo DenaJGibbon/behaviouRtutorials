@@ -206,7 +206,7 @@ Now we can use R to create a linear model to quantitatively investigate the rela
 MaleDeerModel <- lm(MaleReproductiveSuccess ~ MaleBodyWeight,data=MaleRedDeerDF)
 ```
 
-We can look at the output of the model and we see that our coefficient for MaleBodyWeight is 0.83. We interpret this to mean that for every 1 kg increase in male body mass, we would expect to see a 0.83 increase in the number of females in his harem.
+We can look at the output of the model and we see that our coefficient for MaleBodyWeight is 0.45. We interpret this to mean that for every 1 kg increase in male body mass, we would expect to see a 0.45 increase in the reproductive success of the male.
 
 ```{r echo = TRUE}
 # We can look at the output of the model  
@@ -281,7 +281,7 @@ ggplot2::autoplot(DeerSpeciesAcousticFeaturesPCA, data = DeerSpeciesAcousticFeat
 ```
 
 What if we are interested in which features best distinguish between our groups?
-We can visulize this using the following code:
+We can visualize this using the following code:
 
 ```{r echo = TRUE,message=FALSE}
 # Plot the PCA with arrows indicating which features are important for distinguishing between groups

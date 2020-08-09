@@ -4,6 +4,8 @@
 library(behaviouR)
 
 # We need to do some data prep to work through the examples
+```{r, eval=F, echo=T}
+
 # First you can check where your working directory is; this is where R will store the files locally
 getwd()
 
@@ -11,7 +13,8 @@ getwd()
 dir.create(file.path('FocalRecordings'), showWarnings = FALSE)
 
 # Now we will load the sound files that were in the R package
-data("FocalRecordings")
+githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/FocalRecordings.rda'
+FocalRecordings <- get(load(url(githubURL)))
 
 # Let's check the structure
 head(FocalRecordings)
@@ -130,24 +133,10 @@ pca_res <- prcomp(FeatureDataframe[,-c(1)], scale. = TRUE)
 ggplot2::autoplot(pca_res, data = FeatureDataframe,
          colour = 'Class')
 
-# What we see in this plot is strong clustering, with the gibbon calls closer to each
-# other than the great argus calls. 
+What we see in this plot is strong clustering, with the points from each class of calls more close to the other points than those of different calls.
 
-# First we will create a subdirectory to store the thumbnails of the spectrograms
-dir.create(file.path('FocalRecordings/thumbnails'), showWarnings = FALSE)
-
-#NOTE: It may take a few minutes to run. If you can't see the plot well click the 'zoom' 
-# button on the plot tab
-
-BiplotAddSpectrograms(input.dir.Focal="FocalRecordings")
-
-# Now that you are doing looking at the figure we will clear the space. You can always
-# re-run the code to look at the again.
-graphics.off()
-
-# Question 2. Do you see any differences in the spectrogram of the great argus calls
-# that are clustered together and the outlier?
-
+*Question 2.* How do we interpret the clustering in this PCA plot?
+  
 # Part 3. Soundscapes
 # Now we will do something similar to our investigation of the focal recordings, but
 # using a soundscape example. Here we have 20-sec recordings taken from two different

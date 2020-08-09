@@ -93,7 +93,8 @@ getwd()
 dir.create(file.path('FocalRecordings'), showWarnings = FALSE)
 
 # Now we will load the sound files that were in the R package
-data("FocalRecordings")
+githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/FocalRecordings.rda'
+FocalRecordings <- get(load(url(githubURL)))
 
 # Let's check the structure
 head(FocalRecordings)
@@ -185,7 +186,7 @@ NOTE: Use the navigation buttons on the plots tab to move back and forth between
 par(mfrow=c(2,2))
 
 # This is the function to create the spectrograms
-SpectrogramFunction(input.dir = "FocalRecordings",min.freq = 500,max.freq=2500)
+  SpectrogramFunction(input.dir = "FocalRecordings",min.freq = 500,max.freq=2500)
 ```
 
 *Question 1.* What differences do you notice about gibbon and great argus spectrograms? 
@@ -246,28 +247,10 @@ ggplot2::autoplot(pca_res, data = FeatureDataframe,
          colour = 'Class')
 ```
 
-What we see in this plot is strong clustering, with the gibbon calls closer to each other than the great argus calls. There is one great argus call that seems to be a bit of an outlier. Let's check that out using the code below.
+What we see in this plot is strong clustering, with the points from each class of calls more close to the other points than those of different calls.
 
-NOTE: The code below may take a few minutes to run. If you can't see the plot well click the 'zoom' button on the plot tab
+*Question 2.* How do we interpret the clustering in this PCA plot?
 
-```{r,eval=FALSE, echo=TRUE,message=FALSE,warning=FALSE}
-
-BiplotAddSpectrograms(input.dir.Focal="FocalRecordings")
-
-```
-
-```{r,echo=FALSE}
-Fig3b <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/Lab3bFigure.pdf')
-Fig3b <-magick::image_ggplot(Fig3b)
-Fig3b
-
-```
-
-Now that you are done looking at the figure we will clear the space. You can always re-run the code to look at the again.
-```{r, eval=FALSE}
-graphics.off()
-```
-*Question 2.* Do you see any differences in the spectrogram of the great argus calls that are clustered together and the outlier?
 
 ## Part 3. Soundscapes {-}
 Now we will do something similar to our investigation of the focal recordings, but using a soundscape example. Here we have 20-sec recordings taken from two different locations (Borneo and Sulawesi) and two different times (06:00 and 18:00). Let's check what is in the folder.
