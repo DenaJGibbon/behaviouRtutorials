@@ -1,21 +1,6 @@
 # Field Lab 3: Introduction to bioacoustics {-}
 ```{r echo=FALSE,out.width='80%', fig.asp=.75, fig.align='center',message=FALSE}
-library(behaviouR)
-
-# Now we will create a file at this location called 'FocalRecordings'
-dir.create(file.path('FocalRecordings'), showWarnings = FALSE)
-
-# Now we will load the sound files that were in the R package
-data("FocalRecordings")
-
-# Now we will save the recordings to the new folder you created
-for(a in 1:1){
-  FileName <- FocalRecordings[[a]][1][[1]]
-  WaveFile <- FocalRecordings[[a]][2][[1]]
-  tuneR::writeWave(WaveFile, paste("FocalRecordings/",FileName,sep=''))
-}
-GibbonWaveFile <- tuneR::readWave("FocalRecordings/FemaleGibbon_1.wav")
-seewave::oscillo(GibbonWaveFile)
+magick::image_read('images/lab3updated.png')
 ```
 
 ## Part 1. Introduction {-}

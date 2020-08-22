@@ -1,14 +1,16 @@
 # Appendix 1. Data exploration and visualization R script  {-}
 
 ```{r,  eval=F, echo=T}
-# Please use the Lab 1 tutorial located here: https://bookdown.org/djc426/IntroToBehaviorTutorials/
+# Please use the Lab 1 tutorial located here: https://bookdown.org/djc426/behaviouR-R-package-tutorials/
 
 # Hello and welcome to your first R session!
 # Remember any lines that include a # symbol will not be read by R, 
 # but provides information to the user (you!)
 
-# First we load the relevant package
+# First we load the relevant packages
 library(behaviouR)
+library(ggpubr)
+library(ggfortify)
 
 ## Lab 1a. Categorical data
 # Here we create a simulated population with four categories (Infant, Juvenile, AdultFemale and AdultMale)
@@ -35,12 +37,12 @@ ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute',
 
 # Now we will plot the categorical data with colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
-          add = c("mean_sd"),xtickslab.rt = 90)
+          add = c("mean_sd"),xtickslab.rt = 90)+ theme(legend.position = "none")
 
 # Now we will plot the categorical data with user-specified colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
           palette = c('red','gray','white','black'),
-          add = c("mean_se"),xtickslab.rt = 90)
+          add = c("mean_se"),xtickslab.rt = 90)+ theme(legend.position = "none")
 
 
 ## Lab 1c. Categorical and continuous data
@@ -77,7 +79,7 @@ MaleDeerNull <- lm(MaleReproductiveSuccess ~ 1, data=MaleRedDeerDF)
 MaleDeerModel <- lm(MaleReproductiveSuccess ~ MaleBodyWeight,data=MaleRedDeerDF)
 
 # Compare models using AIC.
-AICctab(MaleDeerModel,MaleDeerNull, weights=T)
+bbmle::AICctab(MaleDeerModel,MaleDeerNull, weights=T)
 
 ## Lab 1d. Multivariate data
 # Just as before we load our data
@@ -93,11 +95,11 @@ DeerSpeciesAcousticFeatures[,-c(4)]
 DeerSpeciesAcousticFeaturesPCA <- princomp(DeerSpeciesAcousticFeatures[,-c(4)])
 
 # Plot the results of our PCA.
-autoplot(DeerSpeciesAcousticFeaturesPCA, data = DeerSpeciesAcousticFeatures, colour = 'Class',
+ggplot2::autoplot(DeerSpeciesAcousticFeaturesPCA, data = DeerSpeciesAcousticFeatures, colour = 'Class',
          loadings = FALSE)+theme_bw()
 
 # Plot the PCA with arrows indicating which features are important for distinguishing between groups
-autoplot(DeerSpeciesAcousticFeaturesPCA, data = DeerSpeciesAcousticFeatures, colour = 'Class',
+ggplot2::autoplot(DeerSpeciesAcousticFeaturesPCA, data = DeerSpeciesAcousticFeatures, colour = 'Class',
          loadings = TRUE, loadings.colour = 'red',
          loadings.label = TRUE,
          loadings.label.size = 5)+theme_bw()

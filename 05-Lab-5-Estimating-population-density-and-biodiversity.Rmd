@@ -9,7 +9,7 @@ gghistogram(data=CensusData, x='Species',stat="count",palette = c(matlab::jet.co
 ```
 
 *Background*   
-In this lab you will become familiar with the ways that scientists estimate population density and biodiversity of terrestrial vertebrates.
+In lecture this week we learned about population- and community- level interactions, and how they can influence individual and species-specific behavior. Differences in population density can lead to shifts in the proportion of different behavioral phenotypes in a population, and the presence of competitors of other species can shape the behavior of animals on shorter (ecological) and longer (evolutionary) time scales. In this lab you will become familiar with the ways that scientists estimate population density and biodiversity of terrestrial vertebrates.
 
 *Goals of the exercises*    
 The main goal(s) of today's lab are to:  
@@ -137,7 +137,7 @@ PopulationDensitySiteB > PopulationDensitySiteA
 **Question 1**. What were the population density estimates (reported as number of individuals per square kilometer) for your two sites? Do your results of the population density estimates match your predictions? Why or why not?
 
 ## Part 2. Comparing biodiversity. {-}
-### Alpha diversity.
+### Alpha diversity. {-}
 First, we will estimate the alpha diversity, or the diversity within a particular area or ecosystem. The alpha diversity is simply the number of different species present at each site.  
 
 Here we subset by partner and site A (you may need to change these!)
@@ -168,7 +168,7 @@ SiteBNumberSpecies
 
 **Question 2**. Which of your sites had higher species richness (i.e. number of species)?
 
-### Beta diversity.
+### Beta diversity. {-}
 Now we will estimate beta diversity, which estimates changes in species diversity between ecosystems or along environmental gradients.  
 
 ```{r}
@@ -190,7 +190,7 @@ Where c is the number of species the sites have in common, S1 is the number of s
 2*SpeciesInCommonBothSites/ (SiteANumberSpecies+SiteBNumberSpecies)
 ```
 
-### Now we will use your partner's data to estimate alpha diversity
+Now we will use your partner's data to estimate alpha diversity
 ```{r}
 MyPartnersCensusDataSiteA <- subset(CensusData,Partner=='B' & Site=='SiteC')
 unique(MyPartnersCensusDataSiteA$Species)
@@ -208,7 +208,7 @@ SiteBNumberSpecies
 
 **Question 3**. How did the alpha diversity of each of your sites compare with that of your partner?
 
-### Gamma diversity
+### Gamma diversity {-}
 Gamma diversity is the total number of species over a large area or region; there are many different ways that this can be measured. The way we will do it is a bit of an oversimplification by simply comparing the number of species seen during the census at both locations.
 
 First we subset by the first partner

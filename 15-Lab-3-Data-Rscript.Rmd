@@ -2,9 +2,10 @@
 ```{r,  eval=F, echo=T}
 # First we load the required library
 library(behaviouR)
+library(ggfortify) 
+library(ggplot2)
 
 # We need to do some data prep to work through the examples
-```{r, eval=F, echo=T}
 
 # First you can check where your working directory is; this is where R will store the files locally
 getwd()
@@ -133,7 +134,7 @@ pca_res <- prcomp(FeatureDataframe[,-c(1)], scale. = TRUE)
 ggplot2::autoplot(pca_res, data = FeatureDataframe,
          colour = 'Class')
 
-What we see in this plot is strong clustering, with the points from each class of calls more close to the other points than those of different calls.
+# What we see in this plot is strong clustering, with the points from each class of calls more close to the other points than those of different calls.
 
 *Question 2.* How do we interpret the clustering in this PCA plot?
   
@@ -147,7 +148,9 @@ What we see in this plot is strong clustering, with the points from each class o
 dir.create(file.path('SoundscapeRecordings'), showWarnings = FALSE)
 
 # Now we will load the sound files that were in the R package
-data("SoundscapeRecordings")
+githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/SoundscapeRecordings.rda'
+
+SoundscapeRecordings <- get(load(url(githubURL)))
 
 # Let's check the structure
 head(SoundscapeRecordings)
@@ -159,6 +162,7 @@ for(a in 1:length(SoundscapeRecordings)){
   tuneR::writeWave(WaveFile, paste("SoundscapeRecordings/",FileName,sep=''))
 }
 
+# List all the files in the folder
 list.files("SoundscapeRecordings")
 
 # Now we will create spectrograms for each recordings

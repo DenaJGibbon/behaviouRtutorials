@@ -33,6 +33,7 @@ First we need to load the relevant packages for our data analysis. Packages cont
 
 ```{r, warning=FALSE, message=FALSE}
 library(behaviouR)
+library(ggpubr)
 ```
 
 ## Part 1: Collect Serengeti camera trap data {-}

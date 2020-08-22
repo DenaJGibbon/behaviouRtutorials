@@ -50,7 +50,7 @@ print(cowplot::plot_grid(deerImage,Fig1b,
 
 
 *Background*  
-Our examples will focus on roaring behavior in red deer. Red deer on Rum Island, Scotland form harems during the mating season. Harem holding males fight off other males during this time, and many of these males have signs of fighting injuries. Clutton-Brock and colleagues hypothesized that because of the injury associated with fights that red deer males should use honest indicators of each others fighting abilities, and that the main indicator of strength and fighting ability was the male roars.   
+Our examples for this lab will focus on roaring behavior in red deer. Red deer on Rum Island, Scotland form harems during the mating season. Harem holding males fight off other males during this time, and many of these males have signs of fighting injuries. Clutton-Brock and colleagues hypothesized that because of the injury associated with fights that red deer males should use honest indicators of each others fighting abilities, and that the main indicator of strength and fighting ability was the male roars.   
 
 *Goals of the exercises*   
 The main goal(s) of today's lab are to:  
@@ -58,7 +58,7 @@ The main goal(s) of today's lab are to:
 2) help you to start to become familiar with using R.   
 3) to get you to think about the ways that scientists analyze data.  
 
-*Suggested readings*: 
+*Suggested readings*:   
 Clutton-Brock, Tim H., and Steven D. Albon. "The roaring of red deer and the evolution of honest advertisement." *Behaviour* 69.3-4 (1979): 145-170.
 
 Reby D, McComb K. Anatomical constraints generate honesty: acoustic cues to age and weight in the roars of red deer stags. Animal behaviour. 2003 Mar 1;65(3):519-30.
@@ -67,11 +67,13 @@ Long, A. M., N. P. Moore, and T. J. Hayden. "Vocalizations in red deer (*Cervus 
 
 
 *Getting started*  
-First we need to load the relevant package. Packages contain all the functions that are needed for data analysis. The 'behaviouR' package loads many other packages that have important functions.
+First we need to load the relevant packages. Packages contain all the functions that are needed for data analysis. The 'behaviouR' package loads many other packages that have important functions.
 
 ```{r results='hide', message=FALSE, warning=FALSE}
 # First we load the relevant packages
 library(behaviouR)
+library(ggpubr)
+library(ggfortify)
 ```
 
 
@@ -111,9 +113,9 @@ Question 2b. Modify the code above so that our simulated deer population has a m
 
 
 ## Part 2. Categorical and continuous data {-}
-Our second example will investigate roaring rates in deer as a function of status and breeding season.The categories we will use are: pre-mating season, harem holder, not harem holder and post-mating season.Our outcome variable (mean number of roars per minute) is continuous; it represents actual numerical measurements.
+Our second example will investigate roaring rates in deer as a function of status and breeding season. The categories we will use are: pre-mating season, harem holder, not harem holder and post-mating season.Our outcome variable (mean number of roars per minute) is continuous; it represents actual numerical measurements.
 
-I created a toy dataset which is based on Figure 2 in Clutton-Brock et al. 1979 where for each category we have five observations which represent the average number of calls per minute. For each category we have a total of five observations.
+We will work with a toy dataset that is based on Figure 2 in Clutton-Brock et al. 1979. For each category we have five observations which represent the average number of calls per minute. For each category we have a total of five observations.
 
 ```{r echo = TRUE}
 ## Lab 1b. Categorical and continuous data
@@ -138,7 +140,7 @@ Although it shows us what we need, we can also include some colors in our plot. 
 ```{r echo = TRUE}
 # Now we will plot the categorical data with colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
-          add = c("mean_sd"),xtickslab.rt = 90)
+          add = c("mean_sd"),xtickslab.rt = 90)+ theme(legend.position = "none")
 ```
 
 Color for plots is often based on personal preference, below I modified the colors using the 'palette' argument.
@@ -148,7 +150,7 @@ NOTE: The use of color-blind friendly palettes is becoming increasingly popular 
 # Now we will plot the categorical data with user-specified colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
           palette = c('red','gray','white','black'),
-          add = c("mean_se"),xtickslab.rt = 90)
+          add = c("mean_se"),xtickslab.rt = 90)+ theme(legend.position = "none")
 ```
 
 *Please answer the following questions:*  
@@ -165,7 +167,7 @@ For this example we will consider the relationship between male red deer body we
 
 Below we have a function that will simulate data for us, and we can specify the level of correlation. 
 
-We also assign a mean body weight for males in our population (I got this value from ). We can also change the male reproductive success value. Our starting correlation value between these two variables is that reported in Reby & McComb 2003.
+We also assign a mean body weight for males in our population. We can also change the male reproductive success value. The starting values that we will use are from Reby & McComb 2003.
 
 
 ```{r echo = TRUE}
@@ -191,14 +193,14 @@ Now we plot the data the data as before, but this time we make a scatterplot
 ggscatter(data=MaleRedDeerDF,x='MaleBodyWeight',y='MaleReproductiveSuccess')
 ```
 
-It looks like there is a correlation between our two variables, but it would be better visualized with a trend line.
+It looks like there is a correlation between our two variables, but it would be better visualized with a trend line. We can do that by including add='reg.line'.
 ```{r echo = TRUE, message=FALSE}
 # Make a scatterplot with a trendline.
 ggscatter(data=MaleRedDeerDF,x='MaleBodyWeight',y='MaleReproductiveSuccess',
           add='reg.line')
 ```
 
-Now we can use R to create a linear model to quantitatively investigate the relationship between our two variables
+Now we can use R to create a linear model to quantitatively investigate the relationship between our two variables. Linear models describe the relationship of a continuous variable (in this case 'MaleReproductiveSuccess') as a function of predictor variable(s). In the linear model below we are interested in the relationship between MaleBodyWeight and MaleReproductiveSuccess.
 
 ```{r echo = TRUE}
 # Create a linear model where MaleBodyWeight is the independent variable
@@ -206,7 +208,7 @@ Now we can use R to create a linear model to quantitatively investigate the rela
 MaleDeerModel <- lm(MaleReproductiveSuccess ~ MaleBodyWeight,data=MaleRedDeerDF)
 ```
 
-We can look at the output of the model and we see that our coefficient for MaleBodyWeight is 0.45. We interpret this to mean that for every 1 kg increase in male body mass, we would expect to see a 0.45 increase in the reproductive success of the male.
+We can look at the output of the model and we see that our coefficient for MaleBodyWeight is 0.45. We interpret this to mean that for every 1 kg increase in male body mass, we would expect to see a 0.45 increase in the reproductive success of the male. Since we simulated population so that there would be a correlation 0.45 between our two variables we already knew that this would be the outcome.
 
 ```{r echo = TRUE}
 # We can look at the output of the model  

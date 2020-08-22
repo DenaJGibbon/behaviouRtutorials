@@ -13,7 +13,7 @@ For this lab you are going to choose two animals from the camera trap dataset. I
 *Question 1*. What are the two species you chose to compare? What are your predictions regarding their activity patterns?
 
 ## Part 4. Data collection {-}
-We will be using RStudio to access and download 50 photos of each of the two species you indicated above. You will want to download the spreadsheet that R created (each spreadsheet will be different depending on your target animals). Then once you download the data you will open each of the photos, verify that there is actually the indicated animal in the photo (if not you can just delete the row) and enter the 'Time' in the spreadsheet. Most scientific data collection uses a 24-hour clock, and for this lab you can simply enter the hour in the 'Time' column. For example, the image below was taken at 10:08:59, so you would simply enter '10' into the data sheet.  
+We will be using RStudio to access and download 50 photos of each of the two species you indicated above. See Part I of Computer Lab 6. Analyzing camera trap data for detailed instructions on how to collect your data.
 
 ## Part 5. Follow-up questions {-}
 

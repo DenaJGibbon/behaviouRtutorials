@@ -2,6 +2,7 @@
 ```{r,  eval=F, echo=T}
 # First we load the required libraries
 library(behaviouR)
+library(ggpubr)
 
 # We will be taking random subsets of the camera trap photos, and we
 # use 'set.seed' to make sure that our results are reproducible.
@@ -65,7 +66,7 @@ FirstAnimal <- subset(CombinedDFTimes, category_id == "zebra")
 SecondAnimal <- subset(CombinedDFTimes, category_id == "wildebeest")
 
 # Now we use the overlap function to calculate the overlap coefficient
-overlap(FirstAnimal$Time, SecondAnimal$Time)
+bayestestR::overlap(FirstAnimal$Time, SecondAnimal$Time)
 
 # Question 2. How do you interpret the overlap coefficient for your
 # data?
@@ -100,7 +101,7 @@ FirstAnimalPartner <- subset(CombinedPartnerDFTimes, category_id == "cheetah")
 SecondAnimalPartner <- subset(CombinedPartnerDFTimes, category_id == "leopard")
 
 # Now we use the overlap function to calculate the overlap coefficient
-overlap(FirstAnimalPartner$Time, SecondAnimalPartner$Time)
+bayestestR::overlap(FirstAnimalPartner$Time, SecondAnimalPartner$Time)
 
 # Question 4. What is the overlap coefficient for your partner's data?
 # How do you interpret this?

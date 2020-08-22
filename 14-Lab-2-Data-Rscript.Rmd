@@ -1,7 +1,10 @@
 # Appendix 2. Activity Budgets and Ethograms  {-}
 ```{r,  eval=F, echo=T}
 # Lab 2:  Activity Budgets and Ethograms
+
+# First we load the required packages
 library(behaviouR)
+library(ggpubr)
 
 # Reminder: any lines that include a # symbol will not be read by R
 
@@ -109,14 +112,11 @@ MeerkatScanDataSummary <- MeerkatScanData %>%
                    NotVigilant=sum(NotVigilant))
 
 
-MeerkatScanDataSummaryLong <- melt(MeerkatScanDataSummary, id.vars=c("Treatment", "Partner"))
+MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanDataSummary, id.vars=c("Treatment", "Partner"))
 head(MeerkatScanDataSummaryLong)
 
 colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner','Behavior','NumberMeerkats')
 
-# Again we can plot our results
-ggbarplot(data=MeerkatScanDataSummaryLong,x='Treatment',y='NumberMeerkats', fill='Behavior',
-          position = position_dodge(1))
 
 # And now we can visually compare our results with our partners
 ggbarplot(data=MeerkatScanDataSummaryLong,x='Treatment',y='NumberMeerkats', fill='Behavior',

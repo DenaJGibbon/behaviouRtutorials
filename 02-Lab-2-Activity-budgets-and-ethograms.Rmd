@@ -11,7 +11,7 @@ print(meerkat.image)
 
 
 *Background*   
-In this lab you will continue to become familiar with the ways that we visualize and analyze behavioral data. For this lab I assume students have conducted Field Labs 1 and 2, so you should be familiar with how focal behavioral data are collected. Field Lab 1 data collection involves observation of animals in your own backyard, and the Field Lab 2 data collection uses methods outlined in: Hammond 2019, Vigilance behaviour in meerkats, ASAB Education.
+In this lab you will continue to become familiar with the ways that we visualize and analyze behavioral data. For this lab I assume students have conducted Field Labs 1 and 2, so you should be familiar with how focal behavioral data are collected. Field Lab 1 data collection involves observation of animals in your own backyard and the creation of an ethogram. For Field Lab 2 data students learn how to collect focal data and scan data using meerkat videos following the methods outlined in: Hammond 2019, Vigilance behaviour in meerkats, ASAB Education.
 
 *Goals of the exercises*    
 The main goal(s) of today's lab are to:  
@@ -25,6 +25,7 @@ First we need to load the relevant packages for our data analysis. Packages cont
 
 ```{r results='hide', message=FALSE, warning=FALSE}
 library(behaviouR)
+library(ggpubr)
 ```
 
 ## Part 1. Enter and visualize your ethogram data {-}
@@ -83,19 +84,21 @@ ggbarplot(data=EthogramDFupdated, x='Behavior', y='TimesObserved',fill='grey',xt
 ## Part 2. Calculate meerkat activity budgets.{-}
 Our previous ethograms only included counts of different behaviors that we observed, but we did not standardize our results in any way. Activity budgets give an indication of how much time an animal spends doing each activity; these are generally expressed as percentages.
 
-First we need to import the data. If you are using RStudio Cloud you can import your data by clicking the 'upload' button and find the datasheet saved on your computer. 
+First we need to import the data. If you are using RStudio Cloud you can import your data by clicking the 'upload' button and find the datasheet saved on your computer. You can then use the following lines to read your data into R.
 
-```{r echo = FALSE,,out.width = '75%'}
-knitr::include_graphics(('RstudioCloudImport.png'))
+```{r eval=F, echo=T}
+MeerkatFocalData <- read.csv('MeerkatFocalData.csv')
+MeerkatScanData <- read.csv('MeerkatScanData.csv')
+
 ```
 
 We also have sample data saved in the package so we can load that using the following code
-```{r echo = FALSE}
+```{r echo = TRUE}
 data("MeerkatFocalData")
 data("MeerkatScanData")
 ```
 
-NOTE: You will want to keep the file name the exact same or R won't be able to find the data.
+NOTE: If you are using your own data you will want to keep the file names the exact same or R won't be able to find the data.
 Let's check the structure of our data.
 ```{r echo = TRUE}
 
@@ -208,13 +211,6 @@ Now we change the column names so they are better for plotting
 ```{r echo = TRUE}
 
 colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner','Behavior','NumberObservations')
-```
-
-Again we can plot our results
-```{r echo = TRUE}
-
-ggbarplot(data=MeerkatScanDataSummaryLong,x='Treatment',y='NumberObservations', fill='Behavior',
-          position = position_dodge(0.9))
 ```
 
 And now we can visually compare our results with our partners. Note that in order to separate the plots by partner we use facet.by = 'Partner'. 

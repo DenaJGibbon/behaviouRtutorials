@@ -64,20 +64,24 @@ First we need to load the relevant packages for our data analysis. Packages cont
 First we load the required libraries
 ```{r, echo=TRUE, warning=FALSE,message=FALSE}
 library(behaviouR)
+library(ggpubr)
 ```
 
 ## Part 1: Barnacle goose vigilance {-}
-```{r echo=FALSE}
-data("BarnacleGooseData")
-```
 
-We load in our goose data
+First, load the goose data that you collected using the following code.
 ```{r eval=FALSE}
 BarnacleGooseData <- read.csv('BarnacleGooseData.csv')
 ```
 
-### Part 1a: Surveillance behavior
-First, we will calculate the surveillance rate (or the number of heads up per minute). Let's start by looking at the total number of 'head up' behaviors in our ethogram. To investigate this relationship we will create a scatterplot.
+Or you can use the data that comes with the package.
+```{r echo=T}
+data("BarnacleGooseData")
+```
+
+
+### Part 1a: Surveillance behavior {-}
+First, we will calculate the surveillance rate (or the number of heads up per minute). Let's start by looking at the total number of 'head up' behaviors in our data. To investigate this relationship we will create a scatterplot.
 
 ```{r echo=TRUE}
 # Scatterplot of total number of 'head up' in our data
@@ -88,7 +92,6 @@ ggscatter(data=BarnacleGooseData,
 Now let's add a trend line to see if there is a relationship between flock size and the total number of 'head up' behaviors
 
 ```{r echo=TRUE, message=FALSE}
-knitr::opts_chunk$set(fig.height = 5, fig.width = 5)
 # Scatterplot of total number of 'head up' in our data with a trend line.
 
 ggscatter(data=BarnacleGooseData,
@@ -115,7 +118,7 @@ ggscatter(data=BarnacleGooseData,
 
 **Question 1**: Were there any major differences between you and your partner in terms of the observed relationship between flock size and surveillance rate?
 
-Now we will do model selection using Akaike information criterion (AIC). First we create a null model and then we create a model with flock size as a predictor of total number of heads up.In the model code we specify that we are using a Poisson distribution, as we are dealing with count data instead of a continuous variable.
+Now we will do model selection using Akaike information criterion (AIC). First we create a null model and then we create a model with flock size as a predictor of total number of heads up. In the model code we specify that we are using a Poisson distribution, as we are dealing with count data instead of a continuous variable.
 
 ```{r echo=TRUE, message=FALSE}
 # This is our null model
@@ -129,7 +132,7 @@ bbmle::AICtab(SurveillanceNullModel,SurveillanceModel)
 ```
 **Question 2**: If the null model is ranked higher than the model with flock size as a predictor, how do would we interpret this finding? What if the model with flock size as a predictor was ranked higher? What were your results?
 
-### Part 1b: Time vigilant (sec/min)
+### Part 1b: Time vigilant (sec/min) {-}
 Now we will look at the relationship between the duration (calculated as seconds per minute) that the geese were vigilant as a function of flock size.
 
 ```{r echo=TRUE}
