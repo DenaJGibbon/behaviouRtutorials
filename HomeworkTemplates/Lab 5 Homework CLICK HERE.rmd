@@ -1,0 +1,58 @@
+---
+title: "Lab 5 Homework Template"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,          # don't show code
+  warning = FALSE,       # don't show warnings
+  message = FALSE,       # don't show messages (less serious warnings)
+  cache = FALSE,         # set to TRUE to save results from last compilation
+  fig.align = "center"   # center figures
+)
+
+```
+
+
+```{r include=FALSE}
+library(behaviouR)
+library(ggpubr)
+library(vegan)
+
+```
+
+## Part 1. Estimating population density. 
+
+**Question 1**. What were the population density estimates (reported as number of individuals per square kilometer) for your two sites? Do your results of the population density estimates match your predictions? Why or why not?
+
+YOUR TEXT HERE. 
+
+**Question 2**. Which of your sites had higher species richness (i.e. number of species)?  
+
+YOUR TEXT HERE. 
+
+**Question 3**. How did the alpha diversity of each of your sites compare with that of your partner?  
+
+YOUR TEXT HERE.   
+
+**Question 4**. How did the gamma diversity of your site compare with that of your partner?    
+
+
+```{r, message=FALSE,warning=FALSE}
+#CensusData <- read.csv('FieldLab5CensusData.csv')
+data("CensusData")
+gghistogram(data=CensusData, x='Species',stat="count",
+            facet.by = 'Partner',x.text.angle =90,
+            fill='Partner')+xlab('Species')+ylab('Number of individuals')
+```
+
+YOUR TEXT HERE.
+
+**Question 5**. Which of the four sites was most diverse? Which was the most even? Why is it important to consider diversity and evenness when studying biodiversity?  
+
+YOUR TEXT HERE.
+

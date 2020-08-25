@@ -1,0 +1,77 @@
+---
+title: "Lab 6 Homework Template"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,          # don't show code
+  warning = FALSE,       # don't show warnings
+  message = FALSE,       # don't show messages (less serious warnings)
+  cache = FALSE,         # set to TRUE to save results from last compilation
+  fig.align = "center"   # center figures
+)
+
+```
+
+
+```{r include=FALSE}
+library(behaviouR)
+library(ggpubr)
+library(bayestestR)
+
+```
+
+## Part 1: Focus on your Serengeti camera trap data
+
+```{r, warning=FALSE, message=FALSE}
+#First we load your data sheet with the times added
+#CombinedDFTimes <- read.csv('CombinedAnimalDF_TimeAdded.csv')
+data("CombinedDFTimes")
+# Then we make a density plot
+ggdensity(data=CombinedDFTimes,x='Time',fill = 'category_id')+
+  xlab('Time (24 hrs)') +ylab('Density')
+```
+
+**Question 1.** What do you notice about the overlap of the two density curves? Does it look like there is temporal niche partitioning?    
+
+YOUR TEXT HERE
+
+**Question 2.** How do you interpret the overlap coefficient for your data?  
+
+YOUR TEXT HERE
+
+## Part 2: Focus on your partner's Serengeti camera trap data
+
+```{r, warning=FALSE, message=FALSE}
+
+#CombinedPartnerDFTimes <- read.csv('CombinedAnimalDF_TimeAddedPartner.csv')
+data("CombinedPartnerDFTimes")
+ggdensity(data=CombinedPartnerDFTimes,x='Time',fill = 'category_id')+
+  xlab('Time (24 hrs)') +ylab('Density')
+```
+
+**Question 3**. What do you notice about the overlap of the two density curves for your partner's data? Does it look like there is temporal niche partitioning?  
+
+YOUR TEXT HERE  
+
+**Question 4.** What is the overlap coefficient for your partner's data? How do you interpret this?  
+
+YOUR TEXT HERE. 
+
+## Part 3. Investigating temporal niche partitioning in four different animals
+NOTE: you should not have to change the code below if your data are formatted correctly.
+
+```{r, warning=FALSE, message=FALSE}
+
+AllDataCombined <- rbind.data.frame(CombinedDFTimes,CombinedPartnerDFTimes)
+ggdensity(data=AllDataCombined,x='Time',fill = 'category_id',facet.by = 'category_id')+
+  xlab('Time (24 hrs)') +ylab('Density')
+```
+
+**Question 5**. Based on the activity patterns and your understanding of the Serengeti food web how do you interpret these results? Is there evidence of temporal niche partitioning among potential competitors? What about interactions between potential predators and prey?  
+
+YOUR TEXT HERE

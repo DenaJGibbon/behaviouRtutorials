@@ -1,4 +1,4 @@
-# Appendix 2. Activity Budgets and Ethograms  {-}
+# Appendix 2 R script. Activity Budgets and Ethograms  {-}
 ```{r,  eval=F, echo=T}
 # Lab 2:  Activity Budgets and Ethograms
 

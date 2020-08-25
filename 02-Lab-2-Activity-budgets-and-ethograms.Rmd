@@ -211,6 +211,12 @@ Now we change the column names so they are better for plotting
 ```{r echo = TRUE}
 
 colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner','Behavior','NumberObservations')
+
+MeerkatScanDataSummaryLong$Treatment <- reshape2::revalue(MeerkatScanDataSummaryLong$Treatment,
+                                                c(AerialPredator='Aerial \n Predator',
+                                                  NoPredator='No \n Predator',
+                                                  TerrestrialPredator='Terrestrial \n Predator'))
+
 ```
 
 And now we can visually compare our results with our partners. Note that in order to separate the plots by partner we use facet.by = 'Partner'. 

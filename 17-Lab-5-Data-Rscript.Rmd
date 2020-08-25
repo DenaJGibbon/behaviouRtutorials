@@ -1,7 +1,8 @@
-# Appendix 5. Estimating Population Density and Biodiversity  {-}
+# Appendix 5 R script. Estimating Population Density and Biodiversity  {-}
 ```{r,  eval=F, echo=T}
 # First we load the necessary libraries
 library(behaviouR)
+library(ggpubr)
 
 # Then we read in our data
 data('CensusData')

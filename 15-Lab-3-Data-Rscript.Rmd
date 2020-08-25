@@ -1,4 +1,4 @@
-# Appendix 3. Analyzing acoustic data  {-}
+# Appendix 3 R script. Analyzing acoustic data  {-}
 ```{r,  eval=F, echo=T}
 # First we load the required library
 library(behaviouR)

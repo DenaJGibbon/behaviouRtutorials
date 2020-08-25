@@ -1,0 +1,119 @@
+---
+title: "Lab 4 Homework Template"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,          # don't show code
+  warning = FALSE,       # don't show warnings
+  message = FALSE,       # don't show messages (less serious warnings)
+  cache = FALSE,         # set to TRUE to save results from last compilation
+  fig.align = "center"   # center figures
+)
+
+```
+
+```{r include = FALSE}
+# Load the libraries
+library(behaviouR)
+library(ggpubr)
+library(lme4)
+library(bbmle)
+```
+
+
+### Part 1a: Surveillance behavior
+**Question 1**: Were there any major differences between you and your partner in terms of the observed relationship between flock size and surveillance rate?  
+
+YOUR ANSWER HERE
+
+**Question 2**: If the null model is ranked higher than the model with flock size as a predictor, how do would we interpret this finding? What if the model with flock size as a predictor was ranked higher? What were your results?  
+
+YOUR ANSWER HERE
+
+### Part 1b: Time vigilant (sec/min)
+NOTE: You should not have to modify the code below to run assuming your barnacle goose data is in the correct format!
+
+```{r echo=TRUE}
+BarnacleGooseData <- read.csv('BarnacleGooseData.csv')
+
+ggscatter(data=BarnacleGooseData,x='FlockSize',y='TimeSecHeadUp',add='reg.line',
+          facet.by = 'Partner', color='Partner', cor.coef = T,
+          palette =c('black','blue'))+
+            ylab('time vigilant (sec/min)')
+
+# This is our null model
+VigilanceNullModel <- lmer(TimeSecHeadUp ~ (1|Partner), data=BarnacleGooseData)
+
+# This is our model with flock size as a predictor duration of vigilance
+VigilanceModel <- lmer(TimeSecHeadUp ~ FlockSize + (1|Partner) ,data=BarnacleGooseData)
+
+# Now we compare the models using AIC
+AICtab(VigilanceNullModel,VigilanceModel)
+```
+
+**Question 3.** How do you interpret the results of your model selection? Was there a relationship between flock size and duration of vigilance behavior?  
+
+YOUR ANSWER HERE
+
+### Part 2: Meerkat data revisted
+
+**Question 4.** Based on your inspection of the boxplots, are there any major differences between treatment groups?  
+
+YOUR ANSWER HERE   
+
+
+```{r echo=FALSE}
+# Read in data
+MeerkatScanData <- read.csv('MeerkatScanData.csv')
+
+# As before we will turn our NA values to zero
+MeerkatScanData[is.na(MeerkatScanData)] <- '0'
+
+# We will remove the time and out of sight columns as we do not need them
+MeerkatScanData <- dplyr::select(MeerkatScanData,-c(Time,OutOfSight))
+
+# We need to reformat our data so that we can plot it
+MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanData, id.vars=c("Treatment", "Partner"))
+
+# Here we add more informative column names
+colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner',
+                                          'BehavioralState','InstancesOfBehavior')
+
+# We need to tell R that our outcome variable is not categorical but numeric
+MeerkatScanDataSummaryLong$InstancesOfBehavior <- 
+  as.numeric(MeerkatScanDataSummaryLong$InstancesOfBehavior)
+
+# First we subset our data so that it only includes the vigilant category
+MeerkatScanDataVigilantOnly <- subset(MeerkatScanDataSummaryLong,
+                                      BehavioralState=='Vigilant' )
+
+# R can be picky about the format of data, so we use this command to tell R that treatment group is a factor
+MeerkatScanDataVigilantOnly$Treatment <- 
+  as.factor(MeerkatScanDataVigilantOnly$Treatment)
+
+# Here we are reordering the levels of the factors. For our model selection we are interested
+# in whether we see differences from the control (no predator) and the predator treatments,
+# so here we are setting the no predator group as our reference group.
+MeerkatScanDataVigilantOnly$Treatment <- 
+  factor(MeerkatScanDataVigilantOnly$Treatment, levels = c("NoPredator", "AerialPredator", 
+                                                           "TerrestrialPredator"))
+
+# Now as before we will do model selection. Note that because our outcome variable (instances of behavior) 
+# is in the form of count data we use a poisson distribution.
+MeerkatVigilanceNullModel <- glm(InstancesOfBehavior ~ 1, family=poisson, data=MeerkatScanDataVigilantOnly)
+MeerkatVigilanceModel <- glm(InstancesOfBehavior ~ Treatment, family=poisson,data=MeerkatScanDataVigilantOnly)
+
+# Now we compare the models using AIC
+AICtab(MeerkatVigilanceNullModel,MeerkatVigilanceModel)
+
+coefplot::coefplot(MeerkatVigilanceModel,intercept=FALSE)
+```
+
+**Question 5.** Based on your interpretation of the model selection and the coefficient plots were there differences between treatment groups (e.g. control, terrestrial and aerial predators) in meerkat vigilance behavior?  
+
+YOUR ANSWER HERE

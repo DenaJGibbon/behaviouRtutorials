@@ -1,4 +1,4 @@
-# Appendix 4. Vigilance behavior  {-}
+# Appendix 4 R script. Vigilance behavior  {-}
 ```{r,  eval=F, echo=T}
 # First we need to load the packages
 library(behaviouR)
@@ -98,7 +98,7 @@ data('MeerkatScanData')
 MeerkatScanData[is.na(MeerkatScanData)] <- '0'
 
 # We will remove the time and out of sight columns as we do not need them
-MeerkatScanData <- select(MeerkatScanData,-c(Time,OutOfSight))
+MeerkatScanData <- dplyr::select(MeerkatScanData,-c(Time,OutOfSight))
 
 # We need to reformat our data so that we can plot it
 MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanData, id.vars=c("Treatment", "Partner"))

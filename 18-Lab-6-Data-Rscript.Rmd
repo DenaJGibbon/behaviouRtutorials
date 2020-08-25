@@ -1,4 +1,4 @@
-# Appendix 6. Analyzing camera trap data  {-}
+# Appendix 6 R script. Analyzing camera trap data  {-}
 ```{r,  eval=F, echo=T}
 # First we load the required libraries
 library(behaviouR)

@@ -1,4 +1,4 @@
-# Appendix 1. Data exploration and visualization R script  {-}
+# Appendix 1 R script. Data exploration and visualization {-}
 
 ```{r,  eval=F, echo=T}
 # Please use the Lab 1 tutorial located here: https://bookdown.org/djc426/behaviouR-R-package-tutorials/

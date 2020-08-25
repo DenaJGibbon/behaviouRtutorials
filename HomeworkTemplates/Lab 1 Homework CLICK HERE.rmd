@@ -1,0 +1,91 @@
+---
+title: "Lab 1 Homework Template"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,          # don't show code
+  warning = FALSE,       # don't show warnings
+  message = FALSE,       # don't show messages (less serious warnings)
+  cache = FALSE,         # set to TRUE to save results from last compilation
+  fig.align = "center"   # center figures
+)
+
+```
+
+
+```{r include=FALSE}
+library(behaviouR)
+library(ggpubr)
+library(ggfortify)
+```
+
+# 1. Lab 1a. Categorical data
+
+Question 1. How would you interpret this figure? Which category has the most individuals, and which has the least?
+
+ADD YOUR ANSWER HERE
+
+Question 2a. This is a simulated popuation, but what do you think the ratio of males to females would mean for male-male competition?
+
+ADD YOUR ANSWER HERE
+
+Question 2b. Modify the code so that our simulated deer population has a more even ratio of males to females.
+
+```{r tidy = TRUE, message = FALSE, warning = FALSE, error = FALSE}
+
+# MODIFY THE CODE BELOW
+
+DeerPopulationDF <- data.frame(DevelomentStage=c('Infant','Juvenile',
+                                                 'AdultFemale','AdultMale'),
+                               NumberOfIndividuals=c(15,50,125,200))
+
+
+# Now we want to plot the data. We will use a simple barplot to start.
+ggbarplot(DeerPopulationDF, x='DevelomentStage', y='NumberOfIndividuals')
+
+```
+  
+
+# Lab 1b. Categorical and continuous data
+
+Question 3. How do you interpret the barplot figure?
+
+ADD YOUR ANSWER HERE
+
+Question 4. Visit this site (http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) and change the colors of the plot.  
+
+Hint: change ‘palette = c(’red’,‘gray’,‘white’,‘black’)‘to ’palette = c(’color1’,‘color2’,‘color3’,‘color4’)’.
+
+```{r tidy = TRUE, message = FALSE, warning = FALSE, error = FALSE}
+
+# COPY, PASTE AND MODIFY YOUR CODE HERE
+data('MaleDeerRoarDF')
+
+# Now we will plot the categorical data
+ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
+          palette = c('red','gray','white','black'),
+          add = c("mean_se"))+ theme(legend.position = "none")
+
+```
+
+# Lab 1c. Categorical and continuous data
+
+Question 5a. What happens when you change the correlation coefficent to a much smaller number and re-run the code?
+
+ADD YOUR ANSWER HERE
+
+Question 5b. What about when you change it to a much bigger number?
+
+ADD YOUR ANSWER HERE
+
+# Lab 1d. Multivariate data
+
+Question 6. In your own words, explain why we would want to use PCA for data visualization? What can we learn about the data when it is visualized this way?
+
+ADD YOUR ANSWER HERE
+

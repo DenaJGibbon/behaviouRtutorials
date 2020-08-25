@@ -1,0 +1,86 @@
+---
+title: "Lab 3 Homework Template"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,          # don't show code
+  warning = FALSE,       # don't show warnings
+  message = FALSE,       # don't show messages (less serious warnings)
+  cache = FALSE,         # set to TRUE to save results from last compilation
+  fig.align = "center"   # center figures
+)
+
+```
+
+```{r include = FALSE}
+library(behaviouR)
+library(ggfortify) 
+library(ggplot2)
+
+```
+
+
+## Part 1. Loading a sound file and making a spectrogram
+*Question 1.* What differences do you notice about gibbon and great argus spectrograms?  
+
+YOUR ANSWER HERE  
+
+## Part 2. Visualizing differences in gibbon and great argus calls
+*Question 2.* Do you see any differences in the spectrogram of the great argus calls that are clustered together and the outlier?  
+
+YOUR ANSWER HERE  
+
+## Part 3. Soundscapes
+*Question 3*. You can listen to example sound files on the Canvas page. Between looking at the spectrograms and listening to the sound files what do you think are the main differences between the different locations and times?  
+
+YOUR ANSWER HERE   
+
+## Part 4. Analyze your own data
+### Part 4a. Your focal recordings
+Here is the function to extract the features. Again, based on the frequency range of your focal recordings you may want to change the frequency settings.
+
+NOTE: You must change 'eval=F' to 'eval=T' to get the code to run.
+```{r, eval=F,echo=TRUE, results='hide'}
+
+MyFeatureDataFrame <- MFCCFunction(input.dir = "MyFocalRecordings",min.freq = 200,max.freq=2000)
+```
+
+Then we run the principal component analysis
+```{r, eval=F,echo=TRUE, results='hide'}
+
+pca_res <- prcomp(MyFeatureDataFrame[,-c(1)], scale. = TRUE)
+```
+
+Now we visualize our results
+```{r, eval=F,echo=TRUE, results='hide'}
+
+autoplot(pca_res, data = MyFeatureDataFrame,
+         colour = 'Class')
+```
+
+
+### Part 4b. Soundscape recordings
+We extract the features.
+```{r,eval=F, echo=TRUE, results='hide',warning=FALSE}
+
+MySoundscapeFeatureDataframe <- 
+  MFCCFunctionSite(input.dir = "MySoundscapeRecordings",min.freq = 200,max.freq=10000)
+```
+
+Now we visualize our results
+```{r,eval=F, echo=TRUE, results='hide'}
+
+pca_res <- prcomp(MySoundscapeFeatureDataframe[,-c(1)], scale. = TRUE)
+autoplot(pca_res, data = MySoundscapeFeatureDataframe, 
+         colour = 'Class')
+
+```
+
+*Question 4*. Do you see evidence of clustering in either your focal recordings or soundscape recordings?  
+
+YOUR ANSWER HERE  

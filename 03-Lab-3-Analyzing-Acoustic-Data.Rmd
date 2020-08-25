@@ -3,63 +3,36 @@
 
 ```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
 library(behaviouR)
-library(tuneR)
-library(seewave)
-library(stringr)
-library(plyr)
+library(ggfortify) 
+library(ggplot2)
 
-#  pdf('spectrograms.pdf',width=10)
-#  par(mfrow=c(2,2))
-#
-# SpectrogramSingle(sound.file ="SoundscapeRecordings/Borneo_Morning_01.wav",
-#                   min.freq = 0,max.freq=22000,
-#                   Colors = 'Colors',downsample = FALSE)
-#
-# SpectrogramSingle(sound.file ="SoundscapeRecordings/Borneo_Night_01.wav",
-#                   min.freq = 0,max.freq=22000,
-#                   Colors = 'Colors',downsample = FALSE)
-#
-# SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Morning_01.wav",
-#                   min.freq = 0,max.freq=22000,
-#                   Colors = 'Colors',downsample = FALSE)
-#
-# SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Night_01.wav",
-#                   min.freq = 0,max.freq=22000,
-#                   Colors = 'Colors',downsample = FALSE)
-#
-#
-#
-# graphics.off()
 
-Fig3a <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/Lab3Figure.pdf')
+jpeg('spectrograms.jpg', width = 2000, height = 1175,res=300)
+#par(mfrow=c(2,2))
+GibbonSpectrogram <- SpectrogramSingle(sound.file ="FocalRecordings/FemaleGibbon.wav",
+                                       min.freq = 500,max.freq=2500)
+
+# ArgusSpectrogram <- SpectrogramSingle(sound.file ="FocalRecordings/GreatArgus.wav",
+#                                        min.freq = 500,max.freq=2500,Colors = 'Colors')
+#
+# MaleSoloSpectrogram <- SpectrogramSingle(sound.file ="FocalRecordings/MaleSolo.wav",
+#                                       min.freq = 500,max.freq=2500,Colors = 'Colors')
+
+graphics.off()
+
+Fig3a <- magick::image_read('spectrograms.jpg')
 Fig3a <-magick::image_ggplot(Fig3a)
-
 Fig3a
-# Fig3a <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/spectrograms.pdf')
-# Fig3a <-magick::image_ggplot(Fig3a)
 
+FeatureDataframe <- MFCCFunction(input.dir = "FocalRecordings")
+FeatureDataframe <- FeatureDataframe[-c(5),]
+pca_res <- prcomp(FeatureDataframe[,-c(1)], scale. = TRUE)
 
+Fig3b <- ggplot2::autoplot(pca_res, data = FeatureDataframe,
+                  colour = 'Class')
 
-
-# # Then we extract the features, which in this case are the MFCCs.
-# source("Functions/MFCCFunctionSite.R")
-# SoundscapeFeatureDataframe <- 
-#   MFCCFunctionSite(input.dir = "SoundscapeRecordings",min.freq = 200,max.freq=10000)
-# 
-# 
-# SoundscapeFeatureDataframe$Class <-revalue(SoundscapeFeatureDataframe$Class,c(
-#   Borneo_Morning='Borneo \n Morning',
-#   Borneo_Night='Borneo \n Night',
-#   Sulawesi_Morning='Sulawesi \n Morning',
-#   Sulawesi_Night='Sulawesi \n Night'))
-# 
-# # Now we visualize our results
-# pca_res <- prcomp(SoundscapeFeatureDataframe[,-c(1)], scale. = TRUE)
-# Fig3b <- autoplot(pca_res, data = SoundscapeFeatureDataframe, 
-#          colour = 'Class')+theme_bw()+scale_color_manual(values=matlab::jet.colors(4))
-# 
-# 
-# cowplot::plot_grid(Fig3a,Fig3b,labels = c('A','B'),scale = c(1.15,1))
+cowplot::plot_grid(NULL,Fig3a,Fig3b,labels = c('','A','B'), nrow = 1,
+                   scale = c(1,1.25,1),rel_widths = c(0.1,0.45,0.45),label_x = .95)
 
 
 
@@ -79,8 +52,10 @@ The main goal(s) of today's lab are to:
 First we need to load the relevant packages for our data analysis. Packages contain all the functions that are needed for data analysis. 
 First we load the required libraries
 ```{r, echo=TRUE, warning=FALSE,message=FALSE}
-
 library(behaviouR)
+library(ggfortify) 
+library(ggplot2)
+
 ```
 
 We need to do some data prep to work through the examples
