@@ -212,7 +212,7 @@ Now we change the column names so they are better for plotting
 
 colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner','Behavior','NumberObservations')
 
-MeerkatScanDataSummaryLong$Treatment <- reshape2::revalue(MeerkatScanDataSummaryLong$Treatment,
+MeerkatScanDataSummaryLong$Treatment <- plyr::revalue(MeerkatScanDataSummaryLong$Treatment,
                                                 c(AerialPredator='Aerial \n Predator',
                                                   NoPredator='No \n Predator',
                                                   TerrestrialPredator='Terrestrial \n Predator'))

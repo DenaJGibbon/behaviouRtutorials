@@ -15,7 +15,7 @@ deerImage <- magick::image_ggplot(deerImage)
 deerImage <-deerImage + theme(panel.border = element_rect(colour = "white", fill=NA, size=20))
 
 data("MaleDeerRoarDF")
-MaleDeerRoarDF$MaleCategory <- revalue(MaleDeerRoarDF$MaleCategory,
+MaleDeerRoarDF$MaleCategory <- plyr::revalue(MaleDeerRoarDF$MaleCategory,
                                        c(PreMatingSeason='PreMating \n Season',
                                          HaremHolders='Harem \n Holders',
                                          NotHaremHolders='Not Harem \n Holders',
