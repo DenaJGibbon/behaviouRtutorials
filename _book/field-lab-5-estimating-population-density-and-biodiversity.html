@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Field lab 5. Estimating population density and biodiversity | behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</title>
+  <meta name="description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Field lab 5. Estimating population density and biodiversity | behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/titlepage.pdf" />
+  <meta property="og:description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="github-repo" content="DenaJGibbon/behaviouRtutorials" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Field lab 5. Estimating population density and biodiversity | behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology" />
+  
+  <meta name="twitter:description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="twitter:image" content="images/titlepage.pdf" />
+
+<meta name="author" content="Dena J. Clink" />
+
+
+<meta name="date" content="2020-08-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="field-lab-4-vigilance-behavior.html"/>
+<link rel="next" href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">behaviouR: R package and tutorials for online teaching of fundamental concepts</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html"><i class="fa fa-check"></i>Computer Lab 1. Data exploration and visualization</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-1.-categorical-data"><i class="fa fa-check"></i>Part 1. Categorical data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-2.-categorical-and-continuous-data"><i class="fa fa-check"></i>Part 2. Categorical and continuous data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-3.-categorical-and-continuous-data"><i class="fa fa-check"></i>Part 3. Categorical and continuous data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-4.-multivariate-data"><i class="fa fa-check"></i>Part 4. Multivariate data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html"><i class="fa fa-check"></i>Computer Lab 2. Activity Budgets and Ethograms</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html#part-1.-enter-and-visualize-your-ethogram-data"><i class="fa fa-check"></i>Part 1. Enter and visualize your ethogram data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html#part-2.-calculate-meerkat-activity-budgets."><i class="fa fa-check"></i>Part 2. Calculate meerkat activity budgets.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html#part-3.-scan-sampling-and-inter-observer-reliability."><i class="fa fa-check"></i>Part 3. Scan sampling and inter-observer reliability.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html"><i class="fa fa-check"></i>Computer Lab 3. Analyzing Acoustic Data</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-1.-loading-a-sound-file-and-making-a-spectrogram"><i class="fa fa-check"></i>Part 1. Loading a sound file and making a spectrogram</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-2.-visualizing-differences-in-gibbon-and-great-argus-calls"><i class="fa fa-check"></i>Part 2. Visualizing differences in gibbon and great argus calls</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-3.-soundscapes"><i class="fa fa-check"></i>Part 3. Soundscapes</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-4.-now-it-is-time-to-analyze-the-data-you-collected-for-this-weeks-field-lab."><i class="fa fa-check"></i>Part 4. Now it is time to analyze the data you collected for this week’s field lab.</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-4a.-your-focal-recordings"><i class="fa fa-check"></i><b>0.0.1</b> Part 4a. Your focal recordings</a></li>
+<li class="chapter" data-level="0.0.2" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-4b.-soundscape-recordings"><i class="fa fa-check"></i><b>0.0.2</b> Part 4b. Soundscape recordings</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html"><i class="fa fa-check"></i>Computer Lab 4. Vigilance behavior</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-1-barnacle-goose-vigilance"><i class="fa fa-check"></i>Part 1: Barnacle goose vigilance</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-1a-surveillance-behavior"><i class="fa fa-check"></i>Part 1a: Surveillance behavior</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-1b-time-vigilant-secmin"><i class="fa fa-check"></i>Part 1b: Time vigilant (sec/min)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-2-meerkat-data-revisted"><i class="fa fa-check"></i>Part 2: Meerkat data revisted</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i>Computer Lab 5. Estimating Population Density and Biodiversity</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#part-1.-population-density-estimation."><i class="fa fa-check"></i>Part 1. Population density estimation.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#part-2.-comparing-biodiversity."><i class="fa fa-check"></i>Part 2. Comparing biodiversity.</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#alpha-diversity."><i class="fa fa-check"></i>Alpha diversity.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#beta-diversity."><i class="fa fa-check"></i>Beta diversity.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#gamma-diversity"><i class="fa fa-check"></i>Gamma diversity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#part-3.-biodiversity-indices-in-the-real-world."><i class="fa fa-check"></i>Part 3. Biodiversity indices in the real world.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html"><i class="fa fa-check"></i>Computer Lab 6. Analyzing camera trap data.</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-1-collect-serengeti-camera-trap-data"><i class="fa fa-check"></i>Part 1: Collect Serengeti camera trap data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-2-analyze-your-serengeti-camera-trap-data"><i class="fa fa-check"></i>Part 2: Analyze your Serengeti camera trap data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-3-focus-on-your-partners-serengeti-camera-trap-data"><i class="fa fa-check"></i>Part 3: Focus on your partner’s Serengeti camera trap data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-4.-investigating-temporal-niche-partitioning-in-four-different-animals"><i class="fa fa-check"></i>Part 4. Investigating temporal niche partitioning in four different animals</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html"><i class="fa fa-check"></i>Field Lab 1: Introduction to how we study behavior</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-1.-observe-behaviors"><i class="fa fa-check"></i>Part 1. Observe behaviors</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-2.-how-we-describe-behaviors-ethograms"><i class="fa fa-check"></i>Part 2. How we describe behaviors (ethograms)</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-3.-collect-data-on-a-focal-species-or-taxonomic-group"><i class="fa fa-check"></i>Part 3. Collect data on a focal species or taxonomic group</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-4-develop-a-research-question-hypothesis-and-prediction"><i class="fa fa-check"></i>Part 4: Develop a research question, hypothesis and prediction</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-5.-find-a-primary-literature-article-related-to-your-hypothesis"><i class="fa fa-check"></i>Part 5. Find a primary literature article related to your hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html"><i class="fa fa-check"></i>Field Lab 2: Ethograms and activity budgets</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-1.-build-an-ethogram-from-meerkat-observations"><i class="fa fa-check"></i>Part 1. Build an ethogram from meerkat observations</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-2.-focal-versus-scan-sampling"><i class="fa fa-check"></i>Part 2. Focal versus scan sampling</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-3.-focal-sampling-and-inter-observer-reliability"><i class="fa fa-check"></i>Part 3. Focal sampling and inter-observer reliability</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-4.-calculating-activity-budgets-using-focal-data"><i class="fa fa-check"></i>Part 4. Calculating activity budgets using focal data</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-5.-scan-sampling-and-inter-observer-reliability"><i class="fa fa-check"></i>Part 5. Scan sampling and inter-observer reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html"><i class="fa fa-check"></i>Field Lab 3: Introduction to bioacoustics</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-1.-introduction"><i class="fa fa-check"></i>Part 1. Introduction</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#recording-on-your-smartphone"><i class="fa fa-check"></i>Recording on your smartphone</a></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#tutorial-how-we-study-sounds"><i class="fa fa-check"></i>Tutorial: How we study sounds</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-2.-focal-recordings"><i class="fa fa-check"></i>Part 2. Focal recordings</a></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-3.-soundscapes-1"><i class="fa fa-check"></i>Part 3. Soundscapes</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-3a.-study-design"><i class="fa fa-check"></i>Part 3a. Study Design</a></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-3b.-data-collection"><i class="fa fa-check"></i>Part 3b. Data collection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-4.-optional-acoustic-trivia"><i class="fa fa-check"></i>Part 4. Optional acoustic trivia</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html"><i class="fa fa-check"></i>Field Lab 4: Vigilance behavior</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-1.-introduction-1"><i class="fa fa-check"></i>Part 1. Introduction</a></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-2.-data-collection"><i class="fa fa-check"></i>Part 2. Data collection</a></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-3.-data-entry"><i class="fa fa-check"></i>Part 3. Data entry</a></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-4.-follow-up-questions"><i class="fa fa-check"></i>Part 4. Follow-up questions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i>Field lab 5. Estimating population density and biodiversity</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-1.-background"><i class="fa fa-check"></i>Part 1. Background</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-2.-estimating-distance"><i class="fa fa-check"></i>Part 2. Estimating distance</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-3.-designing-your-study"><i class="fa fa-check"></i>Part 3. Designing your study</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-3a.-population-density"><i class="fa fa-check"></i>Part 3a. Population density</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-3b.-estimating-biodiversity"><i class="fa fa-check"></i>Part 3b. Estimating biodiversity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-4.-collecting-your-data"><i class="fa fa-check"></i>Part 4. Collecting your data</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-5.-data-analysis"><i class="fa fa-check"></i>Part 5. Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><i class="fa fa-check"></i>Field Lab 6: Design a camera trap study in Serengeti National Park.</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-1.-background-1"><i class="fa fa-check"></i>Part 1. Background</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-2.-data-format-and-size"><i class="fa fa-check"></i>Part 2. Data format and size</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-3.-temporal-niche-separation-using-camera-trap-data"><i class="fa fa-check"></i>Part 3. Temporal niche separation using camera trap data</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-4.-data-collection"><i class="fa fa-check"></i>Part 4. Data collection</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-5.-follow-up-questions"><i class="fa fa-check"></i>Part 5. Follow-up questions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-1-r-script-data-exploration-and-visualization.html"><a href="appendix-1-r-script-data-exploration-and-visualization.html"><i class="fa fa-check"></i>Appendix 1 R script. Data exploration and visualization</a></li>
+<li class="chapter" data-level="" data-path="appendix-2-r-script-activity-budgets-and-ethograms.html"><a href="appendix-2-r-script-activity-budgets-and-ethograms.html"><i class="fa fa-check"></i>Appendix 2 R script. Activity Budgets and Ethograms</a></li>
+<li class="chapter" data-level="" data-path="appendix-3-r-script-analyzing-acoustic-data.html"><a href="appendix-3-r-script-analyzing-acoustic-data.html"><i class="fa fa-check"></i>Appendix 3 R script. Analyzing acoustic data</a></li>
+<li class="chapter" data-level="" data-path="appendix-4-r-script-vigilance-behavior.html"><a href="appendix-4-r-script-vigilance-behavior.html"><i class="fa fa-check"></i>Appendix 4 R script. Vigilance behavior</a></li>
+<li class="chapter" data-level="" data-path="appendix-5-r-script-estimating-population-density-and-biodiversity.html"><a href="appendix-5-r-script-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i>Appendix 5 R script. Estimating Population Density and Biodiversity</a></li>
+<li class="chapter" data-level="" data-path="appendix-6-r-script-analyzing-camera-trap-data.html"><a href="appendix-6-r-script-analyzing-camera-trap-data.html"><i class="fa fa-check"></i>Appendix 6 R script. Analyzing camera trap data</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="field-lab-5.-estimating-population-density-and-biodiversity" class="section level1 unnumbered">
+<h1>Field lab 5. Estimating population density and biodiversity</h1>
+<div id="part-1.-background" class="section level2 unnumbered">
+<h2>Part 1. Background</h2>
+<p>In lecture this week we learned about population- and community- level interactions, and how they can influence individual and species-specific behavior. Differences in population density can lead to shifts in the proportion of different behavioral phenotypes in a population, and the presence of competitors of other species can shape the behavior of animals on shorter (ecological) and longer (evolutionary) time scales.<br />
+For many types of behavioral studies—and for effective conservation of animals— a clear estimate of population density of focal species along with estimates of overall biodiversity of an area are necessary. In the field lab this week you will become familiar with field methods scientists use to estimate population density and biodiversity. There are many different methods and approaches that scientists can use, and the methods we will use in this lab are most appropriate for studies of terrestrial vertebrates.</p>
+</div>
+<div id="part-2.-estimating-distance" class="section level2 unnumbered">
+<h2>Part 2. Estimating distance</h2>
+<p>A crucial part of the approach we will use today is the ability to estimate how far animals are away from you. If we were doing this activity for a scientific study, we would use a range finder to get accurate estimates. But, we can also use the number of steps we take to estimate distance. The best way to do this is to use a tape measure to estimate your stride length (or distance covered in a single step) in meters. If this is not possible, and you have an app on your phone that tracks distance and number of steps you could divide the distance of your last walk (in meters)/number of steps. Or you can visit this website (<a href="http://www.kylesconverter.com/length/steps-to-meters" class="uri">http://www.kylesconverter.com/length/steps-to-meters</a>).</p>
+<p><em>Question 1</em>. What did you estimate your stride length to be in meters? Which approach did you use to estimate this?</p>
+</div>
+<div id="part-3.-designing-your-study" class="section level2 unnumbered">
+<h2>Part 3. Designing your study</h2>
+<p>You and your partner will develop testable research questions related to both population density of a focal species, and overall biodiversity. You and your partner do not need to focus on the same species, as depending on your geographic location this may not be possible. You will conduct the census twice in two distinct habitats (it could be as simple as your front and back yard, different streets, the edge versus the center of a park, etc.). Ideally, the length of each census will be 500 meters and in a straight line, but you can do shorter or longer depending on your location and limitations. To control for potential differences in animal circadian rhythms, it would be best to conduct your censuses at the same time (e.g. both in the morning). As always, if you do not feel you can do this activity safely please contact me for a virtual alternative.</p>
+<div id="part-3a.-population-density" class="section level3 unnumbered">
+<h3>Part 3a. Population density</h3>
+<p>For this section you and your partner will each choose a target focal species. It can be the same species or a different species. Choose one that is relatively common so that you will actually get some data! Before you start data collection please answer the questions below.</p>
+<p><em>Question 2</em>. What is your focal species? Which habitats will you be censusing? Which habitat do you predict will have higher population density of your focal species, and why? How long will your census route be?</p>
+</div>
+<div id="part-3b.-estimating-biodiversity" class="section level3 unnumbered">
+<h3>Part 3b. Estimating biodiversity</h3>
+<p>In a perfect world we would be able to inventory all of the animals (insects, reptiles, birds, mammals) in an area. But oftentimes, this is not possible due to the immense diversity of species (particularly in the tropics). Depending on the research question or conservation goals is common to focus on a subset of animals (e.g. birds, mammals etc.) to estimate diversity. For this exercise you will compare biodiversity estimates from four different census routes- the two sites that you chose and the two sites that your partner chose. Before we begin please answer the questions below.</p>
+<p><em>Question 3</em>. What are the four habitat types you and your partner will be censusing? Which habitat do you predict will have the highest biodiversity? Which do you predict will have the lowest? Will you focus on birds, mammals or a combination?</p>
+</div>
+</div>
+<div id="part-4.-collecting-your-data" class="section level2 unnumbered">
+<h2>Part 4. Collecting your data</h2>
+<p>To be good scientists make sure to note the date, time, weather, the total distance (in meters) of your census route, and any other notes in your notebook. You can keep track of the distance you walked either by using an app on your phone or by counting your steps. For each animal encountered along the transect note the following information:</p>
+<p>Species: I assume for your focal species you will be able to identify to the species. If you encounter birds or animals that you cannot identify to species assign them to their own categories (e.g. small black bird, large black bird).</p>
+<p>Distance (in meters) along your census line: Did you see the animal at the start of your census? Then the distance would be 0 or 1 meters. If you saw it at the end it would be 500 meters.</p>
+<p>Perpendicular distance from you census line: How far (in meters) was the animal away from you when you detected it? You can estimate this by counting the number of steps away the animal is from your census line.</p>
+<p>Method of detection: Did you see the animal, hear the animal, step on it?</p>
+<p><em>Question 4</em>. What were your general observations? Do you feel confident that you were able to detect all the animals on the census route? What could have potentially biased your results?</p>
+<p><em>Question 5</em>. How could inter-individual differences in behavior potentially influence the results of your survey?</p>
+</div>
+<div id="part-5.-data-analysis" class="section level2 unnumbered">
+<h2>Part 5. Data analysis</h2>
+<p>We will be analyzing the data during the computer lab. Be sure that your data are entered into the data sheet following the correct format. You can download the datasheet below.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="field-lab-4-vigilance-behavior.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/11-FieldLab-5-Estimating-population-density-and-biodiversity.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["behaviouR-R-package-tutorials.pdf", "behaviouR-R-package-tutorials.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

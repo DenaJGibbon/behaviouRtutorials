@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Appendix 5. Estimating Population Density and Biodiversity | behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</title>
+  <meta name="description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Appendix 5. Estimating Population Density and Biodiversity | behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/titlepage.pdf" />
+  <meta property="og:description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="github-repo" content="DenaJGibbon/behaviouRtutorials" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Appendix 5. Estimating Population Density and Biodiversity | behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology" />
+  
+  <meta name="twitter:description" content="This is the location for all of the tutorials associated with the behaviouR R package." />
+  <meta name="twitter:image" content="images/titlepage.pdf" />
+
+<meta name="author" content="Dena J. Clink" />
+
+
+<meta name="date" content="2020-08-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="appendix-4-vigilance-behavior.html"/>
+<link rel="next" href="appendix-6-analyzing-camera-trap-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">behaviouR: R package and tutorials for online teaching of fundamental concepts</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html"><i class="fa fa-check"></i>Computer Lab 1. Data exploration and visualization</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-1.-categorical-data"><i class="fa fa-check"></i>Part 1. Categorical data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-2.-categorical-and-continuous-data"><i class="fa fa-check"></i>Part 2. Categorical and continuous data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-3.-categorical-and-continuous-data"><i class="fa fa-check"></i>Part 3. Categorical and continuous data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-1-data-exploration-and-visualization.html"><a href="computer-lab-1-data-exploration-and-visualization.html#part-4.-multivariate-data"><i class="fa fa-check"></i>Part 4. Multivariate data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html"><i class="fa fa-check"></i>Computer Lab 2. Activity Budgets and Ethograms</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html#part-1.-enter-and-visualize-your-ethogram-data"><i class="fa fa-check"></i>Part 1. Enter and visualize your ethogram data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html#part-2.-calculate-meerkat-activity-budgets."><i class="fa fa-check"></i>Part 2. Calculate meerkat activity budgets.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-2-activity-budgets-and-ethograms.html"><a href="computer-lab-2-activity-budgets-and-ethograms.html#part-3.-scan-sampling-and-inter-observer-reliability."><i class="fa fa-check"></i>Part 3. Scan sampling and inter-observer reliability.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html"><i class="fa fa-check"></i>Computer Lab 3. Analyzing Acoustic Data</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-1.-loading-a-sound-file-and-making-a-spectrogram"><i class="fa fa-check"></i>Part 1. Loading a sound file and making a spectrogram</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-2.-visualizing-differences-in-gibbon-and-great-argus-calls"><i class="fa fa-check"></i>Part 2. Visualizing differences in gibbon and great argus calls</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-3.-soundscapes"><i class="fa fa-check"></i>Part 3. Soundscapes</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-4.-now-it-is-time-to-analyze-the-data-you-collected-for-this-weeks-field-lab."><i class="fa fa-check"></i>Part 4. Now it is time to analyze the data you collected for this week’s field lab.</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-4a.-your-focal-recordings"><i class="fa fa-check"></i><b>0.0.1</b> Part 4a. Your focal recordings</a></li>
+<li class="chapter" data-level="0.0.2" data-path="computer-lab-3-analyzing-acoustic-data.html"><a href="computer-lab-3-analyzing-acoustic-data.html#part-4b.-soundscape-recordings"><i class="fa fa-check"></i><b>0.0.2</b> Part 4b. Soundscape recordings</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html"><i class="fa fa-check"></i>Computer Lab 4. Vigilance behavior</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-1-barnacle-goose-vigilance"><i class="fa fa-check"></i>Part 1: Barnacle goose vigilance</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-1a-surveillance-behavior"><i class="fa fa-check"></i>Part 1a: Surveillance behavior</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-1b-time-vigilant-secmin"><i class="fa fa-check"></i>Part 1b: Time vigilant (sec/min)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-4-vigilance-behavior.html"><a href="computer-lab-4-vigilance-behavior.html#part-2-meerkat-data-revisted"><i class="fa fa-check"></i>Part 2: Meerkat data revisted</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i>Computer Lab 5. Estimating Population Density and Biodiversity</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#part-1.-population-density-estimation."><i class="fa fa-check"></i>Part 1. Population density estimation.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#part-2.-comparing-biodiversity."><i class="fa fa-check"></i>Part 2. Comparing biodiversity.</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#alpha-diversity."><i class="fa fa-check"></i>Alpha diversity.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#beta-diversity."><i class="fa fa-check"></i>Beta diversity.</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#gamma-diversity"><i class="fa fa-check"></i>Gamma diversity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-5-estimating-population-density-and-biodiversity.html"><a href="computer-lab-5-estimating-population-density-and-biodiversity.html#part-3.-biodiversity-indices-in-the-real-world."><i class="fa fa-check"></i>Part 3. Biodiversity indices in the real world.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html"><i class="fa fa-check"></i>Computer Lab 6. Analyzing camera trap data.</a><ul>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-1-collect-serengeti-camera-trap-data"><i class="fa fa-check"></i>Part 1: Collect Serengeti camera trap data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-2-analyze-your-serengeti-camera-trap-data"><i class="fa fa-check"></i>Part 2: Analyze your Serengeti camera trap data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-3-focus-on-your-partners-serengeti-camera-trap-data"><i class="fa fa-check"></i>Part 3: Focus on your partner’s Serengeti camera trap data</a></li>
+<li class="chapter" data-level="" data-path="computer-lab-6-analyzing-camera-trap-data-.html"><a href="computer-lab-6-analyzing-camera-trap-data-.html#part-4.-investigating-temporal-niche-partitioning-in-four-different-animals"><i class="fa fa-check"></i>Part 4. Investigating temporal niche partitioning in four different animals</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html"><i class="fa fa-check"></i>Field Lab 1: Introduction to how we study behavior</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-1.-observe-behaviors"><i class="fa fa-check"></i>Part 1. Observe behaviors</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-2.-how-we-describe-behaviors-ethograms"><i class="fa fa-check"></i>Part 2. How we describe behaviors (ethograms)</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-3.-collect-data-on-a-focal-species-or-taxonomic-group"><i class="fa fa-check"></i>Part 3. Collect data on a focal species or taxonomic group</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-4-develop-a-research-question-hypothesis-and-prediction"><i class="fa fa-check"></i>Part 4: Develop a research question, hypothesis and prediction</a></li>
+<li class="chapter" data-level="" data-path="field-lab-1-introduction-to-how-we-study-behavior.html"><a href="field-lab-1-introduction-to-how-we-study-behavior.html#part-5.-find-a-primary-literature-article-related-to-your-hypothesis"><i class="fa fa-check"></i>Part 5. Find a primary literature article related to your hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html"><i class="fa fa-check"></i>Field Lab 2: Ethograms and activity budgets</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-1.-build-an-ethogram-from-meerkat-observations"><i class="fa fa-check"></i>Part 1. Build an ethogram from meerkat observations</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-2.-focal-versus-scan-sampling"><i class="fa fa-check"></i>Part 2. Focal versus scan sampling</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-3.-focal-sampling-and-inter-observer-reliability"><i class="fa fa-check"></i>Part 3. Focal sampling and inter-observer reliability</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-4.-calculating-activity-budgets-using-focal-data"><i class="fa fa-check"></i>Part 4. Calculating activity budgets using focal data</a></li>
+<li class="chapter" data-level="" data-path="field-lab-2-ethograms-and-activity-budgets.html"><a href="field-lab-2-ethograms-and-activity-budgets.html#part-5.-scan-sampling-and-inter-observer-reliability"><i class="fa fa-check"></i>Part 5. Scan sampling and inter-observer reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html"><i class="fa fa-check"></i>Field Lab 3: Introduction to bioacoustics</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-1.-introduction"><i class="fa fa-check"></i>Part 1. Introduction</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#recording-on-your-smartphone"><i class="fa fa-check"></i>Recording on your smartphone</a></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#tutorial-how-we-study-sounds"><i class="fa fa-check"></i>Tutorial: How we study sounds</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-2.-focal-recordings"><i class="fa fa-check"></i>Part 2. Focal recordings</a></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-3.-soundscapes-1"><i class="fa fa-check"></i>Part 3. Soundscapes</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-3a.-study-design"><i class="fa fa-check"></i>Part 3a. Study Design</a></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-3b.-data-collection"><i class="fa fa-check"></i>Part 3b. Data collection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-3-introduction-to-bioacoustics.html"><a href="field-lab-3-introduction-to-bioacoustics.html#part-4.-optional-acoustic-trivia"><i class="fa fa-check"></i>Part 4. Optional acoustic trivia</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html"><i class="fa fa-check"></i>Field Lab 4: Vigilance behavior</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-1.-introduction-1"><i class="fa fa-check"></i>Part 1. Introduction</a></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-2.-data-collection"><i class="fa fa-check"></i>Part 2. Data collection</a></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-3.-data-entry"><i class="fa fa-check"></i>Part 3. Data entry</a></li>
+<li class="chapter" data-level="" data-path="field-lab-4-vigilance-behavior.html"><a href="field-lab-4-vigilance-behavior.html#part-4.-follow-up-questions"><i class="fa fa-check"></i>Part 4. Follow-up questions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i>Field lab 5. Estimating population density and biodiversity</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-1.-background"><i class="fa fa-check"></i>Part 1. Background</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-2.-estimating-distance"><i class="fa fa-check"></i>Part 2. Estimating distance</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-3.-designing-your-study"><i class="fa fa-check"></i>Part 3. Designing your study</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-3a.-population-density"><i class="fa fa-check"></i>Part 3a. Population density</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-3b.-estimating-biodiversity"><i class="fa fa-check"></i>Part 3b. Estimating biodiversity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-4.-collecting-your-data"><i class="fa fa-check"></i>Part 4. Collecting your data</a></li>
+<li class="chapter" data-level="" data-path="field-lab-5-estimating-population-density-and-biodiversity.html"><a href="field-lab-5-estimating-population-density-and-biodiversity.html#part-5.-data-analysis"><i class="fa fa-check"></i>Part 5. Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><i class="fa fa-check"></i>Field Lab 6: Design a camera trap study in Serengeti National Park.</a><ul>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-1.-background-1"><i class="fa fa-check"></i>Part 1. Background</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-2.-data-format-and-size"><i class="fa fa-check"></i>Part 2. Data format and size</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-3.-temporal-niche-separation-using-camera-trap-data"><i class="fa fa-check"></i>Part 3. Temporal niche separation using camera trap data</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-4.-data-collection"><i class="fa fa-check"></i>Part 4. Data collection</a></li>
+<li class="chapter" data-level="" data-path="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html"><a href="field-lab-6-design-a-camera-trap-study-in-serengeti-national-park-.html#part-5.-follow-up-questions"><i class="fa fa-check"></i>Part 5. Follow-up questions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-1-data-exploration-and-visualization-r-script.html"><a href="appendix-1-data-exploration-and-visualization-r-script.html"><i class="fa fa-check"></i>Appendix 1. Data exploration and visualization R script</a></li>
+<li class="chapter" data-level="" data-path="appendix-2-activity-budgets-and-ethograms.html"><a href="appendix-2-activity-budgets-and-ethograms.html"><i class="fa fa-check"></i>Appendix 2. Activity Budgets and Ethograms</a></li>
+<li class="chapter" data-level="" data-path="appendix-3-analyzing-acoustic-data.html"><a href="appendix-3-analyzing-acoustic-data.html"><i class="fa fa-check"></i>Appendix 3. Analyzing acoustic data</a></li>
+<li class="chapter" data-level="" data-path="appendix-4-vigilance-behavior.html"><a href="appendix-4-vigilance-behavior.html"><i class="fa fa-check"></i>Appendix 4. Vigilance behavior</a></li>
+<li class="chapter" data-level="" data-path="appendix-5-estimating-population-density-and-biodiversity.html"><a href="appendix-5-estimating-population-density-and-biodiversity.html"><i class="fa fa-check"></i>Appendix 5. Estimating Population Density and Biodiversity</a></li>
+<li class="chapter" data-level="" data-path="appendix-6-analyzing-camera-trap-data.html"><a href="appendix-6-analyzing-camera-trap-data.html"><i class="fa fa-check"></i>Appendix 6. Analyzing camera trap data</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-5.-estimating-population-density-and-biodiversity" class="section level1 unnumbered">
+<h1>Appendix 5. Estimating Population Density and Biodiversity</h1>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="co"># First we load the necessary libraries</span></a>
+<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="kw">library</span>(behaviouR)</a>
+<a class="sourceLine" id="cb238-3" data-line-number="3"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb238-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb238-5" data-line-number="5"><span class="co"># Then we read in our data</span></a>
+<a class="sourceLine" id="cb238-6" data-line-number="6"><span class="kw">data</span>(<span class="st">&#39;CensusData&#39;</span>)</a>
+<a class="sourceLine" id="cb238-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb238-8" data-line-number="8"><span class="co"># Part 1. Population density estimation. </span></a>
+<a class="sourceLine" id="cb238-9" data-line-number="9"><span class="co"># First let&#39;s focus on your data</span></a>
+<a class="sourceLine" id="cb238-10" data-line-number="10"><span class="co"># </span><span class="al">NOTE</span><span class="co"> you need to change &#39;A&#39; to the name you used </span></a>
+<a class="sourceLine" id="cb238-11" data-line-number="11">MyCensusData &lt;-<span class="st"> </span><span class="kw">subset</span>(CensusData, Partner<span class="op">==</span><span class="st">&#39;A&#39;</span>)</a>
+<a class="sourceLine" id="cb238-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb238-13" data-line-number="13"><span class="co"># Now we will subset the data to focus on your focal species for density estimation</span></a>
+<a class="sourceLine" id="cb238-14" data-line-number="14"><span class="co"># </span><span class="al">NOTE</span><span class="co"> in this example we subsetting the data so that we only have the squirrels; you will need to change</span></a>
+<a class="sourceLine" id="cb238-15" data-line-number="15"><span class="co"># the code to subset based on your focal species</span></a>
+<a class="sourceLine" id="cb238-16" data-line-number="16">MyCensusDataFocal &lt;-<span class="st"> </span><span class="kw">subset</span>(MyCensusData, Species<span class="op">==</span><span class="st">&#39;squirrel&#39;</span>)</a>
+<a class="sourceLine" id="cb238-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb238-18" data-line-number="18"><span class="co"># Here we will determine the width of our sampling area by creating a histogram of</span></a>
+<a class="sourceLine" id="cb238-19" data-line-number="19"><span class="co"># perpendicular detection distances.</span></a>
+<a class="sourceLine" id="cb238-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb238-21" data-line-number="21"><span class="kw">hist</span>(MyCensusDataFocal<span class="op">$</span>PerpendicularDistance,<span class="dt">xlab=</span><span class="st">&#39;Perpendicular distance (D)&#39;</span>,</a>
+<a class="sourceLine" id="cb238-22" data-line-number="22">  <span class="dt">ylab=</span><span class="st">&#39;Number of observations&#39;</span>,<span class="dt">main=</span><span class="st">&#39;&#39;</span>)</a>
+<a class="sourceLine" id="cb238-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb238-24" data-line-number="24"><span class="co"># In this example there is a clear break between 15 and 20 meters, so we will </span></a>
+<a class="sourceLine" id="cb238-25" data-line-number="25"><span class="co"># only use observations that were within 15 meters. </span></a>
+<a class="sourceLine" id="cb238-26" data-line-number="26"><span class="co"># </span><span class="al">NOTE</span><span class="co">: Your data will look different than this!</span></a>
+<a class="sourceLine" id="cb238-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb238-28" data-line-number="28"><span class="co"># Change the value to the cutoff point indicated in your data</span></a>
+<a class="sourceLine" id="cb238-29" data-line-number="29">CutOffPoint &lt;-<span class="st"> </span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb238-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb238-31" data-line-number="31">MyCensusDataFocalAdjusted &lt;-<span class="st"> </span><span class="kw">subset</span>(MyCensusDataFocal,PerpendicularDistance <span class="op">&lt;</span>CutOffPoint )</a>
+<a class="sourceLine" id="cb238-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb238-33" data-line-number="33"><span class="co"># Now we need to subset by each site</span></a>
+<a class="sourceLine" id="cb238-34" data-line-number="34"><span class="co"># </span><span class="al">NOTE</span><span class="co">: You will need to change to the site names you used</span></a>
+<a class="sourceLine" id="cb238-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb238-36" data-line-number="36">MyCensusDataFocalSiteA &lt;-<span class="st"> </span><span class="kw">subset</span>(MyCensusDataFocalAdjusted,Site<span class="op">==</span><span class="st">&#39;SiteA&#39;</span>)</a>
+<a class="sourceLine" id="cb238-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb238-38" data-line-number="38">MyCensusDataFocalSiteB &lt;-<span class="st"> </span><span class="kw">subset</span>(MyCensusDataFocalAdjusted,Site<span class="op">==</span><span class="st">&#39;SiteB&#39;</span>)</a>
+<a class="sourceLine" id="cb238-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb238-40" data-line-number="40"><span class="co"># Now we will calculate the population density based on our two surveys</span></a>
+<a class="sourceLine" id="cb238-41" data-line-number="41"><span class="co"># Change the following to indicate the distance (in meters) of your survey for site A</span></a>
+<a class="sourceLine" id="cb238-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb238-43" data-line-number="43">SiteACensusDistance &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb238-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb238-45" data-line-number="45"><span class="co"># Now we will calculate the area of our census. The sample area (a) is equal to the length of the</span></a>
+<a class="sourceLine" id="cb238-46" data-line-number="46"><span class="co"># transect multiplied by twice the width or a= 2wl. We divide by 1000 to convert our answer to square kilometers.</span></a>
+<a class="sourceLine" id="cb238-47" data-line-number="47">SiteACensusArea &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>SiteACensusDistance<span class="op">*</span>CutOffPoint<span class="op">/</span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb238-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb238-49" data-line-number="49"><span class="co"># Now we need to calculate the number of animals using the following code</span></a>
+<a class="sourceLine" id="cb238-50" data-line-number="50">NumberFocalAnimalsSiteA &lt;-<span class="st"> </span><span class="kw">nrow</span>(MyCensusDataFocalSiteA)</a>
+<a class="sourceLine" id="cb238-51" data-line-number="51"></a>
+<a class="sourceLine" id="cb238-52" data-line-number="52">PopulationDensitySiteA &lt;-NumberFocalAnimalsSiteA<span class="op">/</span>SiteACensusArea</a>
+<a class="sourceLine" id="cb238-53" data-line-number="53">PopulationDensitySiteA</a>
+<a class="sourceLine" id="cb238-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb238-55" data-line-number="55"></a>
+<a class="sourceLine" id="cb238-56" data-line-number="56">SiteBCensusDistance &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb238-57" data-line-number="57"></a>
+<a class="sourceLine" id="cb238-58" data-line-number="58"><span class="co"># Now we will calculate the area of our census. The sample area (a) is equal to the length of the</span></a>
+<a class="sourceLine" id="cb238-59" data-line-number="59"><span class="co"># transect multiplied by twice the width or a= 2wl</span></a>
+<a class="sourceLine" id="cb238-60" data-line-number="60">SiteBCensusArea &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>SiteBCensusDistance<span class="op">*</span>CutOffPoint<span class="op">/</span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb238-61" data-line-number="61"></a>
+<a class="sourceLine" id="cb238-62" data-line-number="62"><span class="co"># Now we need to calculate the number of animals using the following code</span></a>
+<a class="sourceLine" id="cb238-63" data-line-number="63">NumberFocalAnimalsSiteB &lt;-<span class="st"> </span><span class="kw">nrow</span>(MyCensusDataFocalSiteB)</a>
+<a class="sourceLine" id="cb238-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb238-65" data-line-number="65">PopulationDensitySiteB &lt;-<span class="st"> </span>NumberFocalAnimalsSiteB<span class="op">/</span>SiteBCensusArea</a>
+<a class="sourceLine" id="cb238-66" data-line-number="66">PopulationDensitySiteB</a>
+<a class="sourceLine" id="cb238-67" data-line-number="67"></a>
+<a class="sourceLine" id="cb238-68" data-line-number="68"><span class="co"># Now we can compare population density using the following code. Was the population density of site A higher than site B?</span></a>
+<a class="sourceLine" id="cb238-69" data-line-number="69">PopulationDensitySiteA <span class="op">&gt;</span><span class="st"> </span>PopulationDensitySiteB</a>
+<a class="sourceLine" id="cb238-70" data-line-number="70"></a>
+<a class="sourceLine" id="cb238-71" data-line-number="71"><span class="co"># Was the population density of site B higher than site A?</span></a>
+<a class="sourceLine" id="cb238-72" data-line-number="72">PopulationDensitySiteB <span class="op">&gt;</span><span class="st"> </span>PopulationDensitySiteA</a>
+<a class="sourceLine" id="cb238-73" data-line-number="73"></a>
+<a class="sourceLine" id="cb238-74" data-line-number="74"><span class="co"># **Question 1**. What were the population density estimates (reported as number of individuals per square kilometer) for your two sites? </span></a>
+<a class="sourceLine" id="cb238-75" data-line-number="75"><span class="co">#Do your results of the population density estimates match your predictions? Why or why not?</span></a>
+<a class="sourceLine" id="cb238-76" data-line-number="76"></a>
+<a class="sourceLine" id="cb238-77" data-line-number="77"><span class="co"># Part 2. Comparing biodiversity</span></a>
+<a class="sourceLine" id="cb238-78" data-line-number="78"></a>
+<a class="sourceLine" id="cb238-79" data-line-number="79"><span class="co"># First, we will estimate the alpha diversity, or the diversity within a particular area or ecosystem.</span></a>
+<a class="sourceLine" id="cb238-80" data-line-number="80"><span class="co"># The alpha diversity is simply the number of different species present at each site</span></a>
+<a class="sourceLine" id="cb238-81" data-line-number="81"><span class="co"># Here we subset by partner and site A (you may need to change these!)</span></a>
+<a class="sourceLine" id="cb238-82" data-line-number="82">MyCensusDataSiteA &lt;-<span class="st"> </span><span class="kw">subset</span>(MyCensusData,Partner<span class="op">==</span><span class="st">&#39;A&#39;</span> <span class="op">&amp;</span><span class="st"> </span>Site<span class="op">==</span><span class="st">&#39;SiteA&#39;</span>)</a>
+<a class="sourceLine" id="cb238-83" data-line-number="83"></a>
+<a class="sourceLine" id="cb238-84" data-line-number="84"><span class="co"># What were the unique species present?</span></a>
+<a class="sourceLine" id="cb238-85" data-line-number="85"><span class="kw">unique</span>(MyCensusDataSiteA<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-86" data-line-number="86"></a>
+<a class="sourceLine" id="cb238-87" data-line-number="87"><span class="co"># How many unique species were there?</span></a>
+<a class="sourceLine" id="cb238-88" data-line-number="88">SiteANumberSpecies &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(MyCensusDataSiteA<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-89" data-line-number="89">SiteANumberSpecies</a>
+<a class="sourceLine" id="cb238-90" data-line-number="90"></a>
+<a class="sourceLine" id="cb238-91" data-line-number="91"><span class="co"># Here we subset by partner and site B (you may need to change these!)</span></a>
+<a class="sourceLine" id="cb238-92" data-line-number="92">MyCensusDataSiteB &lt;-<span class="st"> </span><span class="kw">subset</span>(MyCensusData,Partner<span class="op">==</span><span class="st">&#39;A&#39;</span> <span class="op">&amp;</span><span class="st"> </span>Site<span class="op">==</span><span class="st">&#39;SiteB&#39;</span>)</a>
+<a class="sourceLine" id="cb238-93" data-line-number="93"></a>
+<a class="sourceLine" id="cb238-94" data-line-number="94"><span class="co"># What were the unique species present?</span></a>
+<a class="sourceLine" id="cb238-95" data-line-number="95"><span class="kw">unique</span>(MyCensusDataSiteB<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-96" data-line-number="96"></a>
+<a class="sourceLine" id="cb238-97" data-line-number="97"><span class="co"># How many unique species were there?</span></a>
+<a class="sourceLine" id="cb238-98" data-line-number="98">SiteBNumberSpecies &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(MyCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-99" data-line-number="99">SiteBNumberSpecies</a>
+<a class="sourceLine" id="cb238-100" data-line-number="100"></a>
+<a class="sourceLine" id="cb238-101" data-line-number="101"><span class="co"># What was the species richness for both sites sampled?</span></a>
+<a class="sourceLine" id="cb238-102" data-line-number="102"><span class="kw">unique</span>(<span class="kw">c</span>(MyCensusDataSiteA<span class="op">$</span>Species,MyCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-103" data-line-number="103"></a>
+<a class="sourceLine" id="cb238-104" data-line-number="104"><span class="co"># **Question 2**. Which of your sites had higher species richness (i.e. number of species)?</span></a>
+<a class="sourceLine" id="cb238-105" data-line-number="105"></a>
+<a class="sourceLine" id="cb238-106" data-line-number="106"><span class="co"># Now we will estimate beta diversity, which estimates changes in species diversity between</span></a>
+<a class="sourceLine" id="cb238-107" data-line-number="107"><span class="co"># ecosystems or along environmental gradients</span></a>
+<a class="sourceLine" id="cb238-108" data-line-number="108"></a>
+<a class="sourceLine" id="cb238-109" data-line-number="109"><span class="co"># Beta diversity = 2c / S1 + S2</span></a>
+<a class="sourceLine" id="cb238-110" data-line-number="110"></a>
+<a class="sourceLine" id="cb238-111" data-line-number="111"><span class="co"># This code tells us which species both sites have in common</span></a>
+<a class="sourceLine" id="cb238-112" data-line-number="112"><span class="kw">intersect</span>(<span class="kw">unique</span>(MyCensusDataSiteA<span class="op">$</span>Species),<span class="kw">unique</span>(MyCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-113" data-line-number="113"></a>
+<a class="sourceLine" id="cb238-114" data-line-number="114"><span class="co"># Now we calculate the number of species in common</span></a>
+<a class="sourceLine" id="cb238-115" data-line-number="115">SpeciesInCommonBothSites &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">intersect</span>(<span class="kw">unique</span>(MyCensusDataSiteA<span class="op">$</span>Species),<span class="kw">unique</span>(MyCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-116" data-line-number="116">)</a>
+<a class="sourceLine" id="cb238-117" data-line-number="117">SpeciesInCommonBothSites</a>
+<a class="sourceLine" id="cb238-118" data-line-number="118"></a>
+<a class="sourceLine" id="cb238-119" data-line-number="119"><span class="co"># Scientists are often interested in the community similarity between sites. For this</span></a>
+<a class="sourceLine" id="cb238-120" data-line-number="120"><span class="co"># we will calculate Sørenson’s index; a value of 1 means exactly the same number of species</span></a>
+<a class="sourceLine" id="cb238-121" data-line-number="121"><span class="co"># a value of 0 means no overlap</span></a>
+<a class="sourceLine" id="cb238-122" data-line-number="122"><span class="dv">2</span><span class="op">*</span>SpeciesInCommonBothSites<span class="op">/</span><span class="st"> </span>(SiteANumberSpecies<span class="op">+</span>SiteBNumberSpecies)</a>
+<a class="sourceLine" id="cb238-123" data-line-number="123"></a>
+<a class="sourceLine" id="cb238-124" data-line-number="124"><span class="co"># Now we will use your partner&#39;s data</span></a>
+<a class="sourceLine" id="cb238-125" data-line-number="125">MyPartnersCensusDataSiteA &lt;-<span class="st"> </span><span class="kw">subset</span>(CensusData,Partner<span class="op">==</span><span class="st">&#39;B&#39;</span> <span class="op">&amp;</span><span class="st"> </span>Site<span class="op">==</span><span class="st">&#39;SiteC&#39;</span>)</a>
+<a class="sourceLine" id="cb238-126" data-line-number="126"><span class="kw">unique</span>(MyPartnersCensusDataSiteA<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-127" data-line-number="127"><span class="kw">length</span>(<span class="kw">unique</span>(MyPartnersCensusDataSiteA<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-128" data-line-number="128">SiteANumberSpecies &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(MyPartnersCensusDataSiteA<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-129" data-line-number="129">SiteANumberSpecies</a>
+<a class="sourceLine" id="cb238-130" data-line-number="130"></a>
+<a class="sourceLine" id="cb238-131" data-line-number="131">MyPartnersCensusDataSiteB &lt;-<span class="st"> </span><span class="kw">subset</span>(CensusData,Partner<span class="op">==</span><span class="st">&#39;B&#39;</span> <span class="op">&amp;</span><span class="st"> </span>Site<span class="op">==</span><span class="st">&#39;SiteD&#39;</span>)</a>
+<a class="sourceLine" id="cb238-132" data-line-number="132"><span class="kw">unique</span>(MyPartnersCensusDataSiteB<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-133" data-line-number="133"><span class="kw">length</span>(<span class="kw">unique</span>(MyPartnersCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-134" data-line-number="134">SiteBNumberSpecies &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(MyPartnersCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-135" data-line-number="135">SiteBNumberSpecies</a>
+<a class="sourceLine" id="cb238-136" data-line-number="136"></a>
+<a class="sourceLine" id="cb238-137" data-line-number="137"><span class="co"># What was the species richness for both sites sampled?</span></a>
+<a class="sourceLine" id="cb238-138" data-line-number="138"><span class="kw">unique</span>(<span class="kw">c</span>(MyPartnersCensusDataSiteA<span class="op">$</span>Species,MyPartnersCensusDataSiteB<span class="op">$</span>Species))</a>
+<a class="sourceLine" id="cb238-139" data-line-number="139"></a>
+<a class="sourceLine" id="cb238-140" data-line-number="140"></a>
+<a class="sourceLine" id="cb238-141" data-line-number="141"><span class="co"># **Question 3**. How did the alpha diversity of each of your sites compare with that of your partner?</span></a>
+<a class="sourceLine" id="cb238-142" data-line-number="142"></a>
+<a class="sourceLine" id="cb238-143" data-line-number="143"></a>
+<a class="sourceLine" id="cb238-144" data-line-number="144"><span class="co"># Gamma diversity is total species over a large area or region; there are many different ways</span></a>
+<a class="sourceLine" id="cb238-145" data-line-number="145"><span class="co"># that this can be measured. The way we will do it is a bit of an oversimplification by simply</span></a>
+<a class="sourceLine" id="cb238-146" data-line-number="146"><span class="co"># comparing the number of species seen during the census at both locations.</span></a>
+<a class="sourceLine" id="cb238-147" data-line-number="147"></a>
+<a class="sourceLine" id="cb238-148" data-line-number="148"><span class="co"># First we subset by the first partner</span></a>
+<a class="sourceLine" id="cb238-149" data-line-number="149">MyCensusData &lt;-<span class="st"> </span><span class="kw">subset</span>(CensusData, Partner<span class="op">==</span><span class="st">&#39;A&#39;</span>)</a>
+<a class="sourceLine" id="cb238-150" data-line-number="150"><span class="kw">unique</span>(MyCensusData<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-151" data-line-number="151"></a>
+<a class="sourceLine" id="cb238-152" data-line-number="152"><span class="co"># Then we plot the results</span></a>
+<a class="sourceLine" id="cb238-153" data-line-number="153"><span class="kw">gghistogram</span>(<span class="dt">data=</span>MyCensusData, <span class="dt">x=</span><span class="st">&#39;Species&#39;</span>,<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>)</a>
+<a class="sourceLine" id="cb238-154" data-line-number="154"></a>
+<a class="sourceLine" id="cb238-155" data-line-number="155"><span class="co"># Now we subset by the second partner</span></a>
+<a class="sourceLine" id="cb238-156" data-line-number="156">MyPartnersCensusData &lt;-<span class="st"> </span><span class="kw">subset</span>(CensusData, Partner<span class="op">==</span><span class="st">&#39;B&#39;</span>)</a>
+<a class="sourceLine" id="cb238-157" data-line-number="157"><span class="kw">unique</span>(MyPartnersCensusData<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-158" data-line-number="158"></a>
+<a class="sourceLine" id="cb238-159" data-line-number="159"><span class="co"># Then we plot the results</span></a>
+<a class="sourceLine" id="cb238-160" data-line-number="160"><span class="kw">gghistogram</span>(<span class="dt">data=</span>MyPartnersCensusData, <span class="dt">x=</span><span class="st">&#39;Species&#39;</span>,<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>)</a>
+<a class="sourceLine" id="cb238-161" data-line-number="161"></a>
+<a class="sourceLine" id="cb238-162" data-line-number="162"></a>
+<a class="sourceLine" id="cb238-163" data-line-number="163"><span class="co"># Now we can plot all the data together, separated by partner</span></a>
+<a class="sourceLine" id="cb238-164" data-line-number="164"><span class="kw">gghistogram</span>(<span class="dt">data=</span>CensusData, <span class="dt">x=</span><span class="st">&#39;Species&#39;</span>,<span class="dt">stat=</span><span class="st">&quot;count&quot;</span>,</a>
+<a class="sourceLine" id="cb238-165" data-line-number="165">            <span class="dt">facet.by =</span> <span class="st">&#39;Partner&#39;</span>,<span class="dt">fill=</span><span class="st">&#39;Partner&#39;</span>,<span class="dt">x.text.angle =</span><span class="dv">90</span>)<span class="op">+</span><span class="kw">xlab</span>(<span class="st">&#39;Species&#39;</span>)<span class="op">+</span><span class="kw">ylab</span>(<span class="st">&#39;Number of individuals&#39;</span>)</a>
+<a class="sourceLine" id="cb238-166" data-line-number="166"></a>
+<a class="sourceLine" id="cb238-167" data-line-number="167"><span class="co"># **Question 4**. How did the gamma diversity of your site compare with that of your partners?</span></a>
+<a class="sourceLine" id="cb238-168" data-line-number="168"></a>
+<a class="sourceLine" id="cb238-169" data-line-number="169"><span class="co"># There are special packages in R that can measure different diversity indices, as this is a tool</span></a>
+<a class="sourceLine" id="cb238-170" data-line-number="170"><span class="co"># many ecologists use. We will use the &#39;vegan&#39; package.</span></a>
+<a class="sourceLine" id="cb238-171" data-line-number="171"><span class="kw">library</span>(vegan)</a>
+<a class="sourceLine" id="cb238-172" data-line-number="172"></a>
+<a class="sourceLine" id="cb238-173" data-line-number="173"><span class="co"># First we need to convert our data into a table thate can be used to calculate the indices.</span></a>
+<a class="sourceLine" id="cb238-174" data-line-number="174">BiodiversityTable &lt;-<span class="st"> </span><span class="kw">table</span>(CensusData<span class="op">$</span>Site,CensusData<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb238-175" data-line-number="175"></a>
+<a class="sourceLine" id="cb238-176" data-line-number="176"><span class="co">#Simpson&#39;s Index (D) measures the probability that two individuals randomly </span></a>
+<a class="sourceLine" id="cb238-177" data-line-number="177"><span class="co"># selected from a sample will belong to the same species (or some category other </span></a>
+<a class="sourceLine" id="cb238-178" data-line-number="178"><span class="co"># than species). With this index, 1 represents infinite diversity and 0 means no diversity.</span></a>
+<a class="sourceLine" id="cb238-179" data-line-number="179">H &lt;-<span class="st"> </span><span class="kw">diversity</span>(BiodiversityTable,<span class="dt">index=</span><span class="st">&quot;simpson&quot;</span>)</a>
+<a class="sourceLine" id="cb238-180" data-line-number="180">H</a>
+<a class="sourceLine" id="cb238-181" data-line-number="181"></a>
+<a class="sourceLine" id="cb238-182" data-line-number="182"><span class="co"># Species evenness refers to how close in numbers each species in an environment is. We can calculate</span></a>
+<a class="sourceLine" id="cb238-183" data-line-number="183"><span class="co"># that using the following code. The value is constrained between 0 and 1, with communities that</span></a>
+<a class="sourceLine" id="cb238-184" data-line-number="184"><span class="co"># that have a more even representation of species having values closer to 1.</span></a>
+<a class="sourceLine" id="cb238-185" data-line-number="185">J &lt;-<span class="st"> </span>H<span class="op">/</span><span class="kw">log</span>(<span class="kw">specnumber</span>(BiodiversityTable))</a>
+<a class="sourceLine" id="cb238-186" data-line-number="186">J</a>
+<a class="sourceLine" id="cb238-187" data-line-number="187"></a>
+<a class="sourceLine" id="cb238-188" data-line-number="188"><span class="co"># **Question 5**. Which of the four sites was most diverse? Which was the most even? Why is it</span></a>
+<a class="sourceLine" id="cb238-189" data-line-number="189"><span class="co"># important to consider diversity and evenness when studying biodiversity?</span></a></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendix-4-vigilance-behavior.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-6-analyzing-camera-trap-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/17-Lab-5-Data-Rscript.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["behaviouR-R-package-tutorials.pdf", "behaviouR-R-package-tutorials.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

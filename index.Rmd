@@ -1,15 +1,14 @@
 --- 
-title: "behaviouR: R package and tutorials for online teaching of fundamental concepts in behavior and ecology"
+title: "behaviouR: R package and tutorials for teaching of fundamental concepts in behavior and ecology"
 author: "Dena J. Clink"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: 'DenaJGibbon/behaviouRtutorials'
 description: "This is the location for all of the tutorials associated with the behaviouR R package."
+cover-image: 'images/titlepage.pdf'
 ---
 
 # Welcome {-}
@@ -21,6 +20,7 @@ library(stringr)
 library(plyr)
 library(ggplot2)
 library(ggfortify)
+library(ggpubr)
 
 # Lab 1 figures
 deerImage <- magick::image_read('images/Red_deer_stag.jpg')
@@ -66,7 +66,10 @@ To get started you should download the package from Github using the following c
 ```{r, eval=FALSE}
 # Install devtools from CRAN
 install.packages("devtools")
+
+# Install 'behaviouR' package from Gitub
 devtools::install_github("https://github.com/DenaJGibbon/behaviouR")
+
 ```
 
 Note: If you have never used R before I highly recommend that you check out the primers here: https://rstudio.cloud/learn/primers. 
