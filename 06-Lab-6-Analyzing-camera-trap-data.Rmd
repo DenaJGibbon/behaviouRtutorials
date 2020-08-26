@@ -67,7 +67,7 @@ CombinedAnimalDF <- CombinedAnimalDF[,c("category_id","season","location","filen
 head(CombinedAnimalDF)
 ```
 
-The function below will allow you to enter data and look through each photo included in the 'CombinedAnimalDF' spreadsheet and enter the time that the photo was taken. You can change option='Plot' to option='Viewer' to load the photos more quickly, but you will have to expand the photo to see the whole thing. The input file should be the dataframe created using the 'CameraTrapDataAccess' function. You can break out of the function at any time by typibg 'break'. It will print out which row of the dataframe you were on when you stopped the function. If you would like to resume where you left off you must change 'rowstart=1' to the row number indicated, and change 'dataframe.cont = FALSE' to 'dataframe.cont = TRUE'.
+The function below will allow you to enter data and look through each photo included in the 'CombinedAnimalDF' spreadsheet and enter the time that the photo was taken. You can change option='Plot' to option='Viewer' to load the photos more quickly, but you will have to expand the photo to see the whole thing. The input file should be the dataframe created using the 'CameraTrapDataAccess' function. You can break out of the function at any time by typing 'break'. It will print out which row of the dataframe you were on when you stopped the function. If you would like to resume where you left off you must change 'rowstart=1' to the row number indicated, and change 'dataframe.cont = FALSE' to 'dataframe.cont = TRUE'.
 
 Here is the function to view photos and annotate data.
 ```{r, eval=FALSE}
