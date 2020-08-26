@@ -59,7 +59,7 @@ library(ggplot2)
 ```
 
 We need to do some data prep to work through the examples
-```{r, eval=F, echo=T}
+```{r, eval=T, echo=T}
 
 # First you can check where your working directory is; this is where R will store the files locally
 getwd()
@@ -230,7 +230,24 @@ What we see in this plot is strong clustering, with the points from each class o
 ## Part 3. Soundscapes {-}
 Now we will do something similar to our investigation of the focal recordings, but using a soundscape example. Here we have 20-sec recordings taken from two different locations (Borneo and Sulawesi) and two different times (06:00 and 18:00). Let's check what is in the folder.
 
-```{r, echo=TRUE}
+```{r, eval=T, echo=TRUE}
+# Now we will create a file at this location called 'SoundscapeRecordings'
+dir.create(file.path('SoundscapeRecordings'), showWarnings = FALSE)
+
+# Now we will load the sound files that were in the R package
+githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/SoundscapeRecordings.rda'
+
+SoundscapeRecordings <- get(load(url(githubURL)))
+
+# Let's check the structure
+head(SoundscapeRecordings)
+
+# Now we will save the recordings to the new folder you created
+for(a in 1:length(SoundscapeRecordings)){
+  FileName <- SoundscapeRecordings[[a]][1][[1]]
+  WaveFile <- SoundscapeRecordings[[a]][2][[1]]
+  tuneR::writeWave(WaveFile, paste("SoundscapeRecordings/",FileName,sep=''))
+}
 
 list.files("SoundscapeRecordings")
 ```
