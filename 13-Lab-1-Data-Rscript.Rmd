@@ -33,16 +33,16 @@ head(MaleDeerRoarDF)
 
 # Now we will plot the categorical data with standard deviations. 
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', 
-          add = c("mean_sd"),xtickslab.rt = 90)
+          add = c("mean_sd"))
 
 # Now we will plot the categorical data with colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
-          add = c("mean_sd"),xtickslab.rt = 90)+ theme(legend.position = "none")
+          add = c("mean_sd"))+ theme(legend.position = "none")
 
 # Now we will plot the categorical data with user-specified colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
           palette = c('red','gray','white','black'),
-          add = c("mean_se"),xtickslab.rt = 90)+ theme(legend.position = "none")
+          add = c("mean_se"))+ theme(legend.position = "none")
 
 
 ## Lab 1c. Categorical and continuous data

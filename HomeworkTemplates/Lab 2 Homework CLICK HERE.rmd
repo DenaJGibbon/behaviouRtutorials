@@ -24,7 +24,7 @@ library(ggpubr)
 
 ```
 
-## Lab 2a. Enter and visualize your ethogram data
+## Part 1. Enter and visualize your ethogram data
 
 **Question 1**. Change the code below to reflect the categories you used in your ethogram and change the TimesObserved values to the actual values you recorded. NOTE: You may need to add more categories if your ethogram had more than six. What trends did you notice in terms of behaviors observed?
 
@@ -40,13 +40,8 @@ EthogramDFupdated <- data.frame(Behavior=c('Category1','Category2','Category3',
 ggbarplot(data=EthogramDFupdated, x='Behavior', y='TimesObserved',fill='grey')
 ```
 
-## Lab 2b. Qualitatively compare the ethograms of two primate individuals
 
-**Question 2**. What differences do you notice about the behaviors of our two simulated primates?
-
-ADD TEXT HERE TO ANSWER QUESTION 2
-
-## Lab 2c. Calculate meerkat activity budgets. 
+## Part 2. Calculate meerkat activity budgets. 
 Now we compare our data with our partner's. Assuming you were able to successfully upload your data the code below should run without problems.
 
 
@@ -69,12 +64,12 @@ ggbarplot(data=MeerkatFocalDataPartner,x='BehaviorCode',y='ActivityBudget', fill
 ```
   
   
-**Question 3**. Were there any noticeable differences between you and your partner's activity budgets?  
+**Question 2**. Were there any noticeable differences between you and your partner's activity budgets?  
 
-ADD TEXT HERE TO ANSWER QUESTION 3
+ADD TEXT HERE TO ANSWER QUESTION 2
   
   
-## Lab 2d. Scan sampling and inter-observer reliability.
+## Part 3. Scan sampling and inter-observer reliability.
 Now we will compare inter-observer reliability. Assuming you were able to successfully upload your data the code below should run without problems.
 
 
@@ -131,7 +126,7 @@ cbind.data.frame(VigilantCorrelation,NotVigilantCorrelation,OutOfSightCorrelatio
 ```
   
   
-**Question 4**. What was the reliability (or correlation coefficent) between you and your partner for each of the different behavioral categories? What do you think lead to these differences?    
+**Question 3**. What was the reliability (or correlation coefficent) between you and your partner for each of the different behavioral categories? What do you think lead to these differences?    
 
 
-ADD TEXT HERE TO ANSWER QUESTION 4
+ADD TEXT HERE TO ANSWER QUESTION 3

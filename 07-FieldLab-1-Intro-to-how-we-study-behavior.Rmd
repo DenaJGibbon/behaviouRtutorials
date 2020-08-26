@@ -24,7 +24,7 @@ Using your newly created ethogram you will now collect data on a focal species o
 
 ## Part 4: Develop a research question, hypothesis and prediction {-}
 
-Once you have taken time to make some behavioral observations, or frankly as you are making them, select one particular behavior that interests you the most. Use this behavior to generate a Question -> Hypothesis -> and Prediction about its relevance to your organism’s life history. Pick any level of analysis. If you don’t have time to do this part in the field, you can complete it afterward. In fact, taking time to think about the behaviors you observed is often very important when coming up with questions, hypotheses, and predictions.
+Once you have taken time to make some behavioral observations, or frankly as you are making them, select one particular behavior that interests you the most. Use this behavior to generate a Question -> Hypothesis -> and Prediction about its relevance to your organism’s life history. Pick any level of analysis. If you don’t have time to do this part in the field, you can complete it afterward. Taking time to think about the behaviors you observed is often very important when coming up with questions, hypotheses, and predictions.
 
 *Question 5*: What was the behavior you observed? What question did you develop about this behavior? What hypotheses do you have about the function of this behavior?
 

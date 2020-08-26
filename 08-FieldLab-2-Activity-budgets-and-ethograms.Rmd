@@ -6,7 +6,7 @@
 NOTE: you may want to look ahead to Computer Lab 2. You will need to enter your data from this lab into the spreadsheets. For the field lab you can take the data anyway that you like, but be prepared to enter and format it for the computer lab!
 
 ## Part 1. Build an ethogram from meerkat observations {-}
-Your first task will be to watch this short video: https://vimeo.com/80600819 (Links to an external site.). While you watch the video, document all of the different behaviors that you observe. After you watch the video, develop an ethogram with your partner including: a) behavioral categories and b) definitions for each category.
+Your first task will be to watch this short video: https://vimeo.com/80600819. While you watch the video, document all of the different behaviors that you observe. After you watch the video, develop an ethogram with your partner including: a) behavioral categories and b) definitions for each category.
 
 *Question 1a*. Were the behaviors that you and your partner listed different?
 *Question 1b*. Please enter your ethogram (behavioral categories and definitions) here. Make sure to include ‘other’ and ‘out of view’ as two of your categories.
@@ -51,11 +51,11 @@ Out of sight: Not visible by the researcher
 
 NOTE: Do not communicate with your partner while watching the videos!
 
-No predator: https://vimeo.com/80600822 (Links to an external site.)
+No predator: https://vimeo.com/80600822 
 
-Terrestrial predator: https://vimeo.com/71877438 (Links to an external site.)
+Terrestrial predator: https://vimeo.com/71877438 
 
-Aerial predator: https://vimeo.com/80600821 (Links to an external site.)
+Aerial predator: https://vimeo.com/80600821 
 
 *Question 5*. Were there any differences between you and your partner?
 

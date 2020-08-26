@@ -131,7 +131,7 @@ Now we will plot the categorical data. First we will use a barplot with error ba
 ```{r echo = TRUE}
 # Now we will plot the categorical data with standard deviations. 
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', 
-          add = c("mean_sd"),xtickslab.rt = 90)
+          add = c("mean_sd"))
 ```
 
 
@@ -140,7 +140,7 @@ Although it shows us what we need, we can also include some colors in our plot. 
 ```{r echo = TRUE}
 # Now we will plot the categorical data with colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
-          add = c("mean_sd"),xtickslab.rt = 90)+ theme(legend.position = "none")
+          add = c("mean_sd"))+ theme(legend.position = "none")
 ```
 
 Color for plots is often based on personal preference, below I modified the colors using the 'palette' argument.
@@ -150,7 +150,7 @@ NOTE: The use of color-blind friendly palettes is becoming increasingly popular 
 # Now we will plot the categorical data with user-specified colors for each category.
 ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
           palette = c('red','gray','white','black'),
-          add = c("mean_se"),xtickslab.rt = 90)+ theme(legend.position = "none")
+          add = c("mean_se"))+ theme(legend.position = "none")
 ```
 
 *Please answer the following questions:*  
@@ -208,7 +208,7 @@ Now we can use R to create a linear model to quantitatively investigate the rela
 MaleDeerModel <- lm(MaleReproductiveSuccess ~ MaleBodyWeight,data=MaleRedDeerDF)
 ```
 
-We can look at the output of the model and we see that our coefficient for MaleBodyWeight is 0.45. We interpret this to mean that for every 1 kg increase in male body mass, we would expect to see a 0.45 increase in the reproductive success of the male. Since we simulated population so that there would be a correlation 0.45 between our two variables we already knew that this would be the outcome.
+We can look at the output of the model and we see that our coefficient for MaleBodyWeight is 0.45. We interpret this to mean that for every 1 kg increase in male body mass, we would expect to see a 0.45 increase in the reproductive success of the male. Since we simulated our population so that there would be a correlation of 0.45 between our two variables, we already knew that this would be the outcome.
 
 ```{r echo = TRUE}
 # We can look at the output of the model  
@@ -219,7 +219,7 @@ There are many ways that we can test whether the results of our model are reliab
 
 NOTE: AIC can be used to compare two our more models created using the same dataset, but the relative AIC values are what is important, and you must use the same data for all models.
 
-We will set up two models for this exercise. Our first model will be our 'null'model which does not include MaleBodyWeight as a predictor. Our next model will be our model of interest that does contain MaleBodyWeight as a predictor. 
+We will set up two models for this exercise. Our first model will be our 'null' model which does not include MaleBodyWeight as a predictor. Our next model will be our model of interest that does contain MaleBodyWeight as a predictor. 
 
 ```{r echo = TRUE}
 # Create a null model and a model with MaleBodyWeight as a predictor.
@@ -234,7 +234,7 @@ We can now use a function created to compare models using a modified version of 
 # Compare models using AIC.
 bbmle::AICctab(MaleDeerModel,MaleDeerNull, weights=T)
 ```
-NOTE: In this example case the model which contains MaleBodyWeight is ranked higher. We interpret this to mean that there is a reliably positive relationship between MaleBodyWeight and MaleReproductiveSuccess. In other words, as male body weight increases we see an increase in his reproductive success.  
+NOTE: In this example the model which contains MaleBodyWeight is ranked higher. We interpret this to mean that there is a reliably positive relationship between MaleBodyWeight and MaleReproductiveSuccess. In other words, as male body weight increases we see an increase in his reproductive success.  
 
 *Please answer the following questions:*    
 
@@ -249,7 +249,7 @@ In some cases we have multiple measurements of different variables from the same
 
 Lets create a toy dataset of red deer, sika deer and red x sika hybrid vocalizations (based on Long et al. 1998). We will simulate four vocalizations per individual and we will measure three aspects of the vocalizations- the duration, the minimum frequency and the maximum frequency of the vocalization. We will then visualize our data using principal component analysis (PCA). PCA is a commonly used data reduction technique. 
 
-For more information see https://www.nature.com/articles/nmeth.4346.pdf.
+For more information on PCA see https://www.nature.com/articles/nmeth.4346.pdf.
 
 ```{r echo = TRUE}
 ## Lab 1d. Multivariate data
@@ -262,7 +262,7 @@ head(DeerSpeciesAcousticFeatures)
 ```
 
 
-Now we run the PCA. Note: You can only do PCA on numeric data, so we remove the class category.
+Now we run the PCA. Note: You can only use PCA on numerical data, so we remove the class category.
 
 ```{r echo = TRUE}
 # Here is our modified dataset that we will use for PCA
