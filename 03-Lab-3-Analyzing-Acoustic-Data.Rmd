@@ -2,39 +2,8 @@
 
 
 ```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
-library(behaviouR)
-library(ggfortify) 
-library(ggplot2)
-
-
-jpeg('spectrograms.jpg', width = 2000, height = 1175,res=300)
-#par(mfrow=c(2,2))
-GibbonSpectrogram <- SpectrogramSingle(sound.file ="FocalRecordings/FemaleGibbon.wav",
-                                       min.freq = 500,max.freq=2500)
-
-# ArgusSpectrogram <- SpectrogramSingle(sound.file ="FocalRecordings/GreatArgus.wav",
-#                                        min.freq = 500,max.freq=2500,Colors = 'Colors')
-#
-# MaleSoloSpectrogram <- SpectrogramSingle(sound.file ="FocalRecordings/MaleSolo.wav",
-#                                       min.freq = 500,max.freq=2500,Colors = 'Colors')
-
-graphics.off()
-
-Fig3a <- magick::image_read('spectrograms.jpg')
-Fig3a <-magick::image_ggplot(Fig3a)
+Fig3a <- magick::image_read('images/Lab3.png')
 Fig3a
-
-FeatureDataframe <- MFCCFunction(input.dir = "FocalRecordings")
-FeatureDataframe <- FeatureDataframe[-c(5),]
-pca_res <- prcomp(FeatureDataframe[,-c(1)], scale. = TRUE)
-
-Fig3b <- ggplot2::autoplot(pca_res, data = FeatureDataframe,
-                  colour = 'Class')
-
-cowplot::plot_grid(NULL,Fig3a,Fig3b,labels = c('','A','B'), nrow = 1,
-                   scale = c(1,1.25,1),rel_widths = c(0.1,0.45,0.45),label_x = .95)
-
-
 
 ```
 
@@ -59,7 +28,7 @@ library(ggplot2)
 ```
 
 We need to do some data prep to work through the examples
-```{r, eval=T, echo=T}
+```{r, eval=F, echo=T}
 
 # First you can check where your working directory is; this is where R will store the files locally
 getwd()
@@ -230,7 +199,7 @@ What we see in this plot is strong clustering, with the points from each class o
 ## Part 3. Soundscapes {-}
 Now we will do something similar to our investigation of the focal recordings, but using a soundscape example. Here we have 20-sec recordings taken from two different locations (Borneo and Sulawesi) and two different times (06:00 and 18:00). Let's check what is in the folder.
 
-```{r, eval=T, echo=TRUE}
+```{r, eval=F, echo=TRUE}
 # Now we will create a file at this location called 'SoundscapeRecordings'
 dir.create(file.path('SoundscapeRecordings'), showWarnings = FALSE)
 
