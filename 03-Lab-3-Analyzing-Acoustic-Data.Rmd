@@ -28,7 +28,7 @@ library(ggplot2)
 ```
 
 We need to do some data prep to work through the examples
-```{r, eval=F, echo=T}
+```{r, eval=T, echo=T}
 
 # First you can check where your working directory is; this is where R will store the files locally
 getwd()
@@ -278,9 +278,13 @@ SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Morning_01.wav",
 ## Part 4. Now it is time to analyze the data you collected for this week's field lab. {-}
 Upload your sound files into either the 'MyFocalRecordings' folder or the 'MySoundscapeRecordings'folder and run the code below.
 
-NOTE: Make sure to delete the existing files before you add your own!
+# NOTE: Make sure to create the folders and add your sound files!
+```{r, echo=TRUE,eval=FALSE}
+dir.create(file.path('MyFocalRecordings'), showWarnings = FALSE)
+dir.create(file.path('MySoundscapeRecordings'), showWarnings = FALSE)
+```
 
-### Part 4a. Your focal recordings
+### Part 4a. Your focal recordings {-}
 First lets visualize the spectrograms. You may want to change the frequency settings depending on the frequency range of your focal animals.
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results='hide'}
 # We can tell R to print the spectrograms 2x2 using the code below
@@ -310,7 +314,7 @@ ggplot2::autoplot(pca_res, data = MyFeatureDataFrame,
          colour = 'Class')
 ```
 
-### Part 4b. Soundscape recordings
+### Part 4b. Soundscape recordings {-}
 First lets visualize the spectrograms. You probably don't want to change the frequency settings for this.
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results='hide'}
 # We can tell R to print the spectrograms 2x2 using the code below
