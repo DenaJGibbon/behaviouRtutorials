@@ -211,7 +211,7 @@ SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Morning_01.wav",
 
 graphics.off()
 
-# Question 3. You can listen to example sound files on the Canvas page. Between
+# Question 3. You can listen to example sound files. Between
 # looking at the spectrograms and listening to the sound files what do you think
 # are the main differences between the different locations and times?
 

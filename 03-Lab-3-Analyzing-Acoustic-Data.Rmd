@@ -39,7 +39,7 @@ cowplot::plot_grid(NULL,Fig3a,Fig3b,labels = c('','A','B'), nrow = 1,
 ```
 
 *Background*   
-In this lab you will become familiar with the ways that we analyze acoustic data. You will start by analyzing focal recordings and soundscapes from Southeast Asia, and you will then upload the data you collected for Field Lab 3 and do some prelminary analysis.
+In this lab you will become familiar with the ways that we analyze acoustic data. You will start by analyzing focal recordings and soundscapes from Southeast Asia, and you will then upload the data you collected for Field Lab 3 and do some preliminary analyses.
 
 *Goals of the exercises*    
 The main goal(s) of today's lab are to:  
@@ -166,18 +166,18 @@ par(mfrow=c(2,2))
 
 *Question 1.* What differences do you notice about gibbon and great argus spectrograms? 
 
-Now that you are doing looking at the spectrograms we will clear the space. You can always re-run the code to look at the again.
+Now that you are doing looking at the spectrograms we will clear the space. You can always re-run the code to look at the spectrograms again.
 ```{r, eval=FALSE}
 
 graphics.off()
 ```
 
 ## Part 2. Visualizing differences in gibbon and great argus calls {-}
-A major question in many different types of behavioral studies is whether there are differences between groups. This is also the case for acoustic data, where researchers may be interested if there are differences between sexes, populations, individuals, or vocalizations emitted in different contexts. Here we will work through a simple example where we will investigate differences in gibbon and argus calls.  
+A major question in many different types of behavioral studies is whether there are differences between groups. This is also the case for acoustic data, where researchers may be interested if there are differences between sexes, populations, individuals, or vocalizations emitted in different contexts. Here we will work through a simple example where we will investigate differences in female gibbon, male gibbon and great argus calls.  
 
 The first step that we need to do is called feature extraction. There are many different ways that scientists do this, but the overarching idea is that sound data contains too much redundant information to be used on a model. Computers just don't have enough power to crunch all those numbers, so we need to identify a meaningful set of features that is smaller than using the while waveform. This is also the case for image processing.  
 
-We are going to use a feature extraction method called 'Mel-frequency cepstral coefficients'. I will not expect you to know any more about them, apart from the fact they are very useful for human speech and bioaccoustics applications.   
+We are going to use a feature extraction method called 'Mel-frequency cepstral coefficients'. I will not expect you to know any more about them, apart from the fact they are very useful for human speech and bioacoustics applications.   
 
 Below is the function to extract features from our focal recordings
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results='hide'}
@@ -264,7 +264,7 @@ Now that you are doing looking at the figure we will clear the space. You can al
 graphics.off()
 ```
 
-Now just as above we will do feature extraction of our soundscape recordings. Thiswill convert our dataset into a smaller, much more manageable size. 
+Now just as above we will do feature extraction of our soundscape recordings. This will convert our dataset into a smaller, much more manageable size. 
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results='hide'}
 SoundscapeFeatureDataframe <- 
@@ -304,7 +304,7 @@ SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Morning_01.wav",
                   Colors = 'Colors',downsample = FALSE)
 ```
 
-*Question 3*. You can listen to example sound files on the Canvas page. Between looking at the spectrograms and listening to the sound files what do you think are the main differences between the different locations and times?
+*Question 3*. You can listen to example sound files by finding the 'Files' tab in your RStudio console (hint it is next to the 'Plots' tab). Since we downloaded the sound files you can find them in the 'SoundscapeRecordings' folder you created. Between looking at the spectrograms and listening to the sound files what do you think are the main differences between the different locations and times?
 
 ## Part 4. Now it is time to analyze the data you collected for this week's field lab. {-}
 Upload your sound files into either the 'MyFocalRecordings' folder or the 'MySoundscapeRecordings'folder and run the code below.

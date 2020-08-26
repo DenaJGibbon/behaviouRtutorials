@@ -11,12 +11,12 @@ print(meerkat.image)
 
 
 *Background*   
-In this lab you will continue to become familiar with the ways that we visualize and analyze behavioral data. For this lab I assume students have conducted Field Labs 1 and 2, so you should be familiar with how focal behavioral data are collected. Field Lab 1 data collection involves observation of animals in your own backyard and the creation of an ethogram. For Field Lab 2 data students learn how to collect focal data and scan data using meerkat videos following the methods outlined in: Hammond 2019, Vigilance behaviour in meerkats, ASAB Education.
+In this lab you will continue to become familiar with the ways that we visualize and analyze behavioral data. For this lab I assume students have conducted Field Labs 1 and 2, so you should be familiar with both focal and scan sampling behavioral data collection techniques. Data collection for Field Lab 1 involves observation of animals in your own backyard and the creation of an ethogram. Data collection for Field Lab 2 involves collecting focal data and scan data using meerkat videos following the methods outlined in: Hammond 2019, Vigilance behaviour in meerkats, ASAB Education.
 
 *Goals of the exercises*    
 The main goal(s) of today's lab are to:  
 1) Enter and visualize your ethogram data  
-2) Calculate meerkat activity budgets
+2) Calculate meerkat activity budgets  
 3) Compare inter-observer reliability from the meerkat data
 
 
@@ -77,8 +77,7 @@ NOTE: Your plot will look different than this as you will enter your own data ab
 ggbarplot(data=EthogramDFupdated, x='Behavior', y='TimesObserved',fill='grey',xtickslab.rt = 90)
 ```
 
-**Question 1**   
-*Change the code to reflect the categories you used in your ethogram and change the TimesObserved values to the actual values you recorded. NOTE: You may need to add more categories if your ethogram had more than six. What trends did you notice in terms of behaviors observed?*
+**Question 1** Change the code to reflect the categories you used in your ethogram and change the TimesObserved values to the actual values you recorded. NOTE: You may need to add more categories if your ethogram had more than six. What trends did you notice in terms of behaviors observed?
 
 
 ## Part 2. Calculate meerkat activity budgets.{-}
@@ -157,8 +156,7 @@ ggbarplot(data=MeerkatFocalDataPartner,x='BehaviorCode',y='ActivityBudget', fill
           position = position_dodge(0.9))+ylab('Percent of Time')
 ```
 
-**Question 3**.   
-*Were there any noticeable differences between you and your partner's activity budgets?* 
+**Question 2**. Were there any noticeable differences between you and your partner's activity budgets?* 
 
 ## Part 3. Scan sampling and inter-observer reliability. {-}
 Load your data as you did before, but this time upload the 'MeerkatScanData.csv' file.
@@ -258,5 +256,4 @@ cbind.data.frame(VigilantCorrelation,NotVigilantCorrelation,OutOfSightCorrelatio
 
 NOTE: The correlation values between you and your partner will be different!
 
-**Question 4**.   
-*What was the reliability (or correlation coefficent) between you and your partner for each of the different behavioral categories? What do you think lead to these differences? *
+**Question 3**. What was the reliability (or correlation coefficent) between you and your partner for each of the different behavioral categories? What do you think lead to these differences? *
