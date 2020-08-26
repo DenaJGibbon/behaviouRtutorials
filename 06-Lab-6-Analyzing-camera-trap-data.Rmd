@@ -8,7 +8,7 @@ CombinedDFTimes <- read.csv('CombinedAnimalDF_TimeAdded.csv')
 CombinedPartnerDFTimes <- read.csv('CombinedAnimalDF_TimeAddedPartner.csv')
 AllDataCombined <- rbind.data.frame(CombinedDFTimes,CombinedPartnerDFTimes)
 
-Fig6b <- ggdensity(data=AllDataCombined,x='Time',fill = 'category_id',facet.by = 'category_id')+
+Fig6b <- ggpubr::ggdensity(data=AllDataCombined,x='Time',fill = 'category_id',facet.by = 'category_id')+
   xlab('Time (24 hrs)') +ylab('Density')+scale_fill_manual(values = c('red','gray','black','blue'))+ theme(legend.title = element_blank())
 
 
@@ -104,7 +104,7 @@ Now we can make a density plot that will show the distribution of camera trap ph
 
 ```{r, warning=FALSE, message=FALSE}
 
-ggdensity(data=CombinedDFTimes,x='Time',fill = 'category_id')+
+ggpubr::ggdensity(data=CombinedDFTimes,x='Time',fill = 'category_id')+
   xlab('Time (24 hrs)') +ylab('Density')
 ```
 
@@ -156,7 +156,7 @@ head(CombinedPartnerDFTimes)
 Now we can make a density plot for our partner's data.
 ```{r, warning=FALSE, message=FALSE}
 
-ggdensity(data=CombinedPartnerDFTimes,x='Time',fill = 'category_id')+
+ggpubr::ggdensity(data=CombinedPartnerDFTimes,x='Time',fill = 'category_id')+
   xlab('Time (24 hrs)') +ylab('Density')
 ```
 
@@ -195,7 +195,7 @@ AllDataCombined <- rbind.data.frame(CombinedDFTimes,CombinedPartnerDFTimes)
 Then we plot the diel activity patterns for all four species
 ```{r, warning=FALSE, message=FALSE}
 
-ggdensity(data=AllDataCombined,x='Time',fill = 'category_id',facet.by = 'category_id')+
+ggpubr::ggdensity(data=AllDataCombined,x='Time',fill = 'category_id',facet.by = 'category_id')+
   xlab('Time (24 hrs)') +ylab('Density')
 ```
 
