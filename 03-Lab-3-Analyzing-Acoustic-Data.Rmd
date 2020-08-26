@@ -28,7 +28,7 @@ library(ggplot2)
 ```
 
 We need to do some data prep to work through the examples
-```{r, eval=T, echo=T}
+```{r, eval=T, echo=T,warning=FALSE, message=FALSE}
 
 # First you can check where your working directory is; this is where R will store the files locally
 getwd()
@@ -41,7 +41,7 @@ githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/FocalR
 FocalRecordings <- get(load(url(githubURL)))
 
 # Let's check the structure
-head(FocalRecordings)
+# head(FocalRecordings)
 
 # Now we will save the recordings to the new folder you created
 for(a in 1:length(FocalRecordings)){
@@ -199,7 +199,7 @@ What we see in this plot is strong clustering, with the points from each class o
 ## Part 3. Soundscapes {-}
 Now we will do something similar to our investigation of the focal recordings, but using a soundscape example. Here we have 20-sec recordings taken from two different locations (Borneo and Sulawesi) and two different times (06:00 and 18:00). Let's check what is in the folder.
 
-```{r, eval=F, echo=TRUE}
+```{r, eval=T, echo=TRUE,,warning=FALSE, message=FALSE}
 # Now we will create a file at this location called 'SoundscapeRecordings'
 dir.create(file.path('SoundscapeRecordings'), showWarnings = FALSE)
 
@@ -209,7 +209,7 @@ githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/Sounds
 SoundscapeRecordings <- get(load(url(githubURL)))
 
 # Let's check the structure
-head(SoundscapeRecordings)
+# head(SoundscapeRecordings)
 
 # Now we will save the recordings to the new folder you created
 for(a in 1:length(SoundscapeRecordings)){
@@ -278,7 +278,7 @@ SpectrogramSingle(sound.file ="SoundscapeRecordings/Sulawesi_Morning_01.wav",
 ## Part 4. Now it is time to analyze the data you collected for this week's field lab. {-}
 Upload your sound files into either the 'MyFocalRecordings' folder or the 'MySoundscapeRecordings'folder and run the code below.
 
-# NOTE: Make sure to create the folders and add your sound files!
+NOTE: Make sure to create the folders and add your sound files!
 ```{r, echo=TRUE,eval=FALSE}
 dir.create(file.path('MyFocalRecordings'), showWarnings = FALSE)
 dir.create(file.path('MySoundscapeRecordings'), showWarnings = FALSE)

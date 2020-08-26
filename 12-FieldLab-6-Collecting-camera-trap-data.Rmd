@@ -1,7 +1,14 @@
 # Field Lab 6: Design a camera trap study in Serengeti National Park. {-}
 
+```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
+Fig <- magick::image_read('images/Figure6.pdf')
+Fig
+
+```
+
+
 ## Part 1. Background  {-}
-The camera trap data that we will use for this field lab comes from the 'Snapshot Serengeti' project (http://lila.science/datasets/snapshot-serengeti (Links to an external site.)). The scientists set out out 225 cameras within a 1,125 km2 area (see map to the right). The cameras have been deployed continuously since 2010, and they recruited citizen scientists to help with classifying images (https://www.zooniverse.org/projects/zooniverse/snapshot-serengeti (Links to an external site.)). 
+The camera trap data that we will use for this field lab comes from the 'Snapshot Serengeti' project (http://lila.science/datasets/snapshot-serengeti ). The scientists set out out 225 cameras within a 1,125 km2 area (see map to the right). The cameras have been deployed continuously since 2010, and they recruited citizen scientists to help with classifying images (https://www.zooniverse.org/projects/zooniverse/snapshot-serengeti ). 
 
 ## Part 2. Data format and size  {-}
 The camera trap photos along with the annotations (i.e. image classifications) are available for anyone to access. The original dataset includes over 2.65M sequences of camera trap images (totaling 7.1M images) from ten field seasons. As you can imagine that is a lot of data! For this lab we will focus on data collected over the course of three seasons.  I have done a substantial amount of preprocessing the data so that you can access it for this lab. The table below includes the number of images available for each of the species. Note that annotations are tied to images, but are only reliable at the sequence level. For example, there are some sequences in which two of three images contain a lion, but the third is empty (lions, it turns out, walk away sometimes), but all three images would be annotated as “lion”. In the R code to download the photos it will pull out only the first photo in the sequence, but the table below includes all of the photographs in the sequence, so the actual sample size may vary slightly.

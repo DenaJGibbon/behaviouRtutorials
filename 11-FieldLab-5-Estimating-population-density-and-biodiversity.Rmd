@@ -38,6 +38,6 @@ Method of detection: Did you see the animal, hear the animal, step on it?
 *Question 5*. How could inter-individual differences in behavior potentially influence the results of your survey?
 
 ## Part 5. Data analysis {-}  
-We will be analyzing the data during the computer lab. Be sure that your data are entered into the data sheet following the correct format. You can download the datasheet below.
+We will be analyzing the data during the computer lab. Be sure that your data are entered into the data sheet following the correct format. 
 
 Material for this lab was adapted from: Andrew J. Marshall's Primate Evolutionary Ecology course at University of California, Davis.
