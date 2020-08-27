@@ -1,9 +1,7 @@
 # Field Lab 6: Design a camera trap study in Serengeti National Park. {-}
 
-```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
-Fig <- magick::image_read('images/Figure6.pdf')
-Fig
-
+```{r, echo=FALSE, out.height='50%', out.width = '50%',fig.align='center',fig.cap='Image from the Snapshot Serengeti image database (http://lila.science/datasets/snapshot-serengeti)'}
+knitr::include_graphics("images/behaviouR_figures/lionmale.png")
 ```
 
 

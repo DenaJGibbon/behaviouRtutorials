@@ -1,7 +1,9 @@
 # Field Lab 2: Ethograms and activity budgets {-}
 
-<a title="Nevit Dilmen / CC BY-SA (http://creativecommons.org/licenses/by-sa/3.0/)" href="https://commons.wikimedia.org/wiki/File:Darica_07157.jpg"><img width="256" alt="Darica 07157" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Darica_07157.jpg/256px-Darica_07157.jpg"></a>
+```{r, echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Fir0002 / GFDL 1.2 (http://www.gnu.org/licenses/old-licenses/fdl-1.2.html)'}
+knitr::include_graphics("images/MeerKatSingle.png")
 
+```
 
 NOTE: you may want to look ahead to Computer Lab 2. You will need to enter your data from this lab into the spreadsheets. For the field lab you can take the data anyway that you like, but be prepared to enter and format it for the computer lab!
 
@@ -12,7 +14,7 @@ Your first task will be to watch this short video: https://vimeo.com/80600819. W
 *Question 1b*. Please enter your ethogram (behavioral categories and definitions) here. Make sure to include ‘other’ and ‘out of view’ as two of your categories.
 
 ## Part 2. Focal versus scan sampling {-}
-Watch this video for an introduction to focal versus scan sampling.
+Watch this video for an introduction to focal versus scan sampling (link here: https://www.youtube.com/watch?v=lc0ehu7jvaA&t=210s).
 <!-- blank line -->
 <figure class="video_container">
   <iframe src="https://www.youtube.com/embed/lc0ehu7jvaA" frameborder="0" allowfullscreen="true"> </iframe>

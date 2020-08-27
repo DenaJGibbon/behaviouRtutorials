@@ -1,48 +1,8 @@
 # Computer Lab 1. Data exploration and visualization {-}
 
-```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
-library(behaviouR)
-library(tuneR)
-library(seewave)
-library(stringr)
-library(plyr)
-library(ggplot2)
-library(ggfortify)
-# Lab 1 figures
-deerImage <- magick::image_read('images/Red_deer_stag.jpg')
-deerImage <- magick::image_ggplot(deerImage)
-
-deerImage <-deerImage + theme(panel.border = element_rect(colour = "white", fill=NA, size=20))
-
-data("MaleDeerRoarDF")
-
-Fig1b <- ggbarplot(MaleDeerRoarDF, x='MaleCategory', y='RoarsPerMinute', fill = 'MaleCategory',
-          palette = c('red','gray','white','black'),
-          add = c("mean_se"))+ theme(legend.position = "none")+theme(text = element_text(size=10))
-
-
-
-MaleRedDeerDF <- CorrelatedDataSimulationFunction(N=100, 
-                                                  CorrelationCoefficient= 0.45,
-                                                  MaleMeanBodyWeight = 125,
-                                                  MaleReproductiveSuccess = 3)
-
-Fig1c <- ggscatter(data=MaleRedDeerDF,x='MaleBodyWeight',y='MaleReproductiveSuccess',
-          add='reg.line')+xlab('Male Body Weight (kg)')+ylab('Male Reproductive Success')
-
-
-data("DeerSpeciesAcousticFeatures")
-DeerSpeciesAcousticFeaturesPCA <- princomp(DeerSpeciesAcousticFeatures[,-c(4)])
-Fig1d <- ggplot2::autoplot(DeerSpeciesAcousticFeaturesPCA, data = DeerSpeciesAcousticFeatures, colour = 'Class',
-         loadings = FALSE, loadings.colour = 'red',
-         loadings.label = FALSE,
-         loadings.label.size = 5)+theme_bw()+scale_color_manual(values = c('red','gray','black'))
-
-print(cowplot::plot_grid(deerImage,Fig1b,
-                   Fig1c, Fig1d,labels = c('A','B','C','D'),label_x = .92))
-
+```{r, echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Image of red deer (Mehmet Karatay / CC BY-SA; https://creativecommons.org/licenses/by-sa/3.0)'}
+knitr::include_graphics("images/behaviouR_figures/Figure2.png")
 ```
-
 
 *Background*  
 Our examples for this lab will focus on roaring behavior in red deer. Red deer on Rum Island, Scotland form harems during the mating season. Harem holding males fight off other males during this time, and many of these males have signs of fighting injuries. Clutton-Brock and colleagues hypothesized that because of the injury associated with fights that red deer males should use honest indicators of each others fighting abilities, and that the main indicator of strength and fighting ability was the male roars.   

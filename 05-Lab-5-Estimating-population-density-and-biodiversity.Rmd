@@ -1,11 +1,8 @@
 # Computer Lab 5. Estimating Population Density and Biodiversity {-}
 
-```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
-knitr::opts_chunk$set(fig.height = 9, fig.width = 9)
-library(behaviouR)
-data('CensusData')
-gghistogram(data=CensusData, x='Species',stat="count",palette = c(matlab::jet.colors(2)),
-            facet.by = 'Partner',fill='Partner',x.text.angle =90)+xlab('Species')+ylab('Number of individuals')
+```{r , echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Sample figures from the estimating population density and biodiversity lab'}
+knitr::include_graphics("images/behaviouR_figures/Figure6.png")
+
 ```
 
 *Background*   

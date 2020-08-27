@@ -1,9 +1,6 @@
 # Computer Lab 3. Analyzing Acoustic Data {-}
-
-
-```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
-Fig3a <- magick::image_read('images/Lab3.png')
-Fig3a
+```{r , echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Sample figures from the analyzing acoustic data lab'}
+knitr::include_graphics("images/behaviouR_figures/Figure4.png")
 
 ```
 
@@ -37,7 +34,8 @@ getwd()
 dir.create(file.path('FocalRecordings'), showWarnings = FALSE)
 
 # Now we will load the sound files that were in the R package
-githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/FocalRecordings.rda'
+githubURL <-
+'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/FocalRecordings.rda'
 FocalRecordings <- get(load(url(githubURL)))
 
 # Let's check the structure
@@ -204,7 +202,8 @@ Now we will do something similar to our investigation of the focal recordings, b
 dir.create(file.path('SoundscapeRecordings'), showWarnings = FALSE)
 
 # Now we will load the sound files that were in the R package
-githubURL <-'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/SoundscapeRecordings.rda'
+githubURL <-
+'https://github.com/DenaJGibbon/behaviouRdata/raw/master/data/SoundscapeRecordings.rda'
 
 SoundscapeRecordings <- get(load(url(githubURL)))
 

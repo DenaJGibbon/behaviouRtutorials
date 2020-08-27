@@ -1,12 +1,7 @@
 # Computer Lab 2. Activity Budgets and Ethograms {-}
 
-```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE,fig.asp=0.62}
-library(behaviouR)
-# Lab 2 Figures
-meerkat.image <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/Lab2Figure.pdf')
-meerkat.image <-magick::image_ggplot(meerkat.image)
-
-print(meerkat.image)
+```{r , echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Image of meerkats (Charles J Sharp / CC BY-SA; https://creativecommons.org/licenses/by-sa/4.0)'}
+knitr::include_graphics("images/behaviouR_figures/Figure3.png")
 ```
 
 
@@ -111,7 +106,8 @@ Here we take the sum for each unique behavior and return it
 
 MeerkatFocalData %>% 
   dplyr::group_by(BehaviorCode) %>% 
-  dplyr::summarise(TotalSeconds = sum(SecondsEngagedinBehavior))
+  dplyr::summarise(TotalSeconds 
+                   = sum(SecondsEngagedinBehavior))
 ```
 
 Then we need to save the output as an R object
@@ -125,7 +121,8 @@ MeerkatFocalDataSummary <- MeerkatFocalData %>%
 Now we need to standardize for our total observation time. We divide by 600 because our video was 10 minutes (or 600 seconds) long.
 ```{r echo = TRUE}
 
-MeerkatFocalDataSummary$ActivityBudget <- MeerkatFocalDataSummary$TotalSeconds/600*100
+MeerkatFocalDataSummary$ActivityBudget <- 
+  MeerkatFocalDataSummary$TotalSeconds/600*100
 ```
 
 Now let's plot our results!
@@ -229,10 +226,10 @@ NOTE: that you will want to change the A and B to the names you used in the data
 ```{r echo = TRUE}
 
 Partner1Data <- subset(MeerkatScanData,Partner=='A')
-Partner1Data <- Partner1Data[,-c(5)] # We remove the 'Partner' column so that we only focus on scans
+Partner1Data <- Partner1Data[,-c(5)] # We remove the 'Partner' column
 
 Partner2Data <- subset(MeerkatScanData,Partner=='B')
-Partner2Data <- Partner2Data[,-c(5)] # We remove the 'Partner' column so that we only focus on scans
+Partner2Data <- Partner2Data[,-c(5)] # We remove the 'Partner' column 
 ```
 
 Reliability is often and most simply expressed as a correlation coefficient. A correlation of 1 means a perfect positive association between two sets of measurements, whereas a correlation of zero means the complete absence of a linear association. Reliability is generally calcuated for each category of behavior.

@@ -1,5 +1,10 @@
 # Field lab 5. Estimating population density and biodiversity {-}
 
+```{r, echo=FALSE, out.height="50%", out.width = "50%",fig.align='center',fig.cap='Biodiversity image; Justin / CC BY-SA (https://creativecommons.org/licenses/by-sa/3.0)'}
+knitr::include_graphics("images/behaviouR_figures/biodiversity.png")
+```
+
+
 ## Part 1. Background {-}    
 In lecture this week we learned about population- and community- level interactions, and how they can influence individual and species-specific behavior. Differences in population density can lead to shifts in the proportion of different behavioral phenotypes in a population, and the presence of competitors of other species can shape the behavior of animals on shorter (ecological) and longer (evolutionary) time scales.   
   For many types of behavioral studies—and for effective conservation of animals— a clear estimate of population density of focal species along with estimates of overall biodiversity of an area are necessary. In the field lab this week you will become familiar with field methods scientists use to estimate population density and biodiversity. There are many different methods and approaches that scientists can use, and the methods we will use in this lab are most appropriate for studies of terrestrial vertebrates.

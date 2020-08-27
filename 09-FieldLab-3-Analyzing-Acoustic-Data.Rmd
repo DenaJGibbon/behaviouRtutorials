@@ -1,6 +1,7 @@
 # Field Lab 3: Introduction to bioacoustics {-}
-```{r echo=FALSE,out.width='80%', fig.asp=.75, fig.align='center',message=FALSE}
-magick::image_read('images/lab3updated.png')
+```{r, echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Sample figures from the analyzing acoustic data lab'}
+knitr::include_graphics("images/lab3updated.png")
+
 ```
 
 ## Part 1. Introduction {-}

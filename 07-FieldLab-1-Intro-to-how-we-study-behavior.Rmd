@@ -1,6 +1,9 @@
 # Field Lab 1: Introduction to how we study behavior {-}
 
-<center><p><a href="https://commons.wikimedia.org/wiki/File:Northern_Cardinal_male_RWD2.jpg#/media/File:Northern_Cardinal_male_RWD2.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Northern_Cardinal_male_RWD2.jpg/1200px-Northern_Cardinal_male_RWD2.jpg" alt="Northern Cardinal male RWD2.jpg"></a><br></center>
+```{r , echo=FALSE, out.width = '100%',fig.align='center',fig.cap='By DickDaniels (http://carolinabirds.org/) - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=19534044'}
+knitr::include_graphics("images/cardinal.png")
+
+```
 
 ## Part 1. Observe behaviors {-}
 

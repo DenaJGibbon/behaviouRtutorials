@@ -1,53 +1,9 @@
 # Computer Lab 4. Vigilance behavior {-}
-```{r echo=FALSE,fig.align='center',warning=FALSE,message=FALSE}
-knitr::opts_chunk$set(fig.height = 9, fig.width = 9)
-library(behaviouR)
-data('BarnacleGooseData')
-Figure4a <- ggscatter(data=BarnacleGooseData,x='FlockSize',y='TimeSecHeadUp',add='reg.line',
-          facet.by = 'Partner', color='Partner', cor.coef = T,
-          palette =c('black','blue'))+
-  ylab('Time vigilant (sec/min)')
 
-
-
-data('MeerkatScanData')
-# As before we will turn our NA values to zero
-MeerkatScanData[is.na(MeerkatScanData)] <- '0'
-
-# We will remove the time and out of sight columns as we do not need them
-MeerkatScanData <-dplyr::select(MeerkatScanData,-c(Time,OutOfSight))
-
-# We need to reformat our data so that we can plot it
-MeerkatScanDataSummaryLong <- reshape2::melt(MeerkatScanData, id.vars=c("Treatment", "Partner"))
-
-# Here we add more informative column names
-colnames(MeerkatScanDataSummaryLong) <- c('Treatment','Partner',
-                                          'BehavioralState','InstancesOfBehavior')
-
-# We need to tell R that our outcome variable is not categorical but numeric
-MeerkatScanDataSummaryLong$InstancesOfBehavior <-
-  as.numeric(MeerkatScanDataSummaryLong$InstancesOfBehavior)
-
-# Now we plot our data
-Figure4b <- ggboxplot(MeerkatScanDataSummaryLong,x='Treatment',
-          y='InstancesOfBehavior', fill = 'BehavioralState')+scale_fill_manual(values = c('red','white','black'))
-
-
-Fig4c <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/BarnacleGoose.jpg')
-Fig4c <-magick::image_ggplot(Fig4c)
-Fig4c <-Fig4c + theme(panel.border = element_rect(colour = "white", fill=NA, size=20))
-
-
-Fig4d <- magick::image_read('/Users/denasmacbook/behaviouR-package/behaviouR tutorial script/images/MeerkatSingle.jpg')
-Fig4d <-magick::image_ggplot(Fig4d)
-Fig4d <-Fig4d + theme(panel.border = element_rect(colour = "white", fill=NA, size=10))
-
-cowplot::plot_grid(Figure4a,Figure4b,Fig4c,Fig4d,
-                   scale  = c(1,1,0.75,0.9),label_x = .9,
-                  labels = c('A','B','C','D'))
+```{r, echo=FALSE, out.width = '100%',fig.align='center',fig.cap='A) Image of barnacle goose (Andreas Trepte / CC BY-SA; https://creativecommons.org/licenses/by-sa/2.5); B) Image of meerkat (Fir0002 / GFDL 1.2; http://www.gnu.org/licenses/old-licenses/fdl-1.2.html)'}
+knitr::include_graphics("images/behaviouR_figures/Figure5.png")
 
 ```
-
 
 *Background*   
 In this lab we will continue our work investigating vigilance behaviors in geese and meerkats.

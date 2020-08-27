@@ -1,19 +1,7 @@
 # Computer Lab 6. Analyzing camera trap data. {-}
 
-```{r echo=FALSE,out.width='80%', fig.asp=.75, fig.align='center'}
-
-mainImage <- magick::image_read('images/Figure6.pdf')
-Fig6a <- magick::image_ggplot(mainImage)
-CombinedDFTimes <- read.csv('CombinedAnimalDF_TimeAdded.csv')
-CombinedPartnerDFTimes <- read.csv('CombinedAnimalDF_TimeAddedPartner.csv')
-AllDataCombined <- rbind.data.frame(CombinedDFTimes,CombinedPartnerDFTimes)
-
-Fig6b <- ggpubr::ggdensity(data=AllDataCombined,x='Time',fill = 'category_id',facet.by = 'category_id')+
-  xlab('Time (24 hrs)') +ylab('Density')+scale_fill_manual(values = c('red','gray','black','blue'))+ theme(legend.title = element_blank())
-
-
-cowplot::plot_grid(Fig6a,Fig6b,scale=c(1.25,0.75),label_x = .9,
-                   labels = c('A','B'))
+```{r , echo=FALSE, out.width = '100%',fig.align='center',fig.cap='Images of wildebeest, zebra, cheetah and leopard from the Snapshot Serengeti image database (http://lila.science/datasets/snapshot-serengeti)'}
+knitr::include_graphics("images/behaviouR_figures/Figure7.png")
 
 ```
 

@@ -1,7 +1,11 @@
 # Field Lab 4: Vigilance behavior {-}
+```{r, echo=FALSE, out.width = '100%',fig.align='center',fig.cap='A) Image of barnacle goose (Andreas Trepte / CC BY-SA; https://creativecommons.org/licenses/by-sa/2.5); B) Image of meerkat (Fir0002 / GFDL 1.2; http://www.gnu.org/licenses/old-licenses/fdl-1.2.html)'}
+knitr::include_graphics("images/behaviouR_figures/Figure5.png")
+
+```
 
 ## Part 1. Introduction {-}
-Please watch this short video for an introduction to vigilance behavior.
+Please watch this short video for an introduction to vigilance behavior (link here:https://www.youtube.com/watch?v=gICgaiPjucU&t=3s).
 <!-- blank line -->
 <figure class="video_container">
   <iframe src="https://www.youtube.com/embed/gICgaiPjucU" frameborder="0" allowfullscreen="true"> </iframe>
@@ -18,7 +22,7 @@ In your notebook document the following:
 2. The number of times they are in the ‘head up’ position  
 3. The start and stop time of each ‘head up’ position.   
 
-I recommend using a stopwatch for this. Here is a link to the video:
+I recommend using a stopwatch for this. Here is a link to the video (https://www.youtube.com/watch?v=oeJHW5n-PXY):
 
 <!-- blank line -->
 <figure class="video_container">
